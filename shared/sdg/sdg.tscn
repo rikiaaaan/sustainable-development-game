@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://frpswf28sb0y"]
+
+[ext_resource type="Script" path="res://shared/sdg/sdg.gd" id="1_2345c"]
+[ext_resource type="Texture2D" uid="uid://dduokv4emgrjm" path="res://shared/img/sdgs.png" id="1_uf2hm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n5wuy"]
+radius = 150.003
+
+[node name="sdg" type="RigidBody2D"]
+linear_velocity = Vector2(0, 1)
+script = ExtResource("1_2345c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_uf2hm")
+region_enabled = true
+region_rect = Rect2(1031, 612, 299, 299)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_n5wuy")

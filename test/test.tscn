@@ -1,3 +1,62 @@
-[gd_scene format=3 uid="uid://b3itvcljx11fd"]
+[gd_scene load_steps=6 format=3 uid="uid://b3itvcljx11fd"]
+
+[ext_resource type="Script" path="res://test/test.gd" id="1_pchhp"]
+[ext_resource type="Texture2D" uid="uid://ne4g6lpje2vl" path="res://shared/img/background/test.jpeg" id="2_mx63o"]
+[ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="3_rm0el"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itdbj"]
+size = Vector2(25.5, 434)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni6ts"]
+size = Vector2(547, 24)
 
 [node name="Test" type="Node"]
+script = ExtResource("1_pchhp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_mx63o")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = 298.0
+offset_top = 267.0
+offset_right = 323.0
+offset_bottom = 701.0
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D"]
+offset_left = 870.0
+offset_top = 267.0
+offset_right = 895.0
+offset_bottom = 701.0
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D"]
+offset_left = 298.0
+offset_top = 677.0
+offset_right = 895.0
+offset_bottom = 701.0
+
+[node name="sdgs" type="Node2D" parent="Node2D"]
+
+[node name="sdg" parent="Node2D/sdgs" instance=ExtResource("3_rm0el")]
+position = Vector2(840, 137)
+
+[node name="walls" type="Node2D" parent="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/walls/StaticBody2D"]
+position = Vector2(310.5, 484)
+shape = SubResource("RectangleShape2D_itdbj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/walls/StaticBody2D"]
+position = Vector2(882.75, 484)
+shape = SubResource("RectangleShape2D_itdbj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/walls/StaticBody2D"]
+position = Vector2(596.5, 689)
+shape = SubResource("RectangleShape2D_ni6ts")
