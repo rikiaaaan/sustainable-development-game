@@ -34,6 +34,11 @@ summon_sdg={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="wall"
+2d_physics/layer_2="sdgs"
+
 [rendering]
 
 renderer/rendering_method="mobile"

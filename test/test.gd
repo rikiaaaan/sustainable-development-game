@@ -16,7 +16,17 @@ func _input(event:InputEvent) -> void:
 
 func summon_sdg() -> void:
 	var sdg = ResourceLoader.load("res://shared/sdg/sdg.tscn").instantiate()
-	sdg.position = Vector2(randi_range(360,800),0)
-	$Node2D/sdgs.add_child(sdg)
+	var mouse_pos_rel:Vector2i = DisplayServer.mouse_get_position() - DisplayServer.window_get_position()
+	print(mouse_pos_rel)
+	sdg.position = mouse_pos_rel
+	$Node2D/Sdgs.add_child(sdg)
 	
+	return
+
+func _process(_delta:float) -> void:
+	var cam_vec:Vector2 = Vector2.ZERO
+	cam_vec.x = int(Input.is_key_pressed(KEY_L)) - int(Input.is_key_pressed(KEY_J))
+	cam_vec.y = int(Input.is_key_pressed(KEY_K)) - int(Input.is_key_pressed(KEY_I))
+	$Camera2D.position += cam_vec * 3
+	$Camera2D.zoom += Vector2(0.1,0.1) * (int(Input.is_key_pressed(KEY_E)) - int(Input.is_key_pressed(KEY_Q)))
 	return
