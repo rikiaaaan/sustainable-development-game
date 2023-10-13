@@ -16,7 +16,10 @@ func _init() -> void:
 
 func _ready() -> void:
 
+	hide()
 	set_polygon(146/2)
+	set_phase()
+	show()
 
 	return
 
@@ -24,6 +27,8 @@ func _ready() -> void:
 func set_phase() -> void:
 
 	phase = clampi(phase, 0, 16)
+	$Polygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.075,0.075) * phase)
+	$CollisionPolygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.075,0.075) * phase)
 	$Polygon2D/Sprite2D.region_rect = Rect2(9+161.2*(phase%6), 11+158*int(phase/6), 146, 146)
 
 	return
