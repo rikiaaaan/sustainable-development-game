@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://1najobv5dww8"]
+[gd_scene load_steps=3 format=3 uid="uid://1najobv5dww8"]
 
 [ext_resource type="Script" path="res://title/title.gd" id="1_vs2ow"]
+[ext_resource type="Texture2D" uid="uid://dncq5x46ocuy6" path="res://shared/img/button_gamestart.png" id="2_pphhd"]
 
 [node name="title" type="Node"]
 script = ExtResource("1_vs2ow")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Ui"]
+modulate = Color(1, 0.811765, 0.0666667, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_pphhd")
+
+[connection signal="mouse_entered" from="Ui/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="Ui/TextureRect" to="." method="_on_texture_rect_mouse_exited"]
