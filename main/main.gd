@@ -1,13 +1,15 @@
 extends Node
 
 var current_scene_name:String = ""
-var did_tween:bool = false
+
 
 func _ready() -> void:
 
-	change_scene("title", false)
+#	change_scene("title", false)
+	change_scene("test")
 
 	return
+
 
 func _input(event:InputEvent) -> void:
 
@@ -25,37 +27,35 @@ func _input(event:InputEvent) -> void:
 
 func change_scene(scene_name:String, with_tween:bool=true) -> void:
 
-	print_debug("change_scene called")
 	print_debug("scene_name: "+scene_name)
 	print_debug("with_tween: "+var_to_str(with_tween))
 	
-
 	var tween:Tween
-	did_tween = false
 	
-	if current_scene_name != "":
-		
-		did_tween = true
+	if with_tween:
 		$CanvasLayer/ColorRect.modulate = Color(1,1,1,0)
 		$CanvasLayer.show()
-		
 		tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT_IN)
 		tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,1),0.25)
 		await tween.finished
-		
-		var current_scene = get_node("./"+current_scene_name)
+		pass
+	
+	if current_scene_name != "":
+		var current_scene:Node = get_node("./"+current_scene_name)
 		for child in current_scene.get_children():
 			current_scene.remove_child(child)
 			child.queue_free()
+			pass
 		remove_child(current_scene)
 		current_scene.queue_free()
+		pass
 	
-	var scene_path:String = "res://scenes/"+scene_name+"/"+scene_name+".tscn"
+	var scene_path:String = "res://"+scene_name+"/"+scene_name+".tscn"
 	var scene
 	
 	if !ResourceLoader.exists(scene_path):
-		OS.alert("This scene(%s) does not exist." % [scene_name])
+		OS.alert("[ERROR]This scene(%s) does not exist." % [scene_name], "ERROR")
 		get_tree().quit()
 		return
 	elif ResourceLoader.has_cached(scene_path):
@@ -70,11 +70,10 @@ func change_scene(scene_name:String, with_tween:bool=true) -> void:
 	
 	scene.name = scene_name
 	current_scene_name = scene_name
-	
 	scene.process_mode = Node.PROCESS_MODE_DISABLED
 	add_child(scene, true)
-
-	if did_tween:
+	
+	if with_tween:
 		tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT_IN)
 		tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,0), 0.25)
@@ -83,5 +82,5 @@ func change_scene(scene_name:String, with_tween:bool=true) -> void:
 		
 	$CanvasLayer.hide()
 	scene.process_mode = Node.PROCESS_MODE_INHERIT
-	
+
 	return
