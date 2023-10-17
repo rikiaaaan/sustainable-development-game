@@ -6,7 +6,7 @@ var current_scene_name:String = ""
 func _ready() -> void:
 
 #	change_scene("title", false)
-	change_scene("test")
+	change_scene("test", false)
 
 	return
 
@@ -78,9 +78,9 @@ func change_scene(scene_name:String, with_tween:bool=true) -> void:
 		tween.set_ease(Tween.EASE_OUT_IN)
 		tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(1,1,1,0), 0.25)
 		await tween.finished
+		$CanvasLayer.hide()
 		pass
-		
-	$CanvasLayer.hide()
+	
 	scene.process_mode = Node.PROCESS_MODE_INHERIT
 
 	return
