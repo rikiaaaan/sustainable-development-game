@@ -17,7 +17,7 @@ _data = {
 }
 point_count = 2
 
-[node name="Test" type="Node"]
+[node name="test" type="Node"]
 script = ExtResource("1_pchhp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
