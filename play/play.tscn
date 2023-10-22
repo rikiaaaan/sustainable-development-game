@@ -1,6 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf68o5xben4q1"]
+[gd_scene load_steps=6 format=3 uid="uid://bf68o5xben4q1"]
 
 [ext_resource type="Script" path="res://play/play.gd" id="1_21g5d"]
+[ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="2_hgwdi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlpy"]
+size = Vector2(15, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyxw0"]
+size = Vector2(15, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq6wr"]
+size = Vector2(414, 15)
 
 [node name="play" type="Node"]
 script = ExtResource("1_21g5d")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="sdg2" parent="." instance=ExtResource("2_hgwdi")]
+position = Vector2(607, 29)
+
+[node name="sdg" parent="." instance=ExtResource("2_hgwdi")]
+position = Vector2(662, -348)
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Box"]
+offset_left = 395.0
+offset_top = 157.0
+offset_right = 410.0
+offset_bottom = 657.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Box"]
+offset_left = 824.0
+offset_top = 157.0
+offset_right = 839.0
+offset_bottom = 657.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Box"]
+offset_left = 410.0
+offset_top = 657.0
+offset_right = 824.0
+offset_bottom = 672.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(402.5, 407)
+shape = SubResource("RectangleShape2D_fqlpy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(831.5, 407)
+shape = SubResource("RectangleShape2D_uyxw0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(617, 664.5)
+shape = SubResource("RectangleShape2D_pq6wr")
