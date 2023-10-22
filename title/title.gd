@@ -2,7 +2,7 @@ extends Node
 
 func _ready() -> void:
 
-	
+	$Ui/Title/GameStartButton.grab_focus()
 
 	return
 
