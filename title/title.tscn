@@ -14,7 +14,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui"]
+[node name="Title" type="VBoxContainer" parent="Ui"]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -22,13 +22,13 @@ theme_override_constants/separation = 25
 alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Ui/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="Ui/Title"]
 layout_mode = 2
 text = "Sustainable Development Game"
 label_settings = SubResource("LabelSettings_jvuqo")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Ui/VBoxContainer"]
+[node name="GameStartButton" type="Button" parent="Ui/Title"]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -36,7 +36,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 60
 text = "ゲームスタート"
 
-[node name="Button2" type="Button" parent="Ui/VBoxContainer"]
+[node name="MyScoreButton" type="Button" parent="Ui/Title"]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -44,10 +44,14 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 60
 text = "マイスコア"
 
-[node name="Button3" type="Button" parent="Ui/VBoxContainer"]
+[node name="HowToPlayButton" type="Button" parent="Ui/Title"]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 60
 text = "遊び方"
+
+[connection signal="pressed" from="Ui/Title/GameStartButton" to="." method="_on_game_start_button_pressed"]
+[connection signal="pressed" from="Ui/Title/MyScoreButton" to="." method="_on_my_score_button_pressed"]
+[connection signal="pressed" from="Ui/Title/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
