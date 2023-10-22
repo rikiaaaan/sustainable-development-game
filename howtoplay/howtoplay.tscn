@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://b5bvx73f0rbpt"]
+[gd_scene load_steps=2 format=3 uid="uid://b5bvx73f0rbpt"]
+
+[ext_resource type="Script" path="res://howtoplay/howtoplay.gd" id="1_fxiju"]
 
 [node name="howtoplay" type="Node"]
+script = ExtResource("1_fxiju")
