@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpp7tc80mnpya"]
+[gd_scene load_steps=3 format=3 uid="uid://dpp7tc80mnpya"]
 
+[ext_resource type="Texture2D" uid="uid://bxox5ovxhifkn" path="res://shared/img/kokuren.png" id="1_aoedo"]
 [ext_resource type="Script" path="res://shared/kokuren/kokuren.gd" id="1_m8jk0"]
 
 [node name="kokuren" type="Sprite2D"]
+texture = ExtResource("1_aoedo")
 script = ExtResource("1_m8jk0")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-145, 110, -145, 1000, -140, 1000, -140, 110)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-142.5, 110)
