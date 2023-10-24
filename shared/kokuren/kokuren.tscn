@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bxox5ovxhifkn" path="res://shared/img/kokuren.png" id="1_aoedo"]
 [ext_resource type="Script" path="res://shared/kokuren/kokuren.gd" id="1_m8jk0"]
 
-[node name="kokuren" type="Node2D"]
+[node name="kokuren" type="PathFollow2D"]
+loop = false
 script = ExtResource("1_m8jk0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,11 +18,3 @@ polygon = PackedVector2Array(-23, 30, -23, 720, -20, 720, -20, 30)
 position = Vector2(-21.5, 0)
 target_position = Vector2(0, 720)
 collision_mask = 3
-
-[node name="Label" type="Label" parent="."]
-offset_left = 43.0
-offset_top = 136.0
-offset_right = 141.0
-offset_bottom = 235.0
-theme_override_font_sizes/font_size = 70
-text = "1"
