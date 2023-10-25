@@ -17,21 +17,27 @@ func _ready() -> void:
 
 	release_sdg()
 	$AnimationPlayer.play("ready_animation")
+	
+	await $AnimationPlayer.animation_finished
+	
+	game_started = true
 
 	return
 
 
 func _input(event:InputEvent) -> void:
 
-	if event.is_action_pressed("reset_kokuren_position"):
-		kokuren.progress_ratio = 0.5
-		pass
-	
-	if event.is_action_pressed("release_sdg"):
-#		print_debug(release_cooldown)
-		if release_cooldown == 0:
-			release_sdg()
-			release_cooldown = 0.5
+	if game_started:
+		if event.is_action_pressed("reset_kokuren_position"):
+			kokuren.progress_ratio = 0.5
+			pass
+		
+		if event.is_action_pressed("release_sdg"):
+	#		print_debug(release_cooldown)
+			if release_cooldown == 0:
+				release_sdg()
+				release_cooldown = 0.5
+			pass
 		pass
 
 	return
@@ -81,13 +87,17 @@ func _process(delta:float) -> void:
 
 func _physics_process(delta:float) -> void:
 
-	var mouse_movement:Vector2 = Input.get_last_mouse_velocity() * Vector2(1,0)
-	var mouse_movement_x:float = mouse_movement.x
-	kokuren.progress_ratio += mouse_movement_x * 0.001 * delta
-#	$Ui/Game/Score/VBoxContainer/Label2.text = var_to_str(mouse_movement)
-	
-	if current_sdg != null && release_cooldown < 0.25:
-		current_sdg.position = kokuren.position + Vector2(-23,30) + Vector2(0,20)
+	if game_started:
+		
+		var mouse_movement:Vector2 = Input.get_last_mouse_velocity() * Vector2(1,0)
+		var mouse_movement_x:float = mouse_movement.x
+		kokuren.progress_ratio += mouse_movement_x * 0.001 * delta
+	#	$Ui/Game/Score/VBoxContainer/Label2.text = var_to_str(mouse_movement)
+		
+		if current_sdg != null && release_cooldown < 0.25:
+			current_sdg.position = kokuren.position + Vector2(-23,30) + Vector2(0,20)
+			pass
+		
 		pass
 
 	return
