@@ -7,6 +7,7 @@ var release_cooldown:float = 0
 
 var game_started:bool = false
 var game_finished:bool = false
+var pause_screen_showing:bool = false
 
 var current_sdg:RigidBody2D = null
 
@@ -16,7 +17,7 @@ var current_sdg:RigidBody2D = null
 func _ready() -> void:
 
 	release_sdg()
-	$AnimationPlayer.play("ready_animation")
+	$AnimationPlayer.play("ready")
 	
 	await $AnimationPlayer.animation_finished
 	
@@ -28,6 +29,7 @@ func _ready() -> void:
 func _input(event:InputEvent) -> void:
 
 	if game_started:
+		
 		if event.is_action_pressed("reset_kokuren_position"):
 			kokuren.progress_ratio = 0.5
 			pass
@@ -37,7 +39,16 @@ func _input(event:InputEvent) -> void:
 			if release_cooldown == 0:
 				release_sdg()
 				release_cooldown = 0.5
+				pass
 			pass
+		
+		if event.is_action_pressed("pause"):
+			if pause_screen_showing:
+				$AnimationPlayer.play("pause_enter")
+				pause_screen_showing = true
+				pass
+			pass
+		
 		pass
 
 	return
