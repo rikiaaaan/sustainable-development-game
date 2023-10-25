@@ -92,15 +92,15 @@ horizontal_alignment = 1
 
 [node name="SDGs" type="ColorRect" parent="Ui/Game"]
 layout_mode = 0
-offset_left = 940.0
-offset_top = 400.0
-offset_right = 1240.0
-offset_bottom = 700.0
+offset_left = 862.0
+offset_top = 371.0
+offset_right = 1262.0
+offset_bottom = 671.0
 color = Color(1, 0.509804, 0.529412, 0.478431)
 
 [node name="Label" type="Label" parent="Ui/Game/SDGs"]
 layout_mode = 0
-offset_right = 300.0
+offset_right = 400.0
 offset_bottom = 44.0
 text = "持続可能な開発目標"
 label_settings = SubResource("LabelSettings_qjy7o")
@@ -108,18 +108,11 @@ horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Ui/Game/SDGs"]
 layout_mode = 0
-offset_left = -1.0
 offset_top = 40.0
-offset_right = 302.0
+offset_right = 400.0
 offset_bottom = 301.0
 texture = ExtResource("2_ous07")
 expand_mode = 1
-
-[node name="sdg2" parent="." instance=ExtResource("2_hgwdi")]
-position = Vector2(607, 29)
-
-[node name="sdg" parent="." instance=ExtResource("2_hgwdi")]
-position = Vector2(662, -348)
 
 [node name="Box" type="Node2D" parent="."]
 
@@ -157,6 +150,14 @@ shape = SubResource("RectangleShape2D_uyxw0")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Box/StaticBody2D"]
 position = Vector2(617, 664.5)
 shape = SubResource("RectangleShape2D_pq6wr")
+
+[node name="Sdgs" type="Node2D" parent="."]
+
+[node name="NextSgd" type="Node2D" parent="."]
+
+[node name="sdg" parent="NextSgd" instance=ExtResource("2_hgwdi")]
+position = Vector2(1085, 208)
+freeze = true
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(0, 20)

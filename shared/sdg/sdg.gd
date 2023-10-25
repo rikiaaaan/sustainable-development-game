@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal touched_sdgs
+signal fell
 
 @export var print_shit:bool = false
 @export var phase:int = 0
@@ -47,9 +48,11 @@ func set_polygon(size:float) -> void:
 	return
 
 
-func summon_sdg(pos:Vector2) -> void:
+func summon_sdg(summon_pos:Vector2, phase:int=0) -> void:
 
-
+	var sdg = ResourceLoader.load("res://shared/sdg/sdg.tscn").instantiate()
+	sdg.position = summon_pos
+	sdg.phase = phase
 
 	return
 
@@ -58,6 +61,7 @@ func _physics_process(delta:float) -> void:
 
 	set_phase()
 	if position.y > 1000:
+		emit_signal("fell")
 		queue_free()
 		pass
 	
