@@ -43,7 +43,7 @@ func _input(event:InputEvent) -> void:
 			pass
 		
 		if event.is_action_pressed("pause"):
-			if pause_screen_showing:
+			if !pause_screen_showing:
 				$AnimationPlayer.play("pause_enter")
 				pause_screen_showing = true
 				pass
