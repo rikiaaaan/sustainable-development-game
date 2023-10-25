@@ -16,6 +16,7 @@ var current_sdg:RigidBody2D = null
 func _ready() -> void:
 
 	release_sdg()
+	$AnimationPlayer.play("ready_animation")
 
 	return
 
