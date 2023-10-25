@@ -28,8 +28,8 @@ func _ready() -> void:
 func set_phase() -> void:
 
 	phase = clampi(phase, 0, 16)
-	$Polygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.075,0.075) * phase)
-	$CollisionPolygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.075,0.075) * phase)
+	$Polygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
+	$CollisionPolygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
 	$Polygon2D/Sprite2D.region_rect = Rect2(9+161.2*(phase%6), 11+158*int(phase/6), 146, 146)
 
 	return
@@ -59,6 +59,13 @@ func summon_sdg(summon_pos:Vector2, phase:int=0) -> void:
 
 func _physics_process(delta:float) -> void:
 
+	if !freeze:
+		collision_layer = 0b10
+		pass
+	else:
+		collision_layer = 0b00
+		pass
+	
 	set_phase()
 	if position.y > 1000:
 		emit_signal("fell")
