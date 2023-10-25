@@ -1,7 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf68o5xben4q1"]
+[gd_scene load_steps=13 format=3 uid="uid://bf68o5xben4q1"]
 
 [ext_resource type="Script" path="res://play/play.gd" id="1_21g5d"]
 [ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="2_hgwdi"]
+[ext_resource type="Texture2D" uid="uid://cb8bro0dthsy2" path="res://shared/img/sgds.png" id="2_ous07"]
+[ext_resource type="PackedScene" uid="uid://dpp7tc80mnpya" path="res://shared/kokuren/kokuren.tscn" id="3_ng7fh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7lsrp"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xvloa"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvdnj"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjy7o"]
+font_size = 30
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlpy"]
 size = Vector2(15, 500)
@@ -12,6 +26,12 @@ size = Vector2(15, 500)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pq6wr"]
 size = Vector2(414, 15)
 
+[sub_resource type="Curve2D" id="Curve2D_q3s1r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 460, 10, 0, 0, 0, 0, 810, 10)
+}
+point_count = 2
+
 [node name="play" type="Node"]
 script = ExtResource("1_21g5d")
 
@@ -20,6 +40,80 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Game" type="Control" parent="Ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 70.0
+offset_right = 310.0
+offset_bottom = 320.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Game/Score"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Ui/Game/Score/VBoxContainer"]
+layout_mode = 2
+text = "スコア"
+label_settings = SubResource("LabelSettings_7lsrp")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Game/Score/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_xvloa")
+horizontal_alignment = 1
+
+[node name="Next" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 70.0
+offset_right = 1210.0
+offset_bottom = 320.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Game/Next"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Ui/Game/Next/VBoxContainer"]
+layout_mode = 2
+text = "ネクスト"
+label_settings = SubResource("LabelSettings_gvdnj")
+horizontal_alignment = 1
+
+[node name="SDGs" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 940.0
+offset_top = 400.0
+offset_right = 1240.0
+offset_bottom = 700.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="Label" type="Label" parent="Ui/Game/SDGs"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 44.0
+text = "持続可能な開発目標"
+label_settings = SubResource("LabelSettings_qjy7o")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Game/SDGs"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 40.0
+offset_right = 302.0
+offset_bottom = 301.0
+texture = ExtResource("2_ous07")
+expand_mode = 1
 
 [node name="sdg2" parent="." instance=ExtResource("2_hgwdi")]
 position = Vector2(607, 29)
@@ -63,3 +157,10 @@ shape = SubResource("RectangleShape2D_uyxw0")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Box/StaticBody2D"]
 position = Vector2(617, 664.5)
 shape = SubResource("RectangleShape2D_pq6wr")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 20)
+curve = SubResource("Curve2D_q3s1r")
+
+[node name="kokuren" parent="Path2D" instance=ExtResource("3_ng7fh")]
+position = Vector2(460, 10)
