@@ -12,9 +12,10 @@ func _ready() -> void:
 
 func set_raycast_line() -> void:
 
-	var collision_point:Vector2 = $RayCast2D.get_collision_point()
-#	$Label.text = var_to_str(collision_point)
-#	$Label.text += "\n" + var_to_str($RayCast2D.get_collision_normal())
+#	$RayCast2D.target_position = Vector2(position.x, 720)
+	var collision_point:Vector2 = $RayCast2D.get_collision_point() - Vector2(0, 30)
+	$Label.text = var_to_str(collision_point)
+	$Label.text += "\n" + var_to_str($RayCast2D.get_collision_normal())
 	$Polygon2D.polygon[1].y = collision_point.y
 	$Polygon2D.polygon[2].y = collision_point.y
 

@@ -18,3 +18,8 @@ polygon = PackedVector2Array(-23, 30, -23, 720, -20, 720, -20, 30)
 position = Vector2(-21.5, 0)
 target_position = Vector2(0, 720)
 collision_mask = 3
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
