@@ -41,6 +41,27 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Ready" type="Control" parent="Ui"]
+z_index = 10
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Ui/Ready"]
+position = Vector2(-3.05176e-05, -3.05176e-05)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ui/Ready/Polygon2D"]
+position = Vector2(639.063, 359.5)
+scale = Vector2(1.316, 1.50418)
+texture = ExtResource("2_ous07")
+region_rect = Rect2(0, 0, 486, 478)
+
+[node name="ColorRect" type="ColorRect" parent="Ui/Ready"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.313726)
+
 [node name="Game" type="Control" parent="Ui"]
 anchors_preset = 0
 offset_right = 40.0

@@ -4,7 +4,10 @@ extends Node
 var score:int = 0
 
 var release_cooldown:float = 0
+
 var game_started:bool = false
+var game_finished:bool = false
+
 var current_sdg:RigidBody2D = null
 
 @onready var next_sdg:RigidBody2D = $NextSgd/sdg
@@ -61,8 +64,7 @@ func release_sdg() -> void:
 	summon_sdg(Vector2(-100,-100), next_sdg.phase)
 	
 	current_sdg.freeze = true
-	var next_sdg_phase:int = randi_range(0, 5)
-	next_sdg.phase = next_sdg_phase
+	next_sdg.phase = randi_range(0, 5)
 
 	return
 
