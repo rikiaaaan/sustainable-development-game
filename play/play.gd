@@ -25,14 +25,24 @@ func _ready() -> void:
 
 	return
 
+func _unhandled_input(event:InputEvent) -> void:
+
+	if game_started:
+		
+		if event.is_action_pressed("pause"):
+			if !pause_screen_showing:
+				$AnimationPlayer.play("pause_enter")
+				pause_screen_showing = true
+				pass
+			pass
+		
+		pass
+
+	return
 
 func _input(event:InputEvent) -> void:
 
 	if game_started:
-		
-		if event.is_action_pressed("reset_kokuren_position"):
-			kokuren.progress_ratio = 0.5
-			pass
 		
 		if event.is_action_pressed("release_sdg"):
 	#		print_debug(release_cooldown)
@@ -42,13 +52,9 @@ func _input(event:InputEvent) -> void:
 				pass
 			pass
 		
-		if event.is_action_pressed("pause"):
-			if !pause_screen_showing:
-				$AnimationPlayer.play("pause_enter")
-				pause_screen_showing = true
-				pass
+		if event.is_action_pressed("reset_kokuren_position"):
+			kokuren.progress_ratio = 0.5
 			pass
-		
 		pass
 
 	return

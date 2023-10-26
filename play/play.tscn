@@ -118,9 +118,6 @@ tracks/5/keys = {
 "values": [Vector2(440, -600)]
 }
 
-[sub_resource type="Animation" id="Animation_morqt"]
-resource_name = "pause_exit"
-
 [sub_resource type="Animation" id="Animation_l0235"]
 resource_name = "pause_animation"
 length = 0.25
@@ -148,6 +145,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(440, -600), Vector2(440, 110)]
 }
+
+[sub_resource type="Animation" id="Animation_morqt"]
+resource_name = "pause_exit"
 
 [sub_resource type="Animation" id="Animation_dtaaq"]
 resource_name = "ready_animation"
