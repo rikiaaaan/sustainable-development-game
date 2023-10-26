@@ -25,20 +25,22 @@ func _ready() -> void:
 
 	return
 
+
 func _unhandled_input(event:InputEvent) -> void:
 
 	if game_started:
 		
 		if event.is_action_pressed("pause"):
 			if !pause_screen_showing:
-				$AnimationPlayer.play("pause_enter")
-				pause_screen_showing = true
+				show_pause_screen()
+				get_tree().paused = true
 				pass
 			pass
 		
 		pass
 
 	return
+
 
 func _input(event:InputEvent) -> void:
 
@@ -59,6 +61,21 @@ func _input(event:InputEvent) -> void:
 
 	return
 
+
+func show_pause_screen() -> void:
+
+	$AnimationPlayer.play("pause_enter")
+	pause_screen_showing = true
+
+	return
+
+
+func hide_pause_screen() -> void:
+
+	$AnimationPlayer.play("pause_exit")
+	pause_screen_showing = false
+
+	return
 
 
 func summon_sdg(pos:Vector2, phase:int, evolution:bool=false) -> void:
@@ -131,5 +148,13 @@ func _on_sdg_fell() -> void:
 
 	print_debug("sdg fell you noob")
 
+
+	return
+
+#再開ボタンクリック時
+func _on_resume_game_button_pressed() -> void:
+
+	get_tree().paused = false
+	hide_pause_screen()
 
 	return
