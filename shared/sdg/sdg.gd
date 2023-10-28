@@ -44,7 +44,7 @@ func set_phase() -> void:
 
 func set_polygon(size:float) -> void:
 	
-	var pv:PackedVector2Array
+	var pv:PackedVector2Array = []
 	for i in range(0, 360, 3):
 		var v:Vector2 = Vector2.from_angle(deg_to_rad(i)) * size
 		pv.append(v)
@@ -55,11 +55,11 @@ func set_polygon(size:float) -> void:
 	return
 
 
-func summon_sdg(summon_pos:Vector2, phase:int=0) -> void:
+func summon_sdg(summon_pos:Vector2, _phase:int=0) -> void:
 
 	var sdg = ResourceLoader.load("res://shared/sdg/sdg.tscn").instantiate()
 	sdg.position = summon_pos
-	sdg.phase = phase
+	sdg.phase = _phase
 
 	return
 
