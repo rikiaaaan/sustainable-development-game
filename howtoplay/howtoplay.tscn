@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5bvx73f0rbpt"]
+[gd_scene load_steps=13 format=3 uid="uid://b5bvx73f0rbpt"]
 
 [ext_resource type="Script" path="res://howtoplay/howtoplay.gd" id="1_fxiju"]
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_lvekj"]
@@ -19,9 +19,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 400, 300, 0, 0, 0, 0, 900, 300)
 }
 point_count = 2
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kylc1"]
-size = Vector2(1271, 39)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ko4sk"]
 font = ExtResource("2_lvekj")
@@ -76,7 +73,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Page0" type="Control" parent="Ui"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -112,13 +108,11 @@ curve = SubResource("Curve2D_2c03g")
 position = Vector2(400, 300)
 moveable = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ui/Page0/Node2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ui/Page0/Node2D/StaticBody2D"]
-position = Vector2(637.5, 946)
-shape = SubResource("RectangleShape2D_kylc1")
-
 [node name="Sdgs" type="Node2D" parent="Ui/Page0/Node2D"]
+
+[node name="sdg" parent="Ui/Page0/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+freeze = true
+phase = 4
 
 [node name="Page1" type="Control" parent="Ui"]
 visible = false
@@ -192,6 +186,7 @@ text = "→"
 label_settings = SubResource("LabelSettings_pjpo2")
 
 [node name="Page2" type="Control" parent="Ui"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -233,8 +228,9 @@ layout_mode = 2
 text = "前へ"
 label_settings = SubResource("LabelSettings_0owdw")
 horizontal_alignment = 1
+autowrap_mode = 1
 
-[node name="Button" type="Button" parent="Ui/PageController/Back"]
+[node name="BackButton" type="Button" parent="Ui/PageController/Back"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvekj")
@@ -250,13 +246,17 @@ offset_bottom = 458.0
 
 [node name="Label" type="Label" parent="Ui/PageController/Forward"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "次へ"
 label_settings = SubResource("LabelSettings_0owdw")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Ui/PageController/Forward"]
+[node name="ForwardButton" type="Button" parent="Ui/PageController/Forward"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvekj")
 theme_override_font_sizes/font_size = 30
 text = "→"
+
+[connection signal="pressed" from="Ui/PageController/Back/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Ui/PageController/Forward/ForwardButton" to="." method="_on_forward_button_pressed"]
