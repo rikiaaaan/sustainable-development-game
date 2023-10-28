@@ -60,9 +60,6 @@ func _input(event:InputEvent) -> void:
 				pass
 			pass
 		
-		if event.is_action_pressed("reset_kokuren_position"):
-			kokuren.progress_ratio = 0.5
-			pass
 		pass
 
 	return
@@ -175,9 +172,6 @@ func _process(delta:float) -> void:
 func _physics_process(delta:float) -> void:
 
 	if game_started && !game_finished:
-		
-		var mouse_movement_x:float = Input.get_last_mouse_velocity().x
-		kokuren.progress_ratio += mouse_movement_x * 0.001 * delta
 		
 		if current_sdg != null && release_cooldown < 0.25:
 			current_sdg.position = kokuren.position + Vector2(-23,30) + Vector2(0,20)
