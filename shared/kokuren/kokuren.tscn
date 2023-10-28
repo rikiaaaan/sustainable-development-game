@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpp7tc80mnpya"]
+
+[ext_resource type="Texture2D" uid="uid://bxox5ovxhifkn" path="res://shared/img/kokuren.png" id="1_aoedo"]
+[ext_resource type="Script" path="res://shared/kokuren/kokuren.gd" id="1_m8jk0"]
+
+[node name="kokuren" type="PathFollow2D"]
+loop = false
+script = ExtResource("1_m8jk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_aoedo")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-23, 30)
+polygon = PackedVector2Array(0, 0, 0, 720, 3, 720, 3, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-21.5, 0)
+target_position = Vector2(0, 720)
+collision_mask = 3
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0

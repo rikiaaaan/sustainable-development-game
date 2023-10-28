@@ -1,0 +1,694 @@
+[gd_scene load_steps=25 format=3 uid="uid://bf68o5xben4q1"]
+
+[ext_resource type="Script" path="res://play/play.gd" id="1_21g5d"]
+[ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="2_hgwdi"]
+[ext_resource type="Texture2D" uid="uid://cb8bro0dthsy2" path="res://shared/img/sgds.png" id="2_ous07"]
+[ext_resource type="PackedScene" uid="uid://dpp7tc80mnpya" path="res://shared/kokuren/kokuren.tscn" id="3_ng7fh"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="3_ui0x3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8y50l"]
+font = ExtResource("3_ui0x3")
+font_size = 120
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7lsrp"]
+font = ExtResource("3_ui0x3")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xvloa"]
+font = ExtResource("3_ui0x3")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvdnj"]
+font = ExtResource("3_ui0x3")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjy7o"]
+font = ExtResource("3_ui0x3")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_nswt4"]
+font = ExtResource("3_ui0x3")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_js6ef"]
+font = ExtResource("3_ui0x3")
+font_size = 60
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twgi8"]
+font = ExtResource("3_ui0x3")
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qh0ub"]
+font = ExtResource("3_ui0x3")
+font_size = 60
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlpy"]
+size = Vector2(15, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyxw0"]
+size = Vector2(15, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq6wr"]
+size = Vector2(414, 15)
+
+[sub_resource type="Curve2D" id="Curve2D_q3s1r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 466, 10, 0, 0, 0, 0, 810, 10)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_vgi0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Ready/Polygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(0, 0, 0, 720, 1280, 720, 1280, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Ready/Back:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/Ready/VBoxContainer/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Ready?"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/Ready/VBoxContainer/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/Pause/ColorRect:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/Pause/ColorRect2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(440, -600)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ui/Gameover/Back:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.607843)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ui/Gameover/Result:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -720)]
+}
+
+[sub_resource type="Animation" id="Animation_l0235"]
+resource_name = "pause_animation"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Pause/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.392157)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Pause/ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(440, -600), Vector2(440, 220), Vector2(440, 110)]
+}
+
+[sub_resource type="Animation" id="Animation_morqt"]
+resource_name = "pause_exit"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Pause/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.392157), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Pause/ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(440, 110), Vector2(440, 220), Vector2(440, -600)]
+}
+
+[sub_resource type="Animation" id="Animation_dtaaq"]
+resource_name = "ready_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Ready/Polygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, 0, 720, 1280, 720, 1280, 0), PackedVector2Array(0, 360, 640, 720, 1280, 360, 640, 0), PackedVector2Array(0, 720, 1280, 720, 1280, 0, 0, 0), PackedVector2Array(640, 360, 640, 360, 640, 360, 640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Ready/Back:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.3063, 2.41914),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/Ready/VBoxContainer/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.93318),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Ready?", "Go!!"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/Ready/VBoxContainer/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/Ready")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show"
+}, {
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sjo07"]
+resource_name = "gameover_enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Gameover/Back:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Gameover")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/Gameover/Result:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -720), Vector2(0, 30), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_an2xf"]
+_data = {
+"RESET": SubResource("Animation_vgi0m"),
+"gameover_enter": SubResource("Animation_sjo07"),
+"pause_enter": SubResource("Animation_l0235"),
+"pause_exit": SubResource("Animation_morqt"),
+"ready": SubResource("Animation_dtaaq")
+}
+
+[node name="play" type="Node"]
+script = ExtResource("1_21g5d")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ready" type="Control" parent="Ui"]
+visible = false
+z_index = 10
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="ColorRect" parent="Ui/Ready"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Ui/Ready"]
+clip_children = 1
+position = Vector2(-3.05176e-05, -3.05176e-05)
+polygon = PackedVector2Array(0, 0, 0, 720, 1280, 720, 1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ui/Ready/Polygon2D"]
+position = Vector2(639.063, 359.5)
+scale = Vector2(1.316, 1.50418)
+texture = ExtResource("2_ous07")
+region_rect = Rect2(0, 0, 486, 478)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Ready"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Ui/Ready/VBoxContainer"]
+layout_mode = 2
+text = "Ready?"
+label_settings = SubResource("LabelSettings_8y50l")
+horizontal_alignment = 1
+
+[node name="Game" type="Control" parent="Ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 70.0
+offset_right = 310.0
+offset_bottom = 320.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Game/Score"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Ui/Game/Score/VBoxContainer"]
+layout_mode = 2
+text = "スコア"
+label_settings = SubResource("LabelSettings_7lsrp")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Game/Score/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_xvloa")
+horizontal_alignment = 1
+
+[node name="Next" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 70.0
+offset_right = 1210.0
+offset_bottom = 320.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Game/Next"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Ui/Game/Next/VBoxContainer"]
+layout_mode = 2
+text = "ネクスト"
+label_settings = SubResource("LabelSettings_gvdnj")
+horizontal_alignment = 1
+
+[node name="SDGs" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 371.0
+offset_right = 1262.0
+offset_bottom = 671.0
+color = Color(1, 0.509804, 0.529412, 0.478431)
+
+[node name="Label" type="Label" parent="Ui/Game/SDGs"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 400.0
+offset_bottom = 44.0
+text = "17の持続可能な開発目標"
+label_settings = SubResource("LabelSettings_qjy7o")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Game/SDGs"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 301.0
+texture = ExtResource("2_ous07")
+expand_mode = 1
+
+[node name="Pause" type="Control" parent="Ui"]
+process_mode = 3
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Ui/Pause"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Ui/Pause"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = -600.0
+offset_right = 840.0
+offset_bottom = -99.9999
+color = Color(1, 0.509804, 0.529412, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Pause/ColorRect2"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 500.0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Ui/Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "ポーズ"
+label_settings = SubResource("LabelSettings_nswt4")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Pause/ColorRect2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Pause/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ResumeGameButton" type="Button" parent="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 50
+text = "ゲームに戻る"
+
+[node name="RetryButton" type="Button" parent="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 50
+text = "リトライ"
+
+[node name="BackToTheTitleButton" type="Button" parent="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 50
+text = "タイトルに戻る"
+
+[node name="Gameover" type="Control" parent="Ui"]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="ColorRect" parent="Ui/Gameover"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.607843)
+metadata/_edit_lock_ = true
+
+[node name="Result" type="Control" parent="Ui/Gameover"]
+anchors_preset = 0
+offset_top = -720.0
+offset_right = 40.0
+offset_bottom = -680.0
+
+[node name="ColorRect" type="ColorRect" parent="Ui/Gameover/Result"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 850.0
+offset_bottom = 670.0
+color = Color(1, 0.901961, 0.529412, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Gameover/Result/ColorRect"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 800.0
+offset_bottom = 500.0
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Gameover/Result/ColorRect"]
+layout_mode = 0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 620.0
+theme_override_constants/separation = 10
+
+[node name="RetryButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "リトライ"
+
+[node name="MyScoreButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "マイスコア"
+
+[node name="BackToTheTitleButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "タイトルに戻る"
+
+[node name="ColorRect2" type="ColorRect" parent="Ui/Gameover/Result"]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 50.0
+offset_right = 1230.0
+offset_bottom = 670.0
+color = Color(1, 0.901961, 0.529412, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Gameover/Result/ColorRect2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 315.0
+offset_bottom = 605.0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "獲得スコア"
+label_settings = SubResource("LabelSettings_js6ef")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "[Your_Name]"
+label_settings = SubResource("LabelSettings_twgi8")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "99999"
+label_settings = SubResource("LabelSettings_qh0ub")
+horizontal_alignment = 1
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Box"]
+offset_left = 395.0
+offset_top = 157.0
+offset_right = 410.0
+offset_bottom = 657.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Box"]
+offset_left = 824.0
+offset_top = 157.0
+offset_right = 839.0
+offset_bottom = 657.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Box"]
+offset_left = 410.0
+offset_top = 657.0
+offset_right = 824.0
+offset_bottom = 672.0
+color = Color(0.957031, 0.835938, 0.507813, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Box"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(402.5, 407)
+shape = SubResource("RectangleShape2D_fqlpy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(831.5, 407)
+shape = SubResource("RectangleShape2D_uyxw0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Box/StaticBody2D"]
+position = Vector2(617, 664.5)
+shape = SubResource("RectangleShape2D_pq6wr")
+
+[node name="Sdgs" type="Node2D" parent="."]
+
+[node name="NextSgd" type="Node2D" parent="."]
+
+[node name="sdg" parent="NextSgd" instance=ExtResource("2_hgwdi")]
+position = Vector2(1085, 208)
+freeze = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, 20)
+curve = SubResource("Curve2D_q3s1r")
+
+[node name="kokuren" parent="Path2D" instance=ExtResource("3_ng7fh")]
+position = Vector2(466, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_an2xf")
+}
+
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/MyScoreButton" to="." method="_on_my_score_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]
