@@ -568,21 +568,21 @@ offset_right = 800.0
 offset_bottom = 620.0
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+[node name="RetryButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ui0x3")
 theme_override_font_sizes/font_size = 40
 text = "リトライ"
 
-[node name="Button2" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+[node name="MyScoreButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ui0x3")
 theme_override_font_sizes/font_size = 40
 text = "マイスコア"
 
-[node name="Button3" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+[node name="BackToTheTitleButton" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ui0x3")
@@ -689,3 +689,6 @@ libraries = {
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/MyScoreButton" to="." method="_on_my_score_button_pressed"]
+[connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]

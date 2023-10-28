@@ -107,6 +107,8 @@ func show_gameover_screen() -> void:
 		$Ui/Gameover/Result/ColorRect/TextureRect.texture = ImageTexture.create_from_image(current_screen_image)
 		pass
 	
+	$Ui/Gameover/Result/ColorRect2/VBoxContainer/Label3.text = "%d" % [score]
+	
 	$AnimationPlayer.play("gameover_enter")
 	
 	await $AnimationPlayer.animation_finished
@@ -245,3 +247,13 @@ func _on_back_to_the_title_button_pressed() -> void:
 	get_node("../").change_scene("title")
 
 	return
+
+
+func _on_my_score_button_pressed() -> void:
+
+	print_debug("myscorebutton clicked")
+	get_tree().paused = false
+	get_node("../").change_scene("my_score")
+
+	return
+	
