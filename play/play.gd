@@ -118,6 +118,7 @@ func release_sdg() -> void:
 
 func _process(delta:float) -> void:
 
+	$Ui/Game/Score/VBoxContainer/Label2.text = "%d" % [score]
 	if release_cooldown > 0:
 		release_cooldown = maxf(0, release_cooldown - delta)
 		pass
@@ -145,6 +146,8 @@ func _physics_process(delta:float) -> void:
 func _on_sdg_touched_sdgs(pos:Vector2, phase:int) -> void:
 
 	summon_sdg(pos, phase, true)
+	
+	score += ((phase)*(phase+1)) / 2
 
 	return
 
