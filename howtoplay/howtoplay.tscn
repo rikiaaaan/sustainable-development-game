@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5bvx73f0rbpt"]
+
+[ext_resource type="Script" path="res://howtoplay/howtoplay.gd" id="1_fxiju"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_lvekj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yojwf"]
+font = ExtResource("2_lvekj")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_tji1c"]
+font = ExtResource("2_lvekj")
+font_size = 40
+
+[node name="howtoplay" type="Node"]
+script = ExtResource("1_fxiju")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="Ui"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 1140.0
+offset_bottom = 670.0
+color = Color(1, 0.721569, 0.529412, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Ui"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 1140.0
+offset_bottom = 130.0
+color = Color(1, 0.509804, 0.239216, 1)
+
+[node name="Label" type="Label" parent="Ui/ColorRect"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 80.0
+text = "ゲームの遊び方"
+label_settings = SubResource("LabelSettings_yojwf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Page0" type="Control" parent="Ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Page0"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 140.0
+offset_right = 1140.0
+offset_bottom = 228.0
+text = "十字キー、WASDのADまたはマウスで
+国連を左右に動かすことができます。"
+label_settings = SubResource("LabelSettings_tji1c")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="Ui/Page0"]
