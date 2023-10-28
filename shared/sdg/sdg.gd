@@ -6,6 +6,12 @@ signal fell
 @export var print_shit:bool = false
 @export var phase:int = 0
 
+var gameover_shaking:bool = false
+var gameover_shake_timer:float = 0.0
+var shake_degree:int = 0
+var before_shake_position:Vector2 = Vector2.ZERO
+var before_shake_rotation:float = 0.0
+
 const PHASE_ZERO_SCALE:Vector2 = Vector2(0.2,0.2)
 
 
@@ -57,7 +63,29 @@ func summon_sdg(summon_pos:Vector2, phase:int=0) -> void:
 	return
 
 
-func _physics_process(delta:float) -> void:
+func gameover_shake() -> void:
+
+	if !gameover_shaking:
+		gameover_shaking = true
+		freeze = true
+		gameover_shake_timer = 3.0
+		before_shake_position = position
+		before_shake_rotation = rotation
+		pass
+
+	return
+
+
+func _process(delta:float) -> void:
+
+	if gameover_shake_timer > 0:
+		gameover_shake_timer = max(0, gameover_shake_timer - delta)
+		pass
+
+	return
+
+
+func _physics_process(_delta:float) -> void:
 
 	if !freeze:
 		collision_layer = 0b10
@@ -67,25 +95,39 @@ func _physics_process(delta:float) -> void:
 		pass
 	
 	set_phase()
+	
 	if position.y > 1000:
 		emit_signal("fell")
 		queue_free()
 		pass
 	
-	for body in get_colliding_bodies():
-		if body.get("phase") == null:
-			continue
-		if body.phase == phase && !body.freeze && phase < 16:
-			freeze = true
-			body.freeze = true
-			body.collision_layer = 0
-			collision_layer = 0
-			
-			emit_signal("touched_sdgs", (position+body.position)/2, phase+1)
-			
-			body.queue_free()
-			queue_free()
+	if !gameover_shaking && !freeze:
+		for body in get_colliding_bodies():
+			if body.get("phase") == null:
+				continue
+			if body.phase == phase && !body.freeze && phase < 16:
+				freeze = true
+				body.freeze = true
+				body.collision_layer = 0
+				collision_layer = 0
+				
+				emit_signal("touched_sdgs", (position+body.position)/2, phase+1)
+				
+				body.queue_free()
+				queue_free()
+				pass
 			pass
+		pass
+	
+	if gameover_shake_timer > 0:
+		rotation += deg_to_rad(randf_range(-2,2))
+		position = before_shake_position + Vector2.from_angle(deg_to_rad(shake_degree)) * 0.4
+#		position = before_shake_position * 5 * Vector2.from_angle(deg_to_rad(shake_degree))
+		shake_degree += 60
+		pass
+	if gameover_shaking && gameover_shake_timer == 0:
+		position = before_shake_position
+		rotation = before_shake_rotation
 		pass
 
 	return

@@ -156,10 +156,13 @@ func _on_sdg_fell() -> void:
 
 	print_debug("sdg fell you noob")
 	game_finished = true
+	for sdg in $Sdgs.get_children():
+		sdg.gameover_shake()
+		pass
 
 	return
 
-#再開ボタンクリック時
+
 func _on_resume_game_button_pressed() -> void:
 
 	print_debug("resume button clicked")
