@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 @export var speed:float = 1.0
-
+@export var moveable:bool = false
 
 func _ready() -> void:
 
@@ -24,16 +24,11 @@ func set_raycast_line() -> void:
 	return
 
 
-func _process(_delta:float) -> void:
-
-
-
-	return
-
-
 func _physics_process(_delta:float) -> void:
 
-	progress_ratio += speed * (int(Input.is_action_pressed("kokuren_move_right")) - int(Input.is_action_pressed("kokuren_move_left"))) * 0.01
-	set_raycast_line()
+	if moveable:
+		progress_ratio += speed * (int(Input.is_action_pressed("kokuren_move_right")) - int(Input.is_action_pressed("kokuren_move_left"))) * 0.01
+		set_raycast_line()
+		pass
 
 	return

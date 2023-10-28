@@ -15,6 +15,7 @@ var current_sdg:RigidBody2D = null
 @onready var next_sdg:RigidBody2D = $NextSgd/sdg
 @onready var kokuren:PathFollow2D = $Path2D/kokuren
 
+
 func _ready() -> void:
 
 	release_sdg()
@@ -23,6 +24,7 @@ func _ready() -> void:
 	await $AnimationPlayer.animation_finished
 	
 	game_started = true
+	kokuren.moveable = true
 
 	return
 
@@ -149,6 +151,7 @@ func release_sdg() -> void:
 
 func gameover() -> void:
 
+	kokuren.moveable = false
 	game_finished = true
 	for sdg in $Sdgs.get_children():
 		sdg.gameover_shake()
