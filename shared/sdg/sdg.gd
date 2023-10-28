@@ -34,8 +34,9 @@ func _ready() -> void:
 func set_phase() -> void:
 
 	phase = clampi(phase, 0, 16)
-	$Polygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
-	$CollisionPolygon2D.scale = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
+	var scale_t:Vector2 = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
+	$Polygon2D.scale = scale_t
+	$CollisionPolygon2D.scale = scale_t
 	$Polygon2D/Sprite2D.region_rect = Rect2(9+161.2*(phase%6), 11+158*int(phase/6), 146, 146)
 
 	return
@@ -44,7 +45,7 @@ func set_phase() -> void:
 func set_polygon(size:float) -> void:
 	
 	var pv:PackedVector2Array
-	for i in range(0, 360, 4):
+	for i in range(0, 360, 3):
 		var v:Vector2 = Vector2.from_angle(deg_to_rad(i)) * size
 		pv.append(v)
 		pass
