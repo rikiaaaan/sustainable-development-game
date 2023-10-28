@@ -15,12 +15,6 @@ var before_shake_position:Vector2 = Vector2.ZERO
 const PHASE_ZERO_SCALE:Vector2 = Vector2(0.2,0.2)
 
 
-func _init() -> void:
-
-
-	return
-
-
 func _ready() -> void:
 
 	hide()
