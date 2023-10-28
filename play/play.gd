@@ -173,7 +173,6 @@ func _physics_process(delta:float) -> void:
 		
 		var mouse_movement_x:float = Input.get_last_mouse_velocity().x
 		kokuren.progress_ratio += mouse_movement_x * 0.001 * delta
-	#	$Ui/Game/Score/VBoxContainer/Label2.text = var_to_str(mouse_movement)
 		
 		if current_sdg != null && release_cooldown < 0.25:
 			current_sdg.position = kokuren.position + Vector2(-23,30) + Vector2(0,20)
@@ -222,5 +221,24 @@ func _on_resume_game_button_pressed() -> void:
 	print_debug("resume button clicked")
 	get_tree().paused = false
 	hide_pause_screen()
+
+	return
+
+
+func _on_retry_button_pressed() -> void:
+
+	print_debug("retry_button clicked")
+	get_tree().paused = false
+	#同じシーンに変えることでリトライと同じ動作をする
+	get_node("../").change_scene("play")
+
+	return
+
+
+func _on_back_to_the_title_button_pressed() -> void:
+
+	print_debug("back2thetitlebutton clicked")
+	get_tree().paused = false
+	get_node("../").change_scene("title")
 
 	return

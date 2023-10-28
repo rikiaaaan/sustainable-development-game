@@ -687,3 +687,5 @@ libraries = {
 }
 
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]
