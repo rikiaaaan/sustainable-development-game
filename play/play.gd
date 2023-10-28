@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _unhandled_input(event:InputEvent) -> void:
 
-	if game_started:
+	if game_started && !game_finished:
 		
 		if event.is_action_pressed("pause"):
 			if !pause_screen_showing:
@@ -44,7 +44,7 @@ func _unhandled_input(event:InputEvent) -> void:
 
 func _input(event:InputEvent) -> void:
 
-	if game_started:
+	if game_started && !game_finished:
 		
 		if event.is_action_pressed("release_sdg"):
 	#		print_debug(release_cooldown)
@@ -64,7 +64,10 @@ func _input(event:InputEvent) -> void:
 
 func show_pause_screen() -> void:
 
+	$Ui/Pause.show()
 	$AnimationPlayer.play("pause_enter")
+	await $AnimationPlayer.animation_finished
+	$Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton.grab_focus()
 	pause_screen_showing = true
 
 	return
@@ -73,6 +76,9 @@ func show_pause_screen() -> void:
 func hide_pause_screen() -> void:
 
 	$AnimationPlayer.play("pause_exit")
+	await $AnimationPlayer.animation_finished
+	$Ui/Pause.hide()
+	$Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton.release_focus()
 	pause_screen_showing = false
 
 	return
@@ -121,10 +127,9 @@ func _process(delta:float) -> void:
 
 func _physics_process(delta:float) -> void:
 
-	if game_started:
+	if game_started && !game_finished:
 		
-		var mouse_movement:Vector2 = Input.get_last_mouse_velocity() * Vector2(1,0)
-		var mouse_movement_x:float = mouse_movement.x
+		var mouse_movement_x:float = Input.get_last_mouse_velocity().x
 		kokuren.progress_ratio += mouse_movement_x * 0.001 * delta
 	#	$Ui/Game/Score/VBoxContainer/Label2.text = var_to_str(mouse_movement)
 		
@@ -147,13 +152,14 @@ func _on_sdg_touched_sdgs(pos:Vector2, phase:int) -> void:
 func _on_sdg_fell() -> void:
 
 	print_debug("sdg fell you noob")
-
+	game_finished = true
 
 	return
 
 #再開ボタンクリック時
 func _on_resume_game_button_pressed() -> void:
 
+	print_debug("resume button clicked")
 	get_tree().paused = false
 	hide_pause_screen()
 
