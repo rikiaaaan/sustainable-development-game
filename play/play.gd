@@ -8,6 +8,7 @@ var release_cooldown:float = 0
 var game_started:bool = false
 var game_finished:bool = false
 var pause_screen_showing:bool = false
+var gameover_screen_shown:bool = false
 
 var current_sdg:RigidBody2D = null
 
@@ -35,6 +36,9 @@ func _unhandled_input(event:InputEvent) -> void:
 				show_pause_screen()
 				get_tree().paused = true
 				pass
+			pass
+		if event.is_action_pressed("debug_instant_gameover"):
+			_on_sdg_fell()
 			pass
 		
 		pass
@@ -84,6 +88,32 @@ func hide_pause_screen() -> void:
 	return
 
 
+func show_gameover_screen() -> void:
+
+	var current_window_mode:int = DisplayServer.window_get_mode()
+	if current_window_mode != DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
+		await get_tree().create_timer(0.6).timeout
+		
+		var current_screen_image:Image = DisplayServer.screen_get_image(DisplayServer.window_get_current_screen())
+		$Ui/Gameover/Result/ColorRect/TextureRect.texture = ImageTexture.create_from_image(current_screen_image)
+		DisplayServer.window_set_mode(current_window_mode)
+		pass
+	else:
+		var current_screen_image:Image = DisplayServer.screen_get_image(DisplayServer.window_get_current_screen())
+		$Ui/Gameover/Result/ColorRect/TextureRect.texture = ImageTexture.create_from_image(current_screen_image)
+		pass
+	
+	$AnimationPlayer.play("gameover_enter")
+	
+	await $AnimationPlayer.animation_finished
+	
+	
+
+	return
+
+
 func summon_sdg(pos:Vector2, phase:int, evolution:bool=false) -> void:
 
 	var sdg = ResourceLoader.load("res://shared/sdg/sdg.tscn").instantiate()
@@ -91,6 +121,7 @@ func summon_sdg(pos:Vector2, phase:int, evolution:bool=false) -> void:
 	sdg.phase = phase
 	sdg.connect("touched_sdgs", _on_sdg_touched_sdgs)
 	sdg.connect("fell", _on_sdg_fell)
+	sdg.connect("finished_shake", _on_sdg_shake_finished)
 	
 	if !evolution:
 		current_sdg = sdg
@@ -112,6 +143,16 @@ func release_sdg() -> void:
 	
 	current_sdg.freeze = true
 	next_sdg.phase = randi_range(0, 5)
+
+	return
+
+
+func gameover() -> void:
+
+	game_finished = true
+	for sdg in $Sdgs.get_children():
+		sdg.gameover_shake()
+		pass
 
 	return
 
@@ -155,9 +196,22 @@ func _on_sdg_touched_sdgs(pos:Vector2, phase:int) -> void:
 func _on_sdg_fell() -> void:
 
 	print_debug("sdg fell you noob")
-	game_finished = true
-	for sdg in $Sdgs.get_children():
-		sdg.gameover_shake()
+	if !game_finished:
+		gameover()
+		pass
+
+	return
+
+
+func _on_sdg_shake_finished() -> void:
+
+	if !gameover_screen_shown:
+		print_debug("sdg shake finished")
+		gameover_screen_shown = true
+		
+		await get_tree().create_timer(1).timeout
+		
+		show_gameover_screen()
 		pass
 
 	return

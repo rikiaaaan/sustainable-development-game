@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bf68o5xben4q1"]
+[gd_scene load_steps=25 format=3 uid="uid://bf68o5xben4q1"]
 
 [ext_resource type="Script" path="res://play/play.gd" id="1_21g5d"]
 [ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="2_hgwdi"]
@@ -31,6 +31,22 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_nswt4"]
 font = ExtResource("3_ui0x3")
 font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_js6ef"]
+font = ExtResource("3_ui0x3")
+font_size = 60
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twgi8"]
+font = ExtResource("3_ui0x3")
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qh0ub"]
+font = ExtResource("3_ui0x3")
+font_size = 60
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlpy"]
 size = Vector2(15, 500)
@@ -120,6 +136,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(440, -600)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ui/Gameover/Back:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.607843)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ui/Gameover/Result:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -720)]
 }
 
 [sub_resource type="Animation" id="Animation_l0235"]
@@ -249,9 +289,51 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_sjo07"]
+resource_name = "gameover_enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/Gameover/Back:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/Gameover")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/Gameover/Result:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -720), Vector2(0, 30), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_an2xf"]
 _data = {
 "RESET": SubResource("Animation_vgi0m"),
+"gameover_enter": SubResource("Animation_sjo07"),
 "pause_enter": SubResource("Animation_l0235"),
 "pause_exit": SubResource("Animation_morqt"),
 "ready": SubResource("Animation_dtaaq")
@@ -445,24 +527,106 @@ theme_override_font_sizes/font_size = 50
 text = "タイトルに戻る"
 
 [node name="Gameover" type="Control" parent="Ui"]
+visible = false
 z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="Ui/Gameover"]
+[node name="Back" type="ColorRect" parent="Ui/Gameover"]
 layout_mode = 0
-offset_left = 53.0
-offset_top = 26.0
-offset_right = 560.0
-offset_bottom = 682.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.607843)
+metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="Ui/Gameover"]
+[node name="Result" type="Control" parent="Ui/Gameover"]
+anchors_preset = 0
+offset_top = -720.0
+offset_right = 40.0
+offset_bottom = -680.0
+
+[node name="ColorRect" type="ColorRect" parent="Ui/Gameover/Result"]
 layout_mode = 0
-offset_left = 710.0
-offset_top = 128.0
-offset_right = 1142.0
-offset_bottom = 691.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 850.0
+offset_bottom = 670.0
+color = Color(1, 0.901961, 0.529412, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Gameover/Result/ColorRect"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 800.0
+offset_bottom = 500.0
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Gameover/Result/ColorRect"]
+layout_mode = 0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 620.0
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "リトライ"
+
+[node name="Button2" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "マイスコア"
+
+[node name="Button3" type="Button" parent="Ui/Gameover/Result/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 40
+text = "タイトルに戻る"
+
+[node name="ColorRect2" type="ColorRect" parent="Ui/Gameover/Result"]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 50.0
+offset_right = 1230.0
+offset_bottom = 670.0
+color = Color(1, 0.901961, 0.529412, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Gameover/Result/ColorRect2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 315.0
+offset_bottom = 605.0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "獲得スコア"
+label_settings = SubResource("LabelSettings_js6ef")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "[Your_Name]"
+label_settings = SubResource("LabelSettings_twgi8")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Ui/Gameover/Result/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "99999"
+label_settings = SubResource("LabelSettings_qh0ub")
+horizontal_alignment = 1
 
 [node name="Box" type="Node2D" parent="."]
 
