@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b21pnm8hqqw1h"]
+[gd_scene load_steps=6 format=3 uid="uid://b21pnm8hqqw1h"]
 
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="1_485cf"]
 [ext_resource type="Script" path="res://login/login.gd" id="1_nus1x"]
@@ -6,6 +6,14 @@
 [sub_resource type="LabelSettings" id="LabelSettings_25eu7"]
 font = ExtResource("1_485cf")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_3htgq"]
+font = ExtResource("1_485cf")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_ou51w"]
+font = ExtResource("1_485cf")
+font_size = 25
 
 [node name="login" type="Node"]
 script = ExtResource("1_nus1x")
@@ -27,7 +35,6 @@ color = Color(1, 0.721569, 0.529412, 1)
 metadata/_edit_lock_ = true
 
 [node name="Page0" type="Control" parent="Ui"]
-visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -35,7 +42,7 @@ offset_right = 140.0
 offset_bottom = 140.0
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Page0"]
+[node name="AskLogin" type="VBoxContainer" parent="Ui/Page0"]
 layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 520.0
@@ -43,7 +50,7 @@ theme_override_constants/separation = 100
 alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Ui/Page0/VBoxContainer"]
+[node name="Label" type="Label" parent="Ui/Page0/AskLogin"]
 layout_mode = 2
 text = "スコアの保存をするためにログインをしますか？
 ログインをするとデイリーランキングなどに
@@ -52,19 +59,20 @@ label_settings = SubResource("LabelSettings_25eu7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page0/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page0/AskLogin"]
 layout_mode = 2
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="YesButton" type="Button" parent="Ui/Page0/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 70)
+[node name="YesButton" type="Button" parent="Ui/Page0/AskLogin/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 50
 text = "する"
 
-[node name="NoButton" type="Button" parent="Ui/Page0/VBoxContainer/HBoxContainer"]
+[node name="NoButton" type="Button" parent="Ui/Page0/AskLogin/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 50
@@ -79,10 +87,70 @@ offset_right = 140.0
 offset_bottom = 140.0
 metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/Page1"]
+[node name="MarginContainer" type="MarginContainer" parent="Ui/Page1"]
 layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 520.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
+
+[node name="NameInput" type="VBoxContainer" parent="Ui/Page1/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Ui/Page1/MarginContainer/NameInput"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "←戻る"
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Page1/MarginContainer/NameInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Ui/Page1/MarginContainer/NameInput"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "使用する名前を入力してください。
+"
+label_settings = SubResource("LabelSettings_3htgq")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Page1/MarginContainer/NameInput"]
+layout_mode = 2
+text = "※ここで入力した名前は、ほかのプレイヤーからも確認できます。
+他人に不快感を与えるような名前は避けてください。"
+label_settings = SubResource("LabelSettings_ou51w")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/Page1/MarginContainer/NameInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page1/MarginContainer/NameInput"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "INPUT YOUR NAME HERE"
+
+[node name="Button" type="Button" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "決定"
 
 [node name="Page2" type="Control" parent="Ui"]
 visible = false
@@ -93,6 +161,71 @@ offset_right = 140.0
 offset_bottom = 140.0
 metadata/_edit_lock_ = true
 
+[node name="MarginContainer" type="MarginContainer" parent="Ui/Page2"]
+offset_right = 1080.0
+offset_bottom = 520.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
+
+[node name="NewPassInput" type="VBoxContainer" parent="Ui/Page2/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Ui/Page2/MarginContainer/NewPassInput"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "←戻る"
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Page2/MarginContainer/NewPassInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ようこそ、[your_name]さん！
+あなたのセーブデータを守るための
+新しく使用するパスワードを入力してください。"
+label_settings = SubResource("LabelSettings_3htgq")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
+layout_mode = 2
+text = "※パスワードは、忘れると復元することが限りなく不可能です。
+絶対に忘れないでください。"
+label_settings = SubResource("LabelSettings_ou51w")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/Page2/MarginContainer/NewPassInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page2/MarginContainer/NewPassInput"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "INPUT YOUR PASSWORD HERE"
+
+[node name="Button" type="Button" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "決定"
+
 [node name="Page3" type="Control" parent="Ui"]
 visible = false
 anchors_preset = 0
@@ -101,3 +234,65 @@ offset_top = 100.0
 offset_right = 140.0
 offset_bottom = 140.0
 metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/Page3"]
+offset_right = 1080.0
+offset_bottom = 520.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
+
+[node name="PassInput" type="VBoxContainer" parent="Ui/Page3/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Ui/Page3/MarginContainer/PassInput"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "←戻る"
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Page3/MarginContainer/PassInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "おかえりなさい、[your_name]さん！
+設定されているパスワードを入力してください。"
+label_settings = SubResource("LabelSettings_3htgq")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ou51w")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/Page3/MarginContainer/PassInput"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page3/MarginContainer/PassInput"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "INPUT YOUR PASSWORD HERE"
+
+[node name="Button" type="Button" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_485cf")
+theme_override_font_sizes/font_size = 30
+text = "決定"
