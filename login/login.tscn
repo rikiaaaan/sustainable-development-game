@@ -296,3 +296,5 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 text = "決定"
+
+[connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
