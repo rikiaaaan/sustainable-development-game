@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/image="res://shared/img/sgds.png"
 config/icon="res://icon.svg"
 
+[autoload]
+
+Settings="*res://autoloads/settings.gd"
+
 [display]
 
 window/size/viewport_width=1280
