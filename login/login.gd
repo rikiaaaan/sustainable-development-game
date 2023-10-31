@@ -25,9 +25,8 @@ func _ready() -> void:
 	set_page(0, false)
 	
 	input_your_name_here_label.hide()
-	welcome_message_label.hide()
-	
-	welcome_back_message_label.hide()
+	input_your_new_password_here_label.hide()
+	input_your_password_here_label.hide()
 	
 	login_yes_button.grab_focus()
 
@@ -69,6 +68,9 @@ func go_to_title_scene() -> void:
 
 func _on_page_set_button_pressed(index:int) -> void:
 
+	input_your_name_here_label.hide()
+	input_your_new_password_here_label.hide()
+	input_your_password_here_label.hide()
 	set_page(index)
 
 	return
@@ -85,12 +87,12 @@ func _on_name_input_button_pressed() -> void:
 	input_your_name_here_label.hide()
 	Settings.set_current_user(input_name)
 	if Settings.is_user_exists(input_name):
-		welcome_back_message_label.text = WELLCOME_BACK_MESSAGE % [input_name]
 		set_page(3)
+		welcome_back_message_label.text = WELLCOME_BACK_MESSAGE % [input_name]
 		pass
 	else:
-		welcome_message_label.text = WELCOME_MESSAGE % [input_name]
 		set_page(2)
+		welcome_message_label.text = WELCOME_MESSAGE % [input_name]
 		pass
 
 	return
