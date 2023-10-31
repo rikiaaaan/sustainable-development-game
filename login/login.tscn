@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b21pnm8hqqw1h"]
+[gd_scene load_steps=9 format=3 uid="uid://b21pnm8hqqw1h"]
 
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="1_485cf"]
 [ext_resource type="Script" path="res://login/login.gd" id="1_nus1x"]
@@ -14,6 +14,21 @@ font_size = 40
 [sub_resource type="LabelSettings" id="LabelSettings_ou51w"]
 font = ExtResource("1_485cf")
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ek4j0"]
+font = ExtResource("1_485cf")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xsgof"]
+font = ExtResource("1_485cf")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyrgx"]
+font = ExtResource("1_485cf")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
 
 [node name="login" type="Node"]
 script = ExtResource("1_nus1x")
@@ -35,6 +50,7 @@ color = Color(1, 0.721569, 0.529412, 1)
 metadata/_edit_lock_ = true
 
 [node name="Page0" type="Control" parent="Ui"]
+visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -133,6 +149,12 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
+[node name="InputYourNameHereLabel" type="Label" parent="Ui/Page1/MarginContainer/NameInput"]
+layout_mode = 2
+text = "名前を入力してください！"
+label_settings = SubResource("LabelSettings_ek4j0")
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page1/MarginContainer/NameInput"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -145,7 +167,7 @@ theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 placeholder_text = "INPUT YOUR NAME HERE"
 
-[node name="Button" type="Button" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
+[node name="NameInputButton" type="Button" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
@@ -162,6 +184,7 @@ offset_bottom = 140.0
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/Page2"]
+layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 520.0
 theme_override_constants/margin_left = 20
@@ -186,7 +209,7 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
+[node name="WelcomeMessageLabel" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "ようこそ、[your_name]さん！
@@ -207,6 +230,12 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 
+[node name="InputYourNewPasswordHereLabel" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
+layout_mode = 2
+text = "パスワードを入力してください！"
+label_settings = SubResource("LabelSettings_xsgof")
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page2/MarginContainer/NewPassInput"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -219,7 +248,7 @@ theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 placeholder_text = "INPUT YOUR PASSWORD HERE"
 
-[node name="Button" type="Button" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
+[node name="NewPassInputButton" type="Button" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
@@ -236,6 +265,7 @@ offset_bottom = 140.0
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/Page3"]
+layout_mode = 0
 offset_right = 1080.0
 offset_bottom = 520.0
 theme_override_constants/margin_left = 20
@@ -260,7 +290,7 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
+[node name="WelcomeBackMessageLabel" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "おかえりなさい、[your_name]さん！
@@ -278,6 +308,12 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 
+[node name="InputYourPasswordHereLabel" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
+layout_mode = 2
+text = "パスワードを入力してください！"
+label_settings = SubResource("LabelSettings_lyrgx")
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page3/MarginContainer/PassInput"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -290,11 +326,18 @@ theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 placeholder_text = "INPUT YOUR PASSWORD HERE"
 
-[node name="Button" type="Button" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
+[node name="PassInputButton" type="Button" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 text = "決定"
 
-[connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/YesButton" to="." method="_on_page_set_button_pressed" binds= [1]]
+[connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/NoButton" to="." method="go_to_title_scene"]
+[connection signal="pressed" from="Ui/Page1/MarginContainer/NameInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [0]]
+[connection signal="pressed" from="Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputButton" to="." method="_on_name_input_button_pressed"]
+[connection signal="pressed" from="Ui/Page2/MarginContainer/NewPassInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [1]]
+[connection signal="pressed" from="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputButton" to="." method="_on_new_pass_input_button_pressed"]
+[connection signal="pressed" from="Ui/Page3/MarginContainer/PassInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [1]]
+[connection signal="pressed" from="Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputButton" to="." method="_on_pass_input_button_pressed"]
