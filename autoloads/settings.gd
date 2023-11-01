@@ -4,17 +4,28 @@ extends Node
 @export var current_user_name:String = ""
 @export var is_login:bool = false
 
-const fake_savedata_name:String = "savedata.json"
-const actual_savedata_name:String = "libaccess_output_file_plugin.lib"
-const ignore_check_name:String = "ignorefilecheck"
+const FAKE_SAVEDATA_NAME:String = "savedata.json"
+const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"
+const IGNORE_CHECK_NAME:String = "ignorefilecheck"
 
-var fake_savedata_dir:String = executable_dir+"/"+fake_savedata_name
-var actual_savedata_dir:String = executable_dir+"/"+actual_savedata_name
+const KEY_USER_NAME:String = "user_name"
+const KEY_USER_ID:String = "user_id"
+const KEY_USER_PASSWORD:String = "pass"
+const KEY_SCORE:String = "score"
+const KEY_SCORE_RECORDED_AT:String = "score_recorded_at"
+const KEY_RESULT_SCREENSHOT:String = "result_screenshot"
+
+#hi everyone! my name is:
+const CREATOR_NAME:String = "FairyMD"
+const CREATOR_DEFAULT_SCORE:int = 3000
+
+var fake_savedata_dir:String = executable_dir+"/"+FAKE_SAVEDATA_NAME
+var actual_savedata_dir:String = executable_dir+"/"+ACTUAL_SAVEDATA_NAME
 
 
 func _ready() -> void:
 
-	if FileAccess.file_exists(executable_dir+"/"+ignore_check_name):
+	if FileAccess.file_exists(executable_dir+"/"+IGNORE_CHECK_NAME):
 		OS.alert("ファイルチェックをスキップしました", "大丈夫かい？")
 		return
 	if !FileAccess.file_exists(actual_savedata_dir) || !check_actual_save_data():
@@ -42,17 +53,43 @@ func _ready() -> void:
 	return
 
 
+func load_cfg_file() -> ConfigFile:
+
+	var cfg:ConfigFile = ConfigFile.new()
+	if cfg.load_encrypted_pass(actual_savedata_dir, Keys.save_key) != OK:
+		OS.alert("セーブファイルの読み込みに失敗しました。\nゲームを終了します。", "セーブファイルの読み込みに失敗しました")
+		get_tree().quit()
+		return
+
+	return cfg
+
+func save_cfg_file(cfg:ConfigFile) -> void:
+
+	cfg.save_encrypted_pass(actual_savedata_dir, Keys.save_key)
+
+	return
+
+
 func check_actual_save_data() -> bool:
 
 	var cfg:ConfigFile = ConfigFile.new()
-	var key:String = ""
+	var key:String = Keys.save_key
 
 	return cfg.load_encrypted_pass(actual_savedata_dir, key) == OK
 
 
 func generate_actual_save_data() -> void:
 
-
+	var cfg:ConfigFile = ConfigFile.new()
+	
+	cfg.set_value(CREATOR_NAME, KEY_USER_NAME, CREATOR_NAME)
+	cfg.set_value(CREATOR_NAME, KEY_USER_ID, Keys.generate_user_id())
+	cfg.set_value(CREATOR_NAME, KEY_USER_PASSWORD, Keys.creator_password)
+	cfg.set_value(CREATOR_NAME, KEY_SCORE, CREATOR_DEFAULT_SCORE)
+	cfg.set_value(CREATOR_NAME, KEY_SCORE_RECORDED_AT, 0)
+	cfg.set_value(CREATOR_NAME, KEY_RESULT_SCREENSHOT, Image.new())
+	
+	save_cfg_file(cfg)
 
 	return
 
@@ -66,21 +103,31 @@ func generate_fake_save_data() -> void:
 
 func is_user_exists(user_name:String) -> bool:
 
-	
-
-	return false
+	return load_cfg_file().has_section(user_name)
 
 
 func is_correct_password(password:String) -> bool:
 
+	var cfg:ConfigFile = load_cfg_file()
+	var encoded_password:String = cfg.get_value(current_user_name, KEY_USER_PASSWORD)
 
-
-	return false
+	return Keys.is_correct_password(password, encoded_password)
 
 
 func init_user_data(password:String) -> void:
 
-	
+	if !is_user_exists(current_user_name):
+		var cfg:ConfigFile = load_cfg_file()
+		
+		cfg.set_value(current_user_name, KEY_USER_NAME, current_user_name)
+		cfg.set_value(current_user_name, KEY_USER_ID, Keys.generate_user_id())
+		cfg.set_value(current_user_name, KEY_USER_PASSWORD, Keys.encode_password(password))
+		cfg.set_value(current_user_name, KEY_SCORE, 0)
+		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, 0)
+		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, Image.new())
+		
+		save_cfg_file(cfg)
+		pass
 
 	return
 
@@ -90,6 +137,21 @@ func login() -> void:
 	is_login = true
 
 	return 
+
+
+func save_game_data(data:Dictionary) -> void:
+
+	if is_login:
+		var cfg:ConfigFile = load_cfg_file()
+		
+		cfg.set_value(current_user_name, KEY_SCORE, data.score)
+		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, data.now)
+		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, data.result_screenshot)
+		
+		save_cfg_file(cfg)
+		pass
+
+	return
 
 
 func set_current_user(user_name:String) -> void:
