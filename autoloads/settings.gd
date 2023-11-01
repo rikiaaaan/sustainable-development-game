@@ -87,7 +87,7 @@ func generate_actual_save_data() -> void:
 	cfg.set_value(CREATOR_NAME, KEY_USER_PASSWORD, Keys.creator_password)
 	cfg.set_value(CREATOR_NAME, KEY_SCORE, CREATOR_DEFAULT_SCORE)
 	cfg.set_value(CREATOR_NAME, KEY_SCORE_RECORDED_AT, 0)
-	cfg.set_value(CREATOR_NAME, KEY_RESULT_SCREENSHOT, Image.new())
+#	cfg.set_value(CREATOR_NAME, KEY_RESULT_SCREENSHOT, Image.new())
 	
 	save_cfg_file(cfg)
 
@@ -124,7 +124,7 @@ func init_user_data(password:String) -> void:
 		cfg.set_value(current_user_name, KEY_USER_PASSWORD, Keys.encode_password(password))
 		cfg.set_value(current_user_name, KEY_SCORE, 0)
 		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, 0)
-		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, Image.new())
+#		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, Image.new())
 		
 		save_cfg_file(cfg)
 		pass
@@ -146,7 +146,7 @@ func save_game_data(data:Dictionary) -> void:
 		
 		cfg.set_value(current_user_name, KEY_SCORE, data.score)
 		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, data.now)
-		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, data.result_screenshot)
+#		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, data.result_screenshot)
 		
 		save_cfg_file(cfg)
 		pass
