@@ -1,6 +1,8 @@
 extends Node
 
 @export var executable_dir:String = OS.get_executable_path().get_base_dir()
+@export var current_user_name:String = ""
+@export var is_login:bool = false
 
 const fake_savedata_name:String = "savedata.json"
 const actual_savedata_name:String = "libaccess_output_file_plugin.dll"
@@ -62,5 +64,40 @@ func generate_actual_save_data() -> void:
 func generate_fake_save_data() -> void:
 
 
+
+	return
+
+
+func is_user_exists(user_name:String) -> bool:
+
+	
+
+	return false
+
+
+func is_correct_password(password:String) -> bool:
+
+
+
+	return false
+
+
+func init_user_data(password:String) -> void:
+
+	
+
+	return
+
+
+func login() -> void:
+
+	is_login = true
+
+	return 
+
+
+func set_current_user(user_name:String) -> void:
+
+	current_user_name = user_name
 
 	return
