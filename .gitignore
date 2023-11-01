@@ -2,3 +2,4 @@
 .godot/
 dist/
 desktop.ini
+autoloads/keys.gd
