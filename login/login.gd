@@ -1,6 +1,8 @@
 extends Node
 
 var current_index:int = 0
+var user_name_regex:RegEx = null
+var password_regex:RegEx = null
 
 @onready var login_yes_button:Button = $Ui/Page0/AskLogin/HBoxContainer/YesButton
 
@@ -10,14 +12,22 @@ var current_index:int = 0
 @onready var input_your_new_password_here_label:Label = $Ui/Page2/MarginContainer/NewPassInput/InputYourNewPasswordHereLabel
 @onready var input_your_password_here_label:Label = $Ui/Page3/MarginContainer/PassInput/InputYourPasswordHereLabel
 
-@onready var user_name_input:TextEdit = $Ui/Page1/MarginContainer/NameInput/HBoxContainer/TextEdit
-@onready var new_pass_input:TextEdit = $Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/TextEdit
-@onready var pass_input:TextEdit = $Ui/Page3/MarginContainer/PassInput/HBoxContainer/TextEdit
+@onready var user_name_input:TextEdit = $Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputTextEdit
+@onready var new_pass_input:TextEdit = $Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputTextEdit
+@onready var pass_input:TextEdit = $Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputTextEdit
 
 const WELCOME_MESSAGE:String = "ようこそ、%sさん！\nあなたのセーブデータを守るための\n新しく使用するパスワードを入力してください。"
 const WELLCOME_BACK_MESSAGE:String = "おかえりなさい、%sさん！\n設定されているパスワードを入力してください。"
 const PASSWORD_IS_INCORRECT:String = "パスワードが違います！"
 const INPUT_YOUR_PASSWORD_DUMBASS:String = "パスワードを入力してください！"
+
+
+func _init() -> void:
+
+	user_name_regex = RegEx.create_from_string("[\\w\\dぁ-んァ-ヶｱ-ﾝー一-龯]+")
+	password_regex = RegEx.create_from_string("[\\w\\d\\!-\\/\\:-\\@\\[-~]+")
+
+	return
 
 
 func _ready() -> void:
@@ -129,5 +139,69 @@ func _on_pass_input_button_pressed() -> void:
 	input_your_password_here_label.hide()
 	Settings.login()
 	go_to_title_scene()
+
+	return
+
+
+func _on_name_input_text_edit_text_changed() -> void:
+
+	var current_input_name:String = user_name_input.text
+	var current_caret:int = user_name_input.get_caret_column()
+	if current_input_name.length() > 20:
+		current_input_name = current_input_name.substr(0, 20)
+		pass
+	
+	var search_res:RegExMatch = user_name_regex.search(current_input_name)
+	if search_res:
+		print_debug(search_res.get_string())
+		user_name_input.text = search_res.get_string()
+		pass
+	else:
+		user_name_input.text = ""
+		pass
+	user_name_input.set_caret_column(current_caret)
+
+	return
+
+
+func _on_new_pass_input_text_edit_text_changed() -> void:
+
+	var current_input_password:String = new_pass_input.text
+	var current_caret:int = new_pass_input.get_caret_column()
+#	if current_input_password.length() > 20:
+#		current_input_password = current_input_password.substr(0, 20)
+#		pass
+	
+	var search_res:RegExMatch = password_regex.search(current_input_password)
+	if search_res:
+		print_debug(search_res.get_string())
+		new_pass_input.text = search_res.get_string()
+		pass
+	else:
+		new_pass_input.text = ""
+		pass
+	new_pass_input.set_caret_column(current_caret)
+
+	return
+	
+
+
+func _on_pass_input_text_edit_text_changed() -> void:
+
+	var current_input_password:String = pass_input.text
+	var current_caret:int = pass_input.get_caret_column()
+#	if current_input_password.length() > 20:
+#		current_input_password = current_input_password.substr(0, 20)
+#		pass
+	
+	var search_res:RegExMatch = password_regex.search(current_input_password)
+	if search_res:
+		print_debug(search_res.get_string())
+		pass_input.text = search_res.get_string()
+		pass
+	else:
+		pass_input.text = ""
+		pass
+	pass_input.set_caret_column(current_caret)
 
 	return

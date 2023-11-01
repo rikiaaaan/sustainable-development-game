@@ -50,7 +50,6 @@ color = Color(1, 0.721569, 0.529412, 1)
 metadata/_edit_lock_ = true
 
 [node name="Page0" type="Control" parent="Ui"]
-visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -160,7 +159,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
+[node name="NameInputTextEdit" type="TextEdit" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
@@ -241,7 +240,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
+[node name="NewPassInputTextEdit" type="TextEdit" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
@@ -319,7 +318,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
+[node name="PassInputTextEdit" type="TextEdit" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
 custom_minimum_size = Vector2(600, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
@@ -336,8 +335,11 @@ text = "決定"
 [connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/YesButton" to="." method="_on_page_set_button_pressed" binds= [1]]
 [connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/NoButton" to="." method="go_to_title_scene"]
 [connection signal="pressed" from="Ui/Page1/MarginContainer/NameInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [0]]
+[connection signal="text_changed" from="Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputTextEdit" to="." method="_on_name_input_text_edit_text_changed"]
 [connection signal="pressed" from="Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputButton" to="." method="_on_name_input_button_pressed"]
 [connection signal="pressed" from="Ui/Page2/MarginContainer/NewPassInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [1]]
+[connection signal="text_changed" from="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputTextEdit" to="." method="_on_new_pass_input_text_edit_text_changed"]
 [connection signal="pressed" from="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputButton" to="." method="_on_new_pass_input_button_pressed"]
 [connection signal="pressed" from="Ui/Page3/MarginContainer/PassInput/BackButton" to="." method="_on_page_set_button_pressed" binds= [1]]
+[connection signal="text_changed" from="Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputTextEdit" to="." method="_on_pass_input_text_edit_text_changed"]
 [connection signal="pressed" from="Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputButton" to="." method="_on_pass_input_button_pressed"]
