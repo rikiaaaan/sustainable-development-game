@@ -42,20 +42,12 @@ func _ready() -> void:
 	return
 
 
-func _get_key() -> String:
-
-	
-
-	return ""
-
-
 func check_actual_save_data() -> bool:
 
 	var cfg:ConfigFile = ConfigFile.new()
-	var key:String = _get_key()
+	var key:String = ""
 
 	return cfg.load_encrypted_pass(actual_savedata_dir, key) == OK
-
 
 
 func generate_actual_save_data() -> void:
