@@ -14,7 +14,15 @@ var current_sdg:RigidBody2D = null
 
 @onready var next_sdg:RigidBody2D = $NextSgd/sdg
 @onready var kokuren:PathFollow2D = $Path2D/kokuren
+@onready var ui_ready:Control = $Ui/Ready
+@onready var ui_pause:Control = $Ui/Pause
 
+@onready var game_score_label:Label = $Ui/Game/Score/VBoxContainer/Label2
+@onready var result_score_label:Label = $Ui/Gameover/Result/ColorRect2/VBoxContainer/Label3
+
+@onready var pause_resume_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton
+
+@onready var result_screenshot:TextureRect = $Ui/Gameover/Result/ColorRect/TextureRect
 
 func _ready() -> void:
 
@@ -25,6 +33,7 @@ func _ready() -> void:
 	
 	game_started = true
 	kokuren.moveable = true
+	ui_ready.queue_free()
 
 	return
 
@@ -53,7 +62,6 @@ func _input(event:InputEvent) -> void:
 	if game_started && !game_finished:
 		
 		if event.is_action_pressed("release_sdg"):
-	#		print_debug(release_cooldown)
 			if release_cooldown == 0:
 				release_sdg()
 				release_cooldown = 0.5
@@ -67,10 +75,10 @@ func _input(event:InputEvent) -> void:
 
 func show_pause_screen() -> void:
 
-	$Ui/Pause.show()
+	ui_pause.show()
 	$AnimationPlayer.play("pause_enter")
 	await $AnimationPlayer.animation_finished
-	$Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton.grab_focus()
+	pause_resume_button.grab_focus()
 	pause_screen_showing = true
 
 	return
@@ -80,8 +88,8 @@ func hide_pause_screen() -> void:
 
 	$AnimationPlayer.play("pause_exit")
 	await $AnimationPlayer.animation_finished
-	$Ui/Pause.hide()
-	$Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton.release_focus()
+	ui_pause.hide()
+	pause_resume_button.release_focus()
 	pause_screen_showing = false
 
 	return
@@ -96,21 +104,19 @@ func show_gameover_screen() -> void:
 		await get_tree().create_timer(0.6).timeout
 		
 		var current_screen_image:Image = DisplayServer.screen_get_image(DisplayServer.window_get_current_screen())
-		$Ui/Gameover/Result/ColorRect/TextureRect.texture = ImageTexture.create_from_image(current_screen_image)
+		result_screenshot.texture = ImageTexture.create_from_image(current_screen_image)
 		DisplayServer.window_set_mode(current_window_mode)
 		pass
 	else:
 		var current_screen_image:Image = DisplayServer.screen_get_image(DisplayServer.window_get_current_screen())
-		$Ui/Gameover/Result/ColorRect/TextureRect.texture = ImageTexture.create_from_image(current_screen_image)
+		result_screenshot.texture = ImageTexture.create_from_image(current_screen_image)
 		pass
 	
-	$Ui/Gameover/Result/ColorRect2/VBoxContainer/Label3.text = "%d" % [score]
+	result_score_label.text = "%d" % [score]
+	
+	
 	
 	$AnimationPlayer.play("gameover_enter")
-	
-	await $AnimationPlayer.animation_finished
-	
-	
 
 	return
 
@@ -161,7 +167,7 @@ func gameover() -> void:
 
 func _process(delta:float) -> void:
 
-	$Ui/Game/Score/VBoxContainer/Label2.text = "%d" % [score]
+	game_score_label.text = "%d" % [score]
 	if release_cooldown > 0:
 		release_cooldown = maxf(0, release_cooldown - delta)
 		pass
@@ -229,7 +235,7 @@ func _on_retry_button_pressed() -> void:
 	print_debug("retry_button clicked")
 	get_tree().paused = false
 	#同じシーンに変えることでリトライと同じ動作をする
-	get_node("../").change_scene("play")
+	get_parent().change_scene("play")
 
 	return
 
@@ -238,7 +244,7 @@ func _on_back_to_the_title_button_pressed() -> void:
 
 	print_debug("back2thetitlebutton clicked")
 	get_tree().paused = false
-	get_node("../").change_scene("title")
+	get_parent().change_scene("title")
 
 	return
 
@@ -247,7 +253,7 @@ func _on_my_score_button_pressed() -> void:
 
 	print_debug("myscorebutton clicked")
 	get_tree().paused = false
-	get_node("../").change_scene("my_score")
+	get_parent().change_scene("my_score")
 
 	return
 	
