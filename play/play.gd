@@ -267,7 +267,7 @@ func _on_my_score_button_pressed() -> void:
 
 	print_debug("myscorebutton clicked")
 	get_tree().paused = false
-	get_parent().change_scene("my_score")
+	get_parent().change_scene("myscore")
 
 	return
 	
