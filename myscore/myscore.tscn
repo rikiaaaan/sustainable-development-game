@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b65lp12qf2e3h"]
+
+[ext_resource type="Script" path="res://myscore/myscore.gd" id="1_i4mpf"]
+
+[node name="myscore" type="Node"]
+script = ExtResource("1_i4mpf")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
