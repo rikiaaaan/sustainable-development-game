@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://f38tn71rxhwl"]
+
+[ext_resource type="Script" path="res://myscore/score_list_item/score_list_item.gd" id="1_pqqdf"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_exqwn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvamp"]
+font = ExtResource("2_exqwn")
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bahdf"]
+font = ExtResource("2_exqwn")
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_koy4c"]
+font = ExtResource("2_exqwn")
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="ScoreListItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pqqdf")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 100.0
+color = Color(0.278431, 0.572549, 0.635294, 1)
+metadata/_edit_lock_ = true
+
+[node name="Rank" type="Label" parent="."]
+layout_mode = 0
+offset_right = 53.0
+offset_bottom = 100.0
+text = "1"
+label_settings = SubResource("LabelSettings_kvamp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UserName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 7.0
+offset_right = 293.0
+offset_bottom = 27.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_bahdf")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 36.0
+offset_right = 287.0
+offset_bottom = 89.0
+text = "00000"
+label_settings = SubResource("LabelSettings_koy4c")
+horizontal_alignment = 2
