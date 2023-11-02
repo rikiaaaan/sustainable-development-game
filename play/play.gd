@@ -114,7 +114,7 @@ func show_gameover_screen() -> void:
 	
 	result_score_label.text = "%d" % [score]
 	
-	
+	save_game_data()
 	
 	$AnimationPlayer.play("gameover_enter")
 
@@ -161,6 +161,20 @@ func gameover() -> void:
 	for sdg in $Sdgs.get_children():
 		sdg.gameover_shake()
 		pass
+
+	return
+
+
+func save_game_data() -> void:
+
+	var game_data:Dictionary = {}
+	
+	var current_unix_time:float = Time.get_unix_time_from_system()
+	game_data.score = score
+	var current_datetime_dict:Dictionary = Time.get_datetime_dict_from_unix_time(current_unix_time)
+	game_data.recorded_at = current_datetime_dict
+	
+	Settings.save_game_data(game_data)
 
 	return
 
