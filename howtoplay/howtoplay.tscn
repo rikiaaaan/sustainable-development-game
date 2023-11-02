@@ -1,0 +1,262 @@
+[gd_scene load_steps=13 format=3 uid="uid://b5bvx73f0rbpt"]
+
+[ext_resource type="Script" path="res://howtoplay/howtoplay.gd" id="1_fxiju"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_lvekj"]
+[ext_resource type="PackedScene" uid="uid://dpp7tc80mnpya" path="res://shared/kokuren/kokuren.tscn" id="3_svy5v"]
+[ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="4_yyeou"]
+[ext_resource type="Texture2D" uid="uid://cb8bro0dthsy2" path="res://shared/img/sgds.png" id="5_ngpb6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yojwf"]
+font = ExtResource("2_lvekj")
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_tji1c"]
+font = ExtResource("2_lvekj")
+font_size = 40
+
+[sub_resource type="Curve2D" id="Curve2D_2c03g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 400, 300, 0, 0, 0, 0, 900, 300)
+}
+point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ko4sk"]
+font = ExtResource("2_lvekj")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_pjpo2"]
+font = ExtResource("2_lvekj")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_edghf"]
+font = ExtResource("2_lvekj")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_0owdw"]
+font = ExtResource("2_lvekj")
+font_size = 20
+
+[node name="howtoplay" type="Node"]
+script = ExtResource("1_fxiju")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="Ui"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 1140.0
+offset_bottom = 670.0
+color = Color(1, 0.721569, 0.529412, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Ui"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_left = 140.0
+offset_top = 50.0
+offset_right = 1140.0
+offset_bottom = 130.0
+color = Color(1, 0.509804, 0.239216, 1)
+
+[node name="Label" type="Label" parent="Ui/ColorRect"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 80.0
+text = "ゲームの遊び方"
+label_settings = SubResource("LabelSettings_yojwf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Page0" type="Control" parent="Ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Page0"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 140.0
+offset_right = 1140.0
+offset_bottom = 228.0
+text = "十字キー、WASDのADまたはマウスで
+国連を左右に動かすことができます。"
+label_settings = SubResource("LabelSettings_tji1c")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/Page0"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 400.0
+offset_right = 1140.0
+offset_bottom = 488.0
+text = "次に、マウスの左クリックまたはスペースキーで、
+目標を落下させることができます。"
+label_settings = SubResource("LabelSettings_tji1c")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="Ui/Page0"]
+
+[node name="Path2D" type="Path2D" parent="Ui/Page0/Node2D"]
+curve = SubResource("Curve2D_2c03g")
+
+[node name="kokuren" parent="Ui/Page0/Node2D/Path2D" instance=ExtResource("3_svy5v")]
+position = Vector2(400, 300)
+moveable = true
+
+[node name="Sdgs" type="Node2D" parent="Ui/Page0/Node2D"]
+
+[node name="sdg" parent="Ui/Page0/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+freeze = true
+phase = 4
+
+[node name="Page1" type="Control" parent="Ui"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Page1"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 140.0
+offset_right = 1140.0
+offset_bottom = 228.0
+text = "同じ種類の目標２つがぶつかると、
+次の大きさの目標へと進みます。
+箱から目標が溢れ出し、下へと落下したら、
+ゲームオーバーになります。"
+label_settings = SubResource("LabelSettings_ko4sk")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="Ui/Page1"]
+
+[node name="Sdgs" type="Node2D" parent="Ui/Page1/Node2D"]
+
+[node name="sdg" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(386, 448)
+freeze = true
+phase = 4
+
+[node name="sdg2" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(386, 510)
+freeze = true
+phase = 4
+
+[node name="sdg3" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(541, 470)
+freeze = true
+phase = 5
+
+[node name="sdg4" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(702, 420)
+freeze = true
+phase = 15
+
+[node name="sdg5" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(702, 554)
+freeze = true
+phase = 15
+
+[node name="sdg6" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(917, 493)
+freeze = true
+phase = 16
+
+[node name="Label2" type="Label" parent="Ui/Page1"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 438.0
+offset_right = 498.0
+offset_bottom = 502.0
+text = "→"
+label_settings = SubResource("LabelSettings_pjpo2")
+
+[node name="Label3" type="Label" parent="Ui/Page1"]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 455.0
+offset_right = 838.0
+offset_bottom = 519.0
+text = "→"
+label_settings = SubResource("LabelSettings_pjpo2")
+
+[node name="Page2" type="Control" parent="Ui"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Ui/Page2"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 140.0
+offset_right = 1140.0
+offset_bottom = 228.0
+text = "目標は全部で１７種類です。
+下にある通りに目標が進んでいきます。"
+label_settings = SubResource("LabelSettings_edghf")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Ui/Page2"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 265.0
+offset_right = 1042.0
+offset_bottom = 623.0
+texture = ExtResource("5_ngpb6")
+expand_mode = 1
+
+[node name="PageController" type="Control" parent="Ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="VBoxContainer" parent="Ui/PageController"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 360.0
+offset_right = 230.0
+offset_bottom = 458.0
+
+[node name="Label" type="Label" parent="Ui/PageController/Back"]
+layout_mode = 2
+text = "前へ"
+label_settings = SubResource("LabelSettings_0owdw")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="BackButton" type="Button" parent="Ui/PageController/Back"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvekj")
+theme_override_font_sizes/font_size = 30
+text = "←"
+
+[node name="Forward" type="VBoxContainer" parent="Ui/PageController"]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 360.0
+offset_right = 1120.0
+offset_bottom = 458.0
+
+[node name="Label" type="Label" parent="Ui/PageController/Forward"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "次へ"
+label_settings = SubResource("LabelSettings_0owdw")
+horizontal_alignment = 1
+
+[node name="ForwardButton" type="Button" parent="Ui/PageController/Forward"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvekj")
+theme_override_font_sizes/font_size = 30
+text = "→"
+
+[connection signal="pressed" from="Ui/PageController/Back/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Ui/PageController/Forward/ForwardButton" to="." method="_on_forward_button_pressed"]

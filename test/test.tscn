@@ -1,3 +1,119 @@
-[gd_scene format=3 uid="uid://b3itvcljx11fd"]
+[gd_scene load_steps=11 format=3 uid="uid://b3itvcljx11fd"]
 
-[node name="Test" type="Node"]
+[ext_resource type="Script" path="res://test/test.gd" id="1_pchhp"]
+[ext_resource type="Texture2D" uid="uid://ne4g6lpje2vl" path="res://shared/img/background/test.jpeg" id="2_mx63o"]
+[ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="3_tf200"]
+[ext_resource type="Texture2D" uid="uid://bxox5ovxhifkn" path="res://shared/img/kokuren.png" id="4_ru6bn"]
+[ext_resource type="PackedScene" uid="uid://dpp7tc80mnpya" path="res://shared/kokuren/kokuren.tscn" id="5_sggs5"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="6_rovln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itdbj"]
+size = Vector2(25.5, 434)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni6ts"]
+size = Vector2(547, 24)
+
+[sub_resource type="Curve2D" id="Curve2D_sguo8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 340, 22, 0, 0, 0, 0, 850, 22)
+}
+point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_nbcl5"]
+font = ExtResource("6_rovln")
+font_size = 50
+
+[node name="test" type="Node"]
+script = ExtResource("1_pchhp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_mx63o")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = 298.0
+offset_top = 267.0
+offset_right = 323.0
+offset_bottom = 701.0
+
+[node name="ColorRect2" type="ColorRect" parent="Node2D"]
+offset_left = 870.0
+offset_top = 267.0
+offset_right = 895.0
+offset_bottom = 701.0
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D"]
+offset_left = 298.0
+offset_top = 677.0
+offset_right = 895.0
+offset_bottom = 701.0
+
+[node name="Sdgs" type="Node2D" parent="Node2D"]
+
+[node name="sdg" parent="Node2D/Sdgs" instance=ExtResource("3_tf200")]
+position = Vector2(527, 199)
+mass = 0.08
+inertia = 10.0
+gravity_scale = 0.1
+max_contacts_reported = 2
+
+[node name="Wall" type="StaticBody2D" parent="Node2D"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall"]
+position = Vector2(310.5, 484)
+shape = SubResource("RectangleShape2D_itdbj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Wall"]
+position = Vector2(882.75, 484)
+shape = SubResource("RectangleShape2D_itdbj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Wall"]
+position = Vector2(596.5, 689)
+shape = SubResource("RectangleShape2D_ni6ts")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sguo8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(340, 22)
+
+[node name="RayCast2D" type="RayCast2D" parent="Path2D/PathFollow2D"]
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_ru6bn")
+
+[node name="Polygon2D" type="Polygon2D" parent="Path2D/PathFollow2D"]
+polygon = PackedVector2Array(0, 0, 3, 0, 3, 650, 0, 650)
+
+[node name="Label" type="Label" parent="Path2D/PathFollow2D"]
+offset_left = 36.0
+offset_top = 30.0
+offset_right = 76.0
+offset_bottom = 53.0
+
+[node name="kokuren" parent="Path2D" instance=ExtResource("5_sggs5")]
+position = Vector2(340, 22)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 941.0
+offset_top = 54.0
+offset_right = 1268.0
+offset_bottom = 425.0
+text = "Ready?
+Go!!
+
+ネクスト
+進化の輪
+BEST SCORE
+スコア"
+label_settings = SubResource("LabelSettings_nbcl5")
