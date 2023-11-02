@@ -5,46 +5,57 @@ var page_index:int = 0
 var release_cooldown:float = 0.0
 var current_sdg:RigidBody2D = null
 
+@onready var back_label:Label = $Ui/PageController/Back/Label
+@onready var back_button:Button = $Ui/PageController/Back/BackButton
+@onready var page_controller_forward:VBoxContainer = $Ui/PageController/Forward
+@onready var forward_button:Button = $Ui/PageController/Forward/ForwardButton
+@onready var sdg:RigidBody2D = $Ui/Page0/Node2D/Sdgs/sdg
+@onready var sdgs_page0:Node2D = $Ui/Page0/Node2D/Sdgs
+@onready var kokuren:PathFollow2D = $Ui/Page0/Node2D/Path2D/kokuren
+
 const PAGE_COUNT:int = 3
 
 
 func _ready() -> void:
 
-	$Ui/PageController/Back/BackButton.connect("focus_entered", $Ui/PageController/Back/BackButton.release_focus)
-	$Ui/PageController/Forward/ForwardButton.connect("focus_entered", $Ui/PageController/Forward/ForwardButton.release_focus)
+	back_button.connect("focus_entered", back_button.release_focus)
+	forward_button.connect("focus_entered", forward_button.release_focus)
 	
 	set_page(0)
 	
-	current_sdg = $Ui/Page0/Node2D/Sdgs/sdg
+	current_sdg = sdg
 
 	return
 
 
 func set_page(index:int) -> void:
 
-	for i in range(0,PAGE_COUNT,1):
+	for i in range(0, PAGE_COUNT, 1):
+		var page:Node = get_node("Ui/Page%d" % [i])
 		if i == index:
-			get_node("Ui/Page%d" % [i]).show()
+			page.show()
+			page.process_mode = Node.PROCESS_MODE_INHERIT
 			pass
 		else:
-			get_node("Ui/Page%d" % [i]).hide()
+			page.hide()
+			page.process_mode = Node.PROCESS_MODE_DISABLED
 			pass
 		pass
 	
 	if index == 0:
-		$Ui/PageController/Back/Label.text = "タイトル画面に戻る"
-		$Ui/Page0/Node2D/Path2D/kokuren.moveable = true
+		back_label.text = "タイトル画面に戻る"
+		kokuren.moveable = true
 		pass
 	else:
-		$Ui/PageController/Back/Label.text = "戻る"
-		$Ui/Page0/Node2D/Path2D/kokuren.moveable = false
+		back_label.text = "戻る"
+		kokuren.moveable = false
 		pass
 	
 	if index+1 == PAGE_COUNT:
-		$Ui/PageController/Forward.hide()
+		page_controller_forward.hide()
 		pass
 	else:
-		$Ui/PageController/Forward.show()
+		page_controller_forward.show()
 		pass
 	
 	page_index = index
@@ -63,7 +74,7 @@ func release_sdg() -> void:
 	current_sdg = sdg
 	
 	current_sdg.freeze = true
-	$Ui/Page0/Node2D/Sdgs.add_child(sdg)
+	sdgs_page0.add_child(sdg)
 
 	return
 
@@ -92,7 +103,7 @@ func _process(delta:float) -> void:
 func _physics_process(_delta:float) -> void:
 
 	if current_sdg != null && release_cooldown < 0.25 && page_index == 0:
-		current_sdg.position = $Ui/Page0/Node2D/Path2D/kokuren.position + Vector2(-23,30) + Vector2(0,20)
+		current_sdg.position = kokuren.position + Vector2(-23,30) + Vector2(0,20)
 		pass
 
 	return

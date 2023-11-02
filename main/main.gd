@@ -5,7 +5,7 @@ var current_scene_name:String = ""
 
 func _ready() -> void:
 
-	change_scene("title", false)
+	change_scene("login", false)
 #	change_scene("test", false)
 
 	return
