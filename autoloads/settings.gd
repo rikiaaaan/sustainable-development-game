@@ -154,6 +154,26 @@ func save_game_data(data:Dictionary) -> void:
 	return
 
 
+func get_myscore_daily_data() -> Dictionary:
+
+	return {}
+
+
+func get_myscore_total_data() -> Dictionary:
+
+	return {}
+
+
+func get_users_daily_data() -> Dictionary:
+
+	return {}
+
+
+func get_users_total_data() -> Dictionary:
+
+	return {}
+
+
 func set_current_user(user_name:String) -> void:
 
 	current_user_name = user_name
