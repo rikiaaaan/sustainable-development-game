@@ -61,6 +61,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank1" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -99,6 +100,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank2" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -137,6 +139,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank3" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -175,6 +178,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank4" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -213,6 +217,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank5" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -251,6 +256,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank6" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -289,6 +295,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank7" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -327,6 +334,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank8" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -365,6 +373,7 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
 
 [node name="Rank9" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 50)
@@ -403,3 +412,4 @@ offset_right = 195.0
 offset_bottom = 49.0
 text = "00000"
 label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
