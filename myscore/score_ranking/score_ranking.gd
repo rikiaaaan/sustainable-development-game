@@ -51,9 +51,11 @@ func fresh() -> void:
 			user_name_label.hide()
 			pass
 		if i >= ranking_data_length || ranking_data[i] == {}:
+			user_name_label.hide()
 			score_label.text = "-----"
 			continue
 		if ranking_data[i].has("name"):
+			user_name_label.show()
 			user_name_label.text = ranking_data[i].name
 			pass
 		if ranking_data[i].has("score"):
