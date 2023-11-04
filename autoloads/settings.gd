@@ -11,13 +11,35 @@ const IGNORE_CHECK_NAME:String = "ignorefilecheck"
 const KEY_USER_NAME:String = "user_name"
 const KEY_USER_ID:String = "user_id"
 const KEY_USER_PASSWORD:String = "pass"
+
 const KEY_SCORE:String = "score"
+const KEY_BEST_SCORE:String = "best_score"
+const KEY_LATEST_SCORE:String = "latest_score"
+const KEY_SCORE_HISTORY:String = "score_history"
+
+const KEY_BEST_SDG:String = "best_sdg"
+const KEY_LATEST_SDG:String = "latest_sdg"
+const KEY_NEXT_SDG:String = "next_sdg"
+const KEY_CURRENT_SDG:String = "current_sdg"
+const KEY_SDGS:String = "sdgs"
+
+const KEY_RECORDED_AT:String = "recorded_at"
 const KEY_SCORE_RECORDED_AT:String = "score_recorded_at"
+const KEY_BEST_SCORE_RECORDED_AT:String = "best_score_recorded_at"
+const KEY_LATEST_SCORE_RECORDED_AT:String = "latest_score_recorded_at"
+
+const KEY_SAVED_GAME_DATA:String = "saved_game_data"
+const KEY_SAVED_AT:String = "saved_at"
+const KEY_POSITION:String = "position"
+const KEY_ROTATION:String = "rotation"
+const KEY_PHASE:String = "phase"
+
 const KEY_RESULT_SCREENSHOT:String = "result_screenshot"
 
 #hi everyone! my name is:
 const CREATOR_NAME:String = "FairyMD"
 const CREATOR_DEFAULT_SCORE:int = 3000
+const CREATOR_DEFAULT_SDG:int = 1
 
 var fake_savedata_dir:String = executable_dir+"/"+FAKE_SAVEDATA_NAME
 var actual_savedata_dir:String = executable_dir+"/"+ACTUAL_SAVEDATA_NAME
@@ -82,11 +104,29 @@ func generate_actual_save_data() -> void:
 
 	var cfg:ConfigFile = ConfigFile.new()
 	
+	var current_unix_time:int = Time.get_unix_time_from_system()
+	var score_history:Array[Dictionary] = [
+		{
+			KEY_SCORE: CREATOR_DEFAULT_SCORE,
+			KEY_SCORE_RECORDED_AT: current_unix_time
+		}
+	]
+	
 	cfg.set_value(CREATOR_NAME, KEY_USER_NAME, CREATOR_NAME)
 	cfg.set_value(CREATOR_NAME, KEY_USER_ID, Keys.generate_user_id())
 	cfg.set_value(CREATOR_NAME, KEY_USER_PASSWORD, Keys.creator_password)
-	cfg.set_value(CREATOR_NAME, KEY_SCORE, CREATOR_DEFAULT_SCORE)
-	cfg.set_value(CREATOR_NAME, KEY_SCORE_RECORDED_AT, 0)
+	
+	cfg.set_value(CREATOR_NAME, KEY_BEST_SCORE, CREATOR_DEFAULT_SCORE)
+	cfg.set_value(CREATOR_NAME, KEY_BEST_SDG, CREATOR_DEFAULT_SDG)
+	cfg.set_value(CREATOR_NAME, KEY_BEST_SCORE_RECORDED_AT, current_unix_time)
+	
+	cfg.set_value(CREATOR_NAME, KEY_LATEST_SDG, CREATOR_DEFAULT_SDG)
+	cfg.set_value(CREATOR_NAME, KEY_LATEST_SCORE, CREATOR_DEFAULT_SCORE)
+	cfg.set_value(CREATOR_NAME, KEY_LATEST_SCORE_RECORDED_AT, current_unix_time)
+	
+	cfg.set_value(CREATOR_NAME, KEY_SCORE_HISTORY, score_history)
+	cfg.set_value(CREATOR_NAME, KEY_SAVED_GAME_DATA, {})
+	
 #	cfg.set_value(CREATOR_NAME, KEY_RESULT_SCREENSHOT, Image.new())
 	
 	save_cfg_file(cfg)
@@ -122,8 +162,20 @@ func init_user_data(password:String) -> void:
 		cfg.set_value(current_user_name, KEY_USER_NAME, current_user_name)
 		cfg.set_value(current_user_name, KEY_USER_ID, Keys.generate_user_id())
 		cfg.set_value(current_user_name, KEY_USER_PASSWORD, Keys.encode_password(password))
-		cfg.set_value(current_user_name, KEY_SCORE, 0)
-		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, 0)
+		
+		cfg.set_value(current_user_name, KEY_BEST_SCORE, 0)
+		cfg.set_value(current_user_name, KEY_BEST_SDG, 0)
+		cfg.set_value(current_user_name, KEY_BEST_SCORE_RECORDED_AT, 0)
+		
+		cfg.set_value(current_user_name, KEY_LATEST_SDG, 0)
+		cfg.set_value(current_user_name, KEY_LATEST_SCORE, 0)
+		cfg.set_value(current_user_name, KEY_LATEST_SCORE_RECORDED_AT, 0)
+		
+		cfg.set_value(current_user_name, KEY_SCORE_HISTORY, [])
+		cfg.set_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+		
+#		cfg.set_value(current_user_name, KEY_SCORE, 0)
+#		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, 0)
 #		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, Image.new())
 		
 		save_cfg_file(cfg)
@@ -139,14 +191,35 @@ func login() -> void:
 	return 
 
 
-func save_game_data(data:Dictionary) -> void:
+func save_result_data(data:Dictionary) -> void:
 
 	if is_login:
 		var cfg:ConfigFile = load_cfg_file()
 		
-		cfg.set_value(current_user_name, KEY_SCORE, data.score)
-		cfg.set_value(current_user_name, KEY_SCORE_RECORDED_AT, data.recorded_at)
-#		cfg.set_value(current_user_name, KEY_RESULT_SCREENSHOT, data.result_screenshot)
+		var saved_best_score:int = cfg.get_value(current_user_name, KEY_BEST_SCORE)
+		var saved_best_sdg:int = cfg.get_value(current_user_name, KEY_BEST_SDG)
+		var saved_score_history:Array[Dictionary] = cfg.get_value(current_user_name, KEY_SCORE_HISTORY)
+		
+		#ベストスコア更新！やったね！
+		if data.score > saved_best_score:
+			cfg.set_value(current_user_name, KEY_BEST_SCORE, data.score)
+			cfg.set_value(current_user_name, KEY_BEST_SCORE_RECORDED_AT, data.recorded_at)
+			pass
+		
+		##TODO: ベストsdgを作る
+#		if data.best_sdg > saved_best_sdg:
+#			cfg.set_value(current_user_name, KEY_BEST_SDG, data.best_sdg)
+#			pass
+		
+		cfg.set_value(current_user_name, KEY_LATEST_SCORE, data.score)
+		cfg.set_value(current_user_name, KEY_LATEST_SCORE_RECORDED_AT, data.recorded_at)
+		
+		var score_history:Dictionary = {
+			KEY_SCORE: data.score,
+			KEY_RECORDED_AT: data.recorded_at
+		}
+		saved_score_history.append(score_history)
+		cfg.set_value(current_user_name, KEY_SCORE_HISTORY, saved_score_history)
 		
 		save_cfg_file(cfg)
 		pass
