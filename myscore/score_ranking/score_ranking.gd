@@ -58,9 +58,9 @@ func fresh() -> void:
 			user_name_label.hide()
 			score_label.text = "-----"
 			continue
-		if ranking_data[i].has("name"):
+		if ranking_data[i].has("user_name"):
 			user_name_label.show()
-			user_name_label.text = ranking_data[i].name
+			user_name_label.text = ranking_data[i].user_name
 			pass
 		if ranking_data[i].has("score"):
 			var score:int = ranking_data[i].score
