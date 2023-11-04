@@ -240,20 +240,20 @@ func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]
 		pass
 	
 	for i in range(0, amount, 1):
-		var min:int = data[i].score
-		var min_index:int = i
+		var max:int = data[i].score
+		var max_index:int = i
 		for j in range(i+1, data_size, 1):
 			var current_score:int = data[j].score
-			if current_score < min:
-				min = current_score
-				min_index = j
+			if current_score > max:
+				max = current_score
+				max_index = j
 			pass
-		if min_index == i:
+		if max_index == i:
 			continue
 		
 		var t:Dictionary = data[i]
-		data[i] = data[min_index]
-		data[min_index] = t
+		data[i] = data[max_index]
+		data[max_index] = t
 		pass
 
 	return data.slice(0,amount)
