@@ -256,14 +256,11 @@ func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]
 		data[max_index] = t
 		pass
 
-	return data.slice(0,amount)
+	return data.slice(0, amount)
 
 
 func get_myscore_daily_data() -> Array[Dictionary]:
 
-	is_login = true
-	current_user_name = "FairyMD"
-	
 	var cfg:ConfigFile = load_cfg_file()
 	
 	if !is_login || cfg.get_value(current_user_name, KEY_SCORE_HISTORY, []) == []:
@@ -306,17 +303,55 @@ func get_myscore_total_data() -> Array[Dictionary]:
 	var my_total_scores:Array[Dictionary] = []
 	var my_score_history:Array[Dictionary] = cfg.get_value(current_user_name, KEY_SCORE_HISTORY)
 
-	return my_total_scores
+	return sort_scores_data(my_score_history, 10)
 
 
 func get_users_daily_data() -> Array[Dictionary]:
 
-	return []
+	var cfg:ConfigFile = load_cfg_file()
+	
+	var users_daily_scores:Array[Dictionary] = []
+	var now_unix:int = Time.get_unix_time_from_system() + (Time.get_time_zone_from_system().bias*60)
+	
+	var today_second:int = now_unix % (24*60*60)
+	var today_start:int = now_unix - (int(today_second/3600) + int((today_second % 3600) / 60) + today_second%60)
+	var tomorrow_start:int = today_start + (24*60*60)
+	
+	print_debug("today_start: %s" % [Time.get_datetime_dict_from_unix_time(today_start)])
+	print_debug("tomorrow_start: %s" % [Time.get_datetime_dict_from_unix_time(tomorrow_start)])
+	
+	for user_name in cfg.get_sections():
+		
+		print_debug("User Name: %s" % [user_name])
+		var user_score_recorded_at:int = cfg.get_value(user_name, KEY_LATEST_SCORE_RECORDED_AT)
+		if today_start <= user_score_recorded_at && user_score_recorded_at < tomorrow_start:
+			var user_score_data:Dictionary = {
+				KEY_USER_NAME: user_name,
+				KEY_SCORE: cfg.get_value(user_name, KEY_LATEST_SCORE)
+			}
+			user_daily_scores.append(user_score_data)
+			pass
+		
+		pass
+
+	return sort_scores_data(user_daily_scores, 10)
 
 
 func get_users_total_data() -> Array[Dictionary]:
 
-	return []
+	var cfg:ConfigFile = load_cfg_file()
+	
+	var user_total_scores:Array[Dictionary] = []
+	for user_name in cfg.get_sections():
+		print_debug("Current user_name: %s" % [user_name])
+		var score_data:Dictionary = {
+			KEY_USER_NAME: user_name,
+			KEY_SCORE: cfg.get_value(user_name, KEY_BEST_SCORE)
+		}
+		user_total_scores.append(score_data)
+		pass
+
+	return sort_scores_data(user_total_scores, 10)
 
 
 func set_current_user(user_name:String) -> void:

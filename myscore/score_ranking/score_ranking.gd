@@ -30,12 +30,16 @@ func fresh() -> void:
 	match mode:
 		0:
 			ranking_data = Settings.get_myscore_daily_data()
+			print_debug("Myscore_daily: %s" % [ranking_data])
 		1:
 			ranking_data = Settings.get_myscore_total_data()
+			print_debug("Myscore_total: %s" % [ranking_data])
 		2:
 			ranking_data = Settings.get_users_daily_data()
+			print_debug("users_score_daily: %s" % [ranking_data])
 		3:
 			ranking_data = Settings.get_users_total_data()
+			print_debug("users_score_total: %s" % [ranking_data])
 		_:
 			print_debug("Unknown ranking mode: %d" % [mode])
 			return
