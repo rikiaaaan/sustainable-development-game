@@ -41,6 +41,8 @@ const CREATOR_NAME:String = "FairyMD"
 const CREATOR_DEFAULT_SCORE:int = 3000
 const CREATOR_DEFAULT_SDG:int = 1
 
+const DAY_SECOND:int = 24*60*60
+
 var fake_savedata_dir:String = executable_dir+"/"+FAKE_SAVEDATA_NAME
 var actual_savedata_dir:String = executable_dir+"/"+ACTUAL_SAVEDATA_NAME
 
@@ -269,24 +271,18 @@ func get_myscore_daily_data() -> Array[Dictionary]:
 	
 	var my_score_history:Array[Dictionary] = cfg.get_value(current_user_name, KEY_SCORE_HISTORY)
 	var my_daily_score:Array[Dictionary] = []
-	var now_datetime_dict:Dictionary = Time.get_datetime_dict_from_system()
+	var now_unix:int = Time.get_unix_time_from_system() + (Time.get_time_zone_from_system().bias*60)
 	
-	print_debug("now_datetime_dict: %s" % [now_datetime_dict])
-	#the start of the day
-	now_datetime_dict.hour = 0
-	now_datetime_dict.minute = 0
-	now_datetime_dict.second = 0
-	print_debug("today_start: %s" % [now_datetime_dict])
+	var today_start:int = now_unix - (now_unix % DAY_SECOND)
+	var tomorrow_start:int = today_start + DAY_SECOND
 	
-	var today_start:int = Time.get_unix_time_from_datetime_dict(now_datetime_dict)
-	var nextday_start:int = today_start + (24*60*60)
-	
-	print_debug("next_day: %s" % [Time.get_datetime_dict_from_unix_time(nextday_start)])
+	print_debug("today_start: %s" % [Time.get_datetime_dict_from_unix_time(today_start)])
+	print_debug("tomorrow_start: %s" % [Time.get_datetime_dict_from_unix_time(tomorrow_start)])
 	
 	for i in range(0, my_score_history.size(), 1):
 		var current_history:Dictionary = my_score_history[i]
 		var history_recorded_at:int = current_history.score_recorded_at
-		if today_start <= history_recorded_at && history_recorded_at < nextday_start:
+		if today_start <= history_recorded_at && history_recorded_at < tomorrow_start:
 			my_daily_score.append(current_history)
 			pass
 		pass
@@ -314,9 +310,8 @@ func get_users_daily_data() -> Array[Dictionary]:
 	var user_daily_scores:Array[Dictionary] = []
 	var now_unix:int = Time.get_unix_time_from_system() + (Time.get_time_zone_from_system().bias*60)
 	
-	var today_second:int = now_unix % (24*60*60)
-	var today_start:int = now_unix - (int(today_second/3600) + int((today_second % 3600) / 60) + today_second%60)
-	var tomorrow_start:int = today_start + (24*60*60)
+	var today_start:int = now_unix - (now_unix % DAY_SECOND)
+	var tomorrow_start:int = today_start + DAY_SECOND
 	
 	print_debug("today_start: %s" % [Time.get_datetime_dict_from_unix_time(today_start)])
 	print_debug("tomorrow_start: %s" % [Time.get_datetime_dict_from_unix_time(tomorrow_start)])
