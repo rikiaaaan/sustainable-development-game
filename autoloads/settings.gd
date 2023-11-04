@@ -72,6 +72,8 @@ func _ready() -> void:
 #	#ロードした設定ファイルから設定をセット
 #	set_settings_from_loaded_config_file(config_file)
 
+	Keys.print_creator_save_data()
+
 	return
 
 
@@ -216,7 +218,7 @@ func save_result_data(data:Dictionary) -> void:
 		
 		var score_history:Dictionary = {
 			KEY_SCORE: data.score,
-			KEY_RECORDED_AT: data.recorded_at
+			KEY_SCORE_RECORDED_AT: data.recorded_at
 		}
 		saved_score_history.append(score_history)
 		cfg.set_value(current_user_name, KEY_SCORE_HISTORY, saved_score_history)
@@ -227,14 +229,84 @@ func save_result_data(data:Dictionary) -> void:
 	return
 
 
+func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]:
+
+	var data_size:int = data.size()
+	if data_size == 1 || data_size < 0:
+		return data
+	
+	if amount == 0 || amount > data_size:
+		amount = data_size
+		pass
+	
+	for i in range(0, amount, 1):
+		var min:int = data[i].score
+		var min_index:int = i
+		for j in range(i+1, data_size, 1):
+			var current_score:int = data[j].score
+			if current_score < min:
+				min = current_score
+				min_index = j
+			pass
+		if min_index == i:
+			continue
+		
+		var t:Dictionary = data[i]
+		data[i] = data[min_index]
+		data[min_index] = t
+		pass
+
+	return data.slice(0,amount)
+
+
 func get_myscore_daily_data() -> Array[Dictionary]:
 
-	return []
+	is_login = true
+	current_user_name = "FairyMD"
+	
+	var cfg:ConfigFile = load_cfg_file()
+	
+	if !is_login || cfg.get_value(current_user_name, KEY_SCORE_HISTORY, []) == []:
+		return []
+	
+	var my_score_history:Array[Dictionary] = cfg.get_value(current_user_name, KEY_SCORE_HISTORY)
+	var my_daily_score:Array[Dictionary] = []
+	var now_datetime_dict:Dictionary = Time.get_datetime_dict_from_system()
+	
+	print_debug("now_datetime_dict: %s" % [now_datetime_dict])
+	#the start of the day
+	now_datetime_dict.hour = 0
+	now_datetime_dict.minute = 0
+	now_datetime_dict.second = 0
+	print_debug("today_start: %s" % [now_datetime_dict])
+	
+	var today_start:int = Time.get_unix_time_from_datetime_dict(now_datetime_dict)
+	var nextday_start:int = today_start + (24*60*60)
+	
+	print_debug("next_day: %s" % [Time.get_datetime_dict_from_unix_time(nextday_start)])
+	
+	for i in range(0, my_score_history.size(), 1):
+		var current_history:Dictionary = my_score_history[i]
+		var history_recorded_at:int = current_history.score_recorded_at
+		if today_start <= history_recorded_at && history_recorded_at < nextday_start:
+			my_daily_score.append(current_history)
+			pass
+		pass
+
+	return sort_scores_data(my_daily_score, 10)
 
 
 func get_myscore_total_data() -> Array[Dictionary]:
 
-	return []
+	var cfg:ConfigFile = load_cfg_file()
+	
+	if !is_login || cfg.get_value(current_user_name, KEY_SCORE_HISTORY, []) == []:
+		return []
+	
+	var my_total_scores:Array[Dictionary] = []
+	var my_score_history:Array[Dictionary] = cfg.get_value(current_user_name, KEY_SCORE_HISTORY)
+
+	return my_total_scores
 
 
 func get_users_daily_data() -> Array[Dictionary]:

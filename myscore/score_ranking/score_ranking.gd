@@ -40,7 +40,7 @@ func fresh() -> void:
 			print_debug("Unknown ranking mode: %d" % [mode])
 			return
 	
-	ranking_data = TEST_DATA
+#	ranking_data = TEST_DATA
 	
 	var ranking_data_length:int = ranking_data.size()
 	for i in range(0, 10, 1):
