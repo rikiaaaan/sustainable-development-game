@@ -161,6 +161,7 @@ func init_user_data(password:String) -> void:
 	if !is_user_exists(current_user_name):
 		var cfg:ConfigFile = load_cfg_file()
 		
+		var score_history:Array[Dictionary] = []
 		cfg.set_value(current_user_name, KEY_USER_NAME, current_user_name)
 		cfg.set_value(current_user_name, KEY_USER_ID, Keys.generate_user_id())
 		cfg.set_value(current_user_name, KEY_USER_PASSWORD, Keys.encode_password(password))
@@ -173,7 +174,7 @@ func init_user_data(password:String) -> void:
 		cfg.set_value(current_user_name, KEY_LATEST_SCORE, 0)
 		cfg.set_value(current_user_name, KEY_LATEST_SCORE_RECORDED_AT, 0)
 		
-		cfg.set_value(current_user_name, KEY_SCORE_HISTORY, [])
+		cfg.set_value(current_user_name, KEY_SCORE_HISTORY, score_history)
 		cfg.set_value(current_user_name, KEY_SAVED_GAME_DATA, {})
 		
 #		cfg.set_value(current_user_name, KEY_SCORE, 0)
@@ -310,7 +311,7 @@ func get_users_daily_data() -> Array[Dictionary]:
 
 	var cfg:ConfigFile = load_cfg_file()
 	
-	var users_daily_scores:Array[Dictionary] = []
+	var user_daily_scores:Array[Dictionary] = []
 	var now_unix:int = Time.get_unix_time_from_system() + (Time.get_time_zone_from_system().bias*60)
 	
 	var today_second:int = now_unix % (24*60*60)
