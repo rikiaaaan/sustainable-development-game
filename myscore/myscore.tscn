@@ -11,10 +11,9 @@ bg_color = Color(1, 0.721569, 0.529412, 1)
 font = ExtResource("2_ivssq")
 font_size = 40
 
-[sub_resource type="LabelSettings" id="LabelSettings_n0xe4"]
+[sub_resource type="LabelSettings" id="LabelSettings_wtxc5"]
 font = ExtResource("2_ivssq")
-font_size = 100
-shadow_color = Color(0, 0, 0, 0.588235)
+font_size = 36
 
 [node name="myscore" type="Node"]
 script = ExtResource("1_i4mpf")
@@ -84,24 +83,93 @@ mode = 1
 [node name="デイリーランキング" type="VBoxContainer" parent="Ui/TabContainer"]
 visible = false
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/TabContainer/デイリーランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Label" type="Label" parent="Ui/TabContainer/デイリーランキング"]
+[node name="Label" type="Label" parent="Ui/TabContainer/デイリーランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "Coming Soon"
-label_settings = SubResource("LabelSettings_n0xe4")
+text = "マイデイリースコア"
+label_settings = SubResource("LabelSettings_hwb1t")
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/TabContainer/デイリーランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "みんなのデイリースコア"
+label_settings = SubResource("LabelSettings_wtxc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/デイリーランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/デイリーランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/デイリーランキング/HBoxContainer/ScrollContainer" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Ui/TabContainer/デイリーランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/デイリーランキング/HBoxContainer/ScrollContainer2" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 2
 
 [node name="トータルランキング" type="VBoxContainer" parent="Ui/TabContainer"]
 visible = false
 layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/TabContainer/トータルランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Label" type="Label" parent="Ui/TabContainer/トータルランキング"]
+[node name="Label" type="Label" parent="Ui/TabContainer/トータルランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "Coming Soon"
-label_settings = SubResource("LabelSettings_n0xe4")
+text = "マイトータルスコア"
+label_settings = SubResource("LabelSettings_hwb1t")
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/TabContainer/トータルランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "みんなのトータルスコア"
+label_settings = SubResource("LabelSettings_wtxc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/トータルランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/トータルランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/トータルランキング/HBoxContainer/ScrollContainer" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Ui/TabContainer/トータルランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/トータルランキング/HBoxContainer/ScrollContainer2" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 3
 
 [node name="BackToTheTitleButton" type="Button" parent="Ui"]
 layout_mode = 0
