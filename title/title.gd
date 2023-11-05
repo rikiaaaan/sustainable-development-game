@@ -19,7 +19,7 @@ func _on_game_start_button_pressed() -> void:
 
 func _on_my_score_button_pressed() -> void:
 
-	change_scene("my_score")
+	change_scene("myscore")
 
 	return
 
