@@ -14,7 +14,8 @@ config/name="sustainable-development-game"
 run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/image="res://shared/img/sgds.png"
-config/icon="res://icon.svg"
+config/icon="res://shared/img/kokuren.png"
+config/windows_native_icon="res://game_icon.ico"
 
 [autoload]
 
