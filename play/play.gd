@@ -114,7 +114,7 @@ func show_gameover_screen() -> void:
 	
 	result_score_label.text = "%d" % [score]
 	
-	save_game_data()
+	save_result_data()
 	
 	$AnimationPlayer.play("gameover_enter")
 
@@ -165,16 +165,14 @@ func gameover() -> void:
 	return
 
 
-func save_game_data() -> void:
+func save_result_data() -> void:
 
 	var game_data:Dictionary = {}
 	
-	var current_unix_time:float = Time.get_unix_time_from_system()
 	game_data.score = score
-	var current_datetime_dict:Dictionary = Time.get_datetime_dict_from_unix_time(current_unix_time)
-	game_data.recorded_at = current_datetime_dict
+	game_data.recorded_at = int(Time.get_unix_time_from_system()+(Time.get_time_zone_from_system().bias*60))
 	
-	Settings.save_game_data(game_data)
+	Settings.save_result_data(game_data)
 
 	return
 
@@ -267,7 +265,7 @@ func _on_my_score_button_pressed() -> void:
 
 	print_debug("myscorebutton clicked")
 	get_tree().paused = false
-	get_parent().change_scene("my_score")
+	get_parent().change_scene("myscore")
 
 	return
 	

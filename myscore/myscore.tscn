@@ -1,0 +1,185 @@
+[gd_scene load_steps=7 format=3 uid="uid://b65lp12qf2e3h"]
+
+[ext_resource type="Script" path="res://myscore/myscore.gd" id="1_i4mpf"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_ivssq"]
+[ext_resource type="PackedScene" uid="uid://de6libyfqsuhm" path="res://myscore/score_ranking/score_ranking.tscn" id="3_3pro1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er1ww"]
+bg_color = Color(1, 0.721569, 0.529412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwb1t"]
+font = ExtResource("2_ivssq")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtxc5"]
+font = ExtResource("2_ivssq")
+font_size = 36
+
+[node name="myscore" type="Node"]
+script = ExtResource("1_i4mpf")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="TabContainer" parent="Ui"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 1150.0
+offset_bottom = 620.0
+theme_override_fonts/font = ExtResource("2_ivssq")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/panel = SubResource("StyleBoxFlat_er1ww")
+tab_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="マイスコア" type="VBoxContainer" parent="Ui/TabContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/TabContainer/マイスコア"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Label" type="Label" parent="Ui/TabContainer/マイスコア/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "デイリースコア"
+label_settings = SubResource("LabelSettings_hwb1t")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/TabContainer/マイスコア/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "トータルスコア"
+label_settings = SubResource("LabelSettings_hwb1t")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/マイスコア"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/マイスコア/HBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/マイスコア/HBoxContainer/ScrollContainer" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Ui/TabContainer/マイスコア/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/マイスコア/HBoxContainer/ScrollContainer2" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 1
+
+[node name="デイリーランキング" type="VBoxContainer" parent="Ui/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/TabContainer/デイリーランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Label" type="Label" parent="Ui/TabContainer/デイリーランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "マイデイリースコア"
+label_settings = SubResource("LabelSettings_hwb1t")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/TabContainer/デイリーランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "みんなのデイリースコア"
+label_settings = SubResource("LabelSettings_wtxc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/デイリーランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/デイリーランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/デイリーランキング/HBoxContainer/ScrollContainer" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Ui/TabContainer/デイリーランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/デイリーランキング/HBoxContainer/ScrollContainer2" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 2
+
+[node name="トータルランキング" type="VBoxContainer" parent="Ui/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/TabContainer/トータルランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Label" type="Label" parent="Ui/TabContainer/トータルランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "マイトータルスコア"
+label_settings = SubResource("LabelSettings_hwb1t")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/TabContainer/トータルランキング/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "みんなのトータルスコア"
+label_settings = SubResource("LabelSettings_wtxc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/トータルランキング"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/トータルランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/トータルランキング/HBoxContainer/ScrollContainer" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="Ui/TabContainer/トータルランキング/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="ScoreRanking" parent="Ui/TabContainer/トータルランキング/HBoxContainer/ScrollContainer2" instance=ExtResource("3_3pro1")]
+layout_mode = 2
+mode = 3
+
+[node name="BackToTheTitleButton" type="Button" parent="Ui"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 140.0
+offset_bottom = 80.0
+theme_override_fonts/font = ExtResource("2_ivssq")
+theme_override_font_sizes/font_size = 30
+text = "戻る"
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Ui/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]

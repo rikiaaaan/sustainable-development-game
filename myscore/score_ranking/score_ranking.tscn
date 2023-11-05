@@ -1,0 +1,415 @@
+[gd_scene load_steps=6 format=3 uid="uid://de6libyfqsuhm"]
+
+[ext_resource type="Script" path="res://myscore/score_ranking/score_ranking.gd" id="1_je712"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_8nqns"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygn1w"]
+font = ExtResource("2_8nqns")
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ah1hx"]
+font = ExtResource("2_8nqns")
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_flt1l"]
+font = ExtResource("2_8nqns")
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[node name="ScoreRanking" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+script = ExtResource("1_je712")
+
+[node name="Rank0" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank0"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 50.0
+color = Color(0.94902, 0.831373, 0.501961, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank0"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "1"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank0"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank0"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank1" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank1"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0.270588, 0.568627, 0.631373, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank1"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "2"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank1"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank1"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank2" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank2"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0.721569, 0.45098, 0.2, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank2"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "3"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank2"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank2"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank3" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank3"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.639216, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank3"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "4"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank3"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank3"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank4" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank4"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank4"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "5"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank4"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank4"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank5" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank5"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank5"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "6"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank5"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank5"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank6" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank6"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank6"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "7"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank6"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank6"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank7" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank7"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank7"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "8"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank7"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank7"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank8" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank8"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank8"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "9"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank8"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank8"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
+
+[node name="Rank9" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Rank9"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+offset_right = 200.0
+color = Color(0, 0.643137, 0.780392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Rank9"]
+layout_mode = 2
+offset_right = 30.0
+offset_bottom = 50.0
+text = "10"
+label_settings = SubResource("LabelSettings_ygn1w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Rank9"]
+layout_mode = 0
+offset_left = 46.0
+offset_right = 299.0
+offset_bottom = 20.0
+text = "あいうえおかきくけこさしすせそたちつてと"
+label_settings = SubResource("LabelSettings_ah1hx")
+
+[node name="Label3" type="Label" parent="Rank9"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 195.0
+offset_bottom = 49.0
+text = "00000"
+label_settings = SubResource("LabelSettings_flt1l")
+horizontal_alignment = 1
