@@ -108,7 +108,7 @@ func generate_actual_save_data() -> void:
 
 	var cfg:ConfigFile = ConfigFile.new()
 	
-	var current_unix_time:int = Time.get_unix_time_from_system()
+	var current_unix_time:int = Time.get_unix_time_from_system()+(Time.get_time_zone_from_system().bias*60)
 	var score_history:Array[Dictionary] = [
 		{
 			KEY_SCORE: CREATOR_DEFAULT_SCORE,

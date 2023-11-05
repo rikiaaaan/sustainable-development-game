@@ -170,7 +170,7 @@ func save_result_data() -> void:
 	var game_data:Dictionary = {}
 	
 	game_data.score = score
-	game_data.recorded_at = int(Time.get_unix_time_from_system())
+	game_data.recorded_at = int(Time.get_unix_time_from_system()+(Time.get_time_zone_from_system().bias*60))
 	
 	Settings.save_result_data(game_data)
 
