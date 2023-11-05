@@ -19,6 +19,7 @@ var current_sdg:RigidBody2D = null
 
 @onready var game_score_label:Label = $Ui/Game/Score/VBoxContainer/Label2
 @onready var result_score_label:Label = $Ui/Gameover/Result/ColorRect2/VBoxContainer/Label3
+@onready var result_user_name_label:Label = $Ui/Gameover/Result/ColorRect2/VBoxContainer/Label2
 
 @onready var pause_resume_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton
 
@@ -113,6 +114,12 @@ func show_gameover_screen() -> void:
 		pass
 	
 	result_score_label.text = "%d" % [score]
+	if Settings.is_login:
+		result_user_name_label.text = Settings.current_user_name
+		pass
+	else:
+		result_user_name_label.text = ""
+		pass
 	
 	save_result_data()
 	
