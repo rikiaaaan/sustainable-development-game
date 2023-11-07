@@ -3,6 +3,7 @@ extends Node
 @export var executable_dir:String = OS.get_executable_path().get_base_dir()
 @export var current_user_name:String = ""
 @export var is_login:bool = false
+@export var is_load_save_data:bool = false
 
 const FAKE_SAVEDATA_NAME:String = "savedata.json"
 const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"

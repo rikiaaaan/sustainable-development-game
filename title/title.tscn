@@ -1,9 +1,148 @@
-[gd_scene load_steps=3 format=3 uid="uid://1najobv5dww8"]
+[gd_scene load_steps=12 format=3 uid="uid://1najobv5dww8"]
 
 [ext_resource type="Script" path="res://title/title.gd" id="1_vs2ow"]
+[ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_wv0mg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jvuqo"]
 font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_e5jvu"]
+font = ExtResource("2_wv0mg")
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cr61r"]
+font = ExtResource("2_wv0mg")
+font_size = 40
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3hbe"]
+font = ExtResource("2_wv0mg")
+font_size = 35
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jv1f8"]
+font = ExtResource("2_wv0mg")
+font_size = 35
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="Animation" id="Animation_mtxk7"]
+resource_name = "enter_load_game_data_confirm"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/LoadGameDataConfirm/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.784314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/LoadGameDataConfirm/ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(60, -660), Vector2(60, 120), Vector2(60, 60)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/LoadGameDataConfirm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xsdat"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/LoadGameDataConfirm/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/LoadGameDataConfirm/ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60, -660)]
+}
+
+[sub_resource type="Animation" id="Animation_sf8yl"]
+resource_name = "leave_load_game_data_confirm"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/LoadGameDataConfirm/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.784314), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/LoadGameDataConfirm/ColorRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(60, 60), Vector2(60, 120), Vector2(60, -660)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/LoadGameDataConfirm")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ta6m"]
+_data = {
+"RESET": SubResource("Animation_xsdat"),
+"enter_load_game_data_confirm": SubResource("Animation_mtxk7"),
+"leave_load_game_data_confirm": SubResource("Animation_sf8yl")
+}
 
 [node name="title" type="Node"]
 script = ExtResource("1_vs2ow")
@@ -52,6 +191,110 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 60
 text = "遊び方"
 
+[node name="LoadGameDataConfirm" type="Control" parent="Ui"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Ui/LoadGameDataConfirm"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0)
+
+[node name="ColorRect2" type="ColorRect" parent="Ui/LoadGameDataConfirm"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -660.0
+offset_right = 1220.0
+offset_bottom = -60.0
+color = Color(1, 0.721569, 0.529412, 1)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/LoadGameDataConfirm/ColorRect2"]
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 600.0
+theme_override_constants/separation = 60
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "確認"
+label_settings = SubResource("LabelSettings_e5jvu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer"]
+layout_mode = 2
+text = "セーブされたデータを検出しました。データをロードしますか？"
+label_settings = SubResource("LabelSettings_cr61r")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "検出されたセーブデータの保存日時："
+label_settings = SubResource("LabelSettings_w3hbe")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "2023/08/16 07:14:22"
+label_settings = SubResource("LabelSettings_jv1f8")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="YesLoadButton" type="Button" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+focus_neighbor_left = NodePath("../WaitAMinuteButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../NoLoadButton")
+focus_neighbor_bottom = NodePath(".")
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 60
+text = "する"
+
+[node name="NoLoadButton" type="Button" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../YesLoadButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../WaitAMinuteButton")
+focus_neighbor_bottom = NodePath(".")
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 60
+text = "しない"
+
+[node name="WaitAMinuteButton" type="Button" parent="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../NoLoadButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../YesLoadButton")
+focus_neighbor_bottom = NodePath(".")
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 60
+text = "考え直す"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0ta6m")
+}
+
 [connection signal="pressed" from="Ui/Title/GameStartButton" to="." method="_on_game_start_button_pressed"]
 [connection signal="pressed" from="Ui/Title/MyScoreButton" to="." method="_on_my_score_button_pressed"]
 [connection signal="pressed" from="Ui/Title/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
+[connection signal="pressed" from="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2/YesLoadButton" to="." method="_on_yes_load_button_pressed"]
+[connection signal="pressed" from="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2/NoLoadButton" to="." method="_on_no_load_button_pressed"]
+[connection signal="pressed" from="Ui/LoadGameDataConfirm/ColorRect2/VBoxContainer/HBoxContainer2/WaitAMinuteButton" to="." method="_on_wait_a_minute_button_pressed"]
