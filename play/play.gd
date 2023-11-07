@@ -22,6 +22,7 @@ var current_sdg:RigidBody2D = null
 @onready var result_user_name_label:Label = $Ui/Gameover/Result/ColorRect2/VBoxContainer/Label2
 
 @onready var pause_resume_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton
+@onready var pause_save_and_go_to_title_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/SaveAndBackToTheTitleButton
 
 @onready var result_screenshot:TextureRect = $Ui/Gameover/Result/ColorRect/TextureRect
 
@@ -80,6 +81,7 @@ func _input(event:InputEvent) -> void:
 func show_pause_screen() -> void:
 
 	ui_pause.show()
+	pause_save_and_go_to_title_button.disabled = !Settings.is_login
 	$AnimationPlayer.play("pause_enter")
 	await $AnimationPlayer.animation_finished
 	pause_resume_button.grab_focus()
@@ -177,21 +179,23 @@ func gameover() -> void:
 
 func save_game_data() -> void:
 
-	var game_data:Dictionary = {
-		"score": score,
-		"next_sdg": next_sdg.phase,
-		"current_sdg": current_sdg.phase,
-		"saved_at": int(Time.get_unix_time_from_system())+(Time.get_time_zone_from_system().bias*60),
-		"sdgs": [] as Array[Dictionary]
-	}
-	for sdg in $Sdgs.get_children():
-		var sdg_data:Dictionary = {}
-		sdg_data.position = sdg.position
-		sdg_data.rotation = sdg.rotation
-		sdg_data.phase = sdg.phase
-		game_data.sdgs.append(sdg_data)
+	if Settings.is_login:
+		var game_data:Dictionary = {
+			"score": score,
+			"next_sdg": next_sdg.phase,
+			"current_sdg": current_sdg.phase,
+			"saved_at": int(Time.get_unix_time_from_system())+(Time.get_time_zone_from_system().bias*60),
+			"sdgs": [] as Array[Dictionary]
+		}
+		for sdg in $Sdgs.get_children():
+			var sdg_data:Dictionary = {}
+			sdg_data.position = sdg.position
+			sdg_data.rotation = sdg.rotation
+			sdg_data.phase = sdg.phase
+			game_data.sdgs.append(sdg_data)
+			pass
+		Settings.save_game_data(game_data)
 		pass
-	Settings.save_game_data(game_data)
 
 	return
 
@@ -230,7 +234,7 @@ func _process(delta:float) -> void:
 	return
 
 
-func _physics_process(delta:float) -> void:
+func _physics_process(_delta:float) -> void:
 
 	if game_started && !game_finished:
 		
@@ -311,4 +315,14 @@ func _on_my_score_button_pressed() -> void:
 	get_parent().change_scene("myscore")
 
 	return
-	
+
+
+func _on_save_and_back_to_the_title_button_pressed() -> void:
+
+	print_debug("saveandback2thetitlescnee clicked")
+	save_game_data()
+	print_debug("game saved (maybe)")
+	get_tree().paused = false
+	get_parent().change_scene("title")
+
+	return
