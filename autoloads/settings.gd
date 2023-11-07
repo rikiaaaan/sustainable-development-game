@@ -401,6 +401,18 @@ func get_users_total_data() -> Array[Dictionary]:
 	return sort_scores_data(user_total_scores, 10)
 
 
+func get_saved_data_saved_at() -> int:
+
+	if is_login:
+		var cfg:ConfigFile = load_cfg_file()
+		var saved_data:Dictionary = cfg.get_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+		if saved_data.has(KEY_SAVED_AT):
+			return saved_data[KEY_SAVED_AT]
+		pass
+
+	return 0
+
+
 func set_current_user(user_name:String) -> void:
 
 	current_user_name = user_name
