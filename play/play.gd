@@ -175,6 +175,27 @@ func gameover() -> void:
 	return
 
 
+func save_game_data() -> void:
+
+	var game_data:Dictionary = {
+		"score": score,
+		"next_sdg": next_sdg.phase,
+		"current_sdg": current_sdg.phase,
+		"saved_at": int(Time.get_unix_time_from_system())+(Time.get_time_zone_from_system().bias*60),
+		"sdgs": [] as Array[Dictionary]
+	}
+	for sdg in $Sdgs.get_children():
+		var sdg_data:Dictionary = {}
+		sdg_data.position = sdg.position
+		sdg_data.rotation = sdg.rotation
+		sdg_data.phase = sdg.phase
+		game_data.sdgs.append(sdg_data)
+		pass
+	Settings.save_game_data(game_data)
+
+	return
+
+
 func save_result_data() -> void:
 
 	var game_data:Dictionary = {}

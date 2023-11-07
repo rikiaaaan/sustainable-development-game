@@ -256,6 +256,17 @@ func save_result_data(data:Dictionary) -> void:
 	return
 
 
+func save_game_data(data:Dictionary) -> void:
+
+	var cfg:ConfigFile = load_cfg_file()
+	
+	cfg.set_value(current_user_name, KEY_SAVED_GAME_DATA, data)
+	
+	save_cfg_file(cfg)
+
+	return
+
+
 func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]:
 
 	var data_size:int = data.size()
