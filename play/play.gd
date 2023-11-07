@@ -52,6 +52,9 @@ func _unhandled_input(event:InputEvent) -> void:
 		if event.is_action_pressed("debug_instant_gameover"):
 			_on_sdg_fell()
 			pass
+		if event.is_action_pressed("debug_print_max_sdg"):
+			print_debug(get_max_sdg())
+			pass
 		
 		pass
 
@@ -182,6 +185,18 @@ func save_result_data() -> void:
 	Settings.save_result_data(game_data)
 
 	return
+
+
+func get_max_sdg() -> int:
+
+	var current_max:int = 0
+	for sdg in $Sdgs.get_children():
+		if sdg.get("phase"):
+			current_max = maxi(current_max, sdg.phase)
+			pass
+		pass
+
+	return current_max
 
 
 func _process(delta:float) -> void:
