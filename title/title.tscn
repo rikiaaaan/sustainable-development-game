@@ -4,7 +4,9 @@
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="2_wv0mg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jvuqo"]
-font_size = 80
+font = ExtResource("2_wv0mg")
+font_size = 100
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e5jvu"]
 font = ExtResource("2_wv0mg")
@@ -156,23 +158,29 @@ offset_bottom = 40.0
 [node name="Title" type="VBoxContainer" parent="Ui"]
 layout_mode = 0
 offset_right = 1280.0
-offset_bottom = 720.0
+offset_bottom = 960.0
 theme_override_constants/separation = 25
 alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="TitleLabel" type="Label" parent="Ui/Title"]
 layout_mode = 2
-text = "Sustainable Development Game"
+text = "サステナブルデベロップメントゲーム"
 label_settings = SubResource("LabelSettings_jvuqo")
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Ui/Title"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 
 [node name="GameStartButton" type="Button" parent="Ui/Title"]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 70
 text = "ゲームスタート"
 
 [node name="MyScoreButton" type="Button" parent="Ui/Title"]
@@ -180,7 +188,8 @@ custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 70
 text = "マイスコア"
 
 [node name="HowToPlayButton" type="Button" parent="Ui/Title"]
@@ -188,7 +197,8 @@ custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("2_wv0mg")
+theme_override_font_sizes/font_size = 70
 text = "遊び方"
 
 [node name="LoadGameDataConfirm" type="Control" parent="Ui"]
