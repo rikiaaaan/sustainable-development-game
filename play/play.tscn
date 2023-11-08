@@ -229,7 +229,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(440, -600), Vector2(440, 220), Vector2(440, 110)]
+"values": [Vector2(440, -600), Vector2(440, 200), Vector2(440, 80)]
 }
 
 [sub_resource type="Animation" id="Animation_morqt"]
@@ -478,7 +478,7 @@ layout_mode = 0
 offset_left = 440.0
 offset_top = -600.0
 offset_right = 840.0
-offset_bottom = -99.9999
+offset_bottom = -40.0
 color = Color(1, 0.509804, 0.529412, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Ui/Pause/ColorRect2"]
@@ -486,6 +486,11 @@ layout_mode = 0
 offset_right = 400.0
 offset_bottom = 500.0
 metadata/_edit_lock_ = true
+
+[node name="HSeparator2" type="HSeparator" parent="Ui/Pause/ColorRect2/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="Ui/Pause/ColorRect2/VBoxContainer"]
 layout_mode = 2
@@ -517,6 +522,14 @@ size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_ui0x3")
 theme_override_font_sizes/font_size = 50
 text = "リトライ"
+
+[node name="SaveAndBackToTheTitleButton" type="Button" parent="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ui0x3")
+theme_override_font_sizes/font_size = 35
+text = "セーブしてタイトルに戻る"
 
 [node name="BackToTheTitleButton" type="Button" parent="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 70)
@@ -688,6 +701,7 @@ libraries = {
 
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/SaveAndBackToTheTitleButton" to="." method="_on_save_and_back_to_the_title_button_pressed"]
 [connection signal="pressed" from="Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/BackToTheTitleButton" to="." method="_on_back_to_the_title_button_pressed"]
 [connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="Ui/Gameover/Result/ColorRect/HBoxContainer/MyScoreButton" to="." method="_on_my_score_button_pressed"]
