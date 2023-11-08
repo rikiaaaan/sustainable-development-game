@@ -29,10 +29,31 @@ var current_sdg:RigidBody2D = null
 func _ready() -> void:
 
 	release_sdg()
+	if Settings.is_load_save_data:
+		var game_data:Dictionary = Settings.get_saved_game_data()
+		score = game_data.score
+		current_sdg.phase = game_data.current_sdg
+		next_sdg.phase = game_data.next_sdg
+		for sdg_data in game_data.sdgs:
+			var sdg = ResourceLoader.load("res://shared/sdg/sdg.tscn").instantiate()
+			sdg.position = sdg_data.position
+			sdg.rotation = sdg_data.rotation
+			sdg.phase = sdg_data.phase
+			sdg.freeze = true
+			sdg.connect("touched_sdgs", _on_sdg_touched_sdgs)
+			sdg.connect("fell", _on_sdg_fell)
+			sdg.connect("finished_shake", _on_sdg_shake_finished)
+			$Sdgs.add_child(sdg)
+			pass
+		pass
 	$AnimationPlayer.play("ready")
-	
 	await $AnimationPlayer.animation_finished
 	
+	for sdg in $Sdgs.get_children():
+		if sdg != current_sdg:
+			sdg.freeze = false
+			pass
+		pass
 	game_started = true
 	kokuren.moveable = true
 	ui_ready.queue_free()
@@ -188,6 +209,8 @@ func save_game_data() -> void:
 			"sdgs": [] as Array[Dictionary]
 		}
 		for sdg in $Sdgs.get_children():
+			if sdg == current_sdg:
+				continue
 			var sdg_data:Dictionary = {}
 			sdg_data.position = sdg.position
 			sdg_data.rotation = sdg.rotation

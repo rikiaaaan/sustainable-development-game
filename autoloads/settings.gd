@@ -413,6 +413,15 @@ func get_saved_data_saved_at() -> int:
 	return 0
 
 
+func get_saved_game_data() -> Dictionary:
+
+	if is_login:
+		var cfg:ConfigFile = load_cfg_file()
+		return cfg.get_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+
+	return {}
+
+
 func set_current_user(user_name:String) -> void:
 
 	current_user_name = user_name
