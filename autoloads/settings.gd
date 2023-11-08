@@ -3,6 +3,7 @@ extends Node
 @export var executable_dir:String = OS.get_executable_path().get_base_dir()
 @export var current_user_name:String = ""
 @export var is_login:bool = false
+@export var is_load_save_data:bool = false
 
 const FAKE_SAVEDATA_NAME:String = "savedata.json"
 const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"
@@ -151,19 +152,6 @@ func generate_fake_save_data() -> void:
 	return
 
 
-func is_user_exists(user_name:String) -> bool:
-
-	return load_cfg_file().has_section(user_name)
-
-
-func is_correct_password(password:String) -> bool:
-
-	var cfg:ConfigFile = load_cfg_file()
-	var encoded_password:String = cfg.get_value(current_user_name, KEY_USER_PASSWORD)
-
-	return Keys.is_correct_password(password, encoded_password)
-
-
 func init_user_data(password:String) -> void:
 
 	if !is_user_exists(current_user_name):
@@ -256,6 +244,17 @@ func save_result_data(data:Dictionary) -> void:
 	return
 
 
+func save_game_data(data:Dictionary) -> void:
+
+	var cfg:ConfigFile = load_cfg_file()
+	
+	cfg.set_value(current_user_name, KEY_SAVED_GAME_DATA, data)
+	
+	save_cfg_file(cfg)
+
+	return
+
+
 func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]:
 
 	var data_size:int = data.size()
@@ -284,6 +283,30 @@ func sort_scores_data(data:Array[Dictionary], amount:int=0) -> Array[Dictionary]
 		pass
 
 	return data.slice(0, amount)
+
+
+func is_user_exists(user_name:String) -> bool:
+
+	return load_cfg_file().has_section(user_name)
+
+
+func is_correct_password(password:String) -> bool:
+
+	var cfg:ConfigFile = load_cfg_file()
+	var encoded_password:String = cfg.get_value(current_user_name, KEY_USER_PASSWORD)
+
+	return Keys.is_correct_password(password, encoded_password)
+
+
+func has_saved_game_data() -> bool:
+
+	if !is_login:
+		return false
+	
+	var cfg:ConfigFile = load_cfg_file()
+	var saved_game_data:Dictionary = cfg.get_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+
+	return saved_game_data != {} && saved_game_data.has(KEY_SAVED_AT) && saved_game_data.has(KEY_NEXT_SDG)
 
 
 func get_today_range() -> Array[int]:
@@ -376,6 +399,27 @@ func get_users_total_data() -> Array[Dictionary]:
 		pass
 
 	return sort_scores_data(user_total_scores, 10)
+
+
+func get_saved_data_saved_at() -> int:
+
+	if is_login:
+		var cfg:ConfigFile = load_cfg_file()
+		var saved_data:Dictionary = cfg.get_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+		if saved_data.has(KEY_SAVED_AT):
+			return saved_data[KEY_SAVED_AT]
+		pass
+
+	return 0
+
+
+func get_saved_game_data() -> Dictionary:
+
+	if is_login:
+		var cfg:ConfigFile = load_cfg_file()
+		return cfg.get_value(current_user_name, KEY_SAVED_GAME_DATA, {})
+
+	return {}
 
 
 func set_current_user(user_name:String) -> void:
