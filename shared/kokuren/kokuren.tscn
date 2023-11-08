@@ -12,12 +12,12 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_aoedo")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-23, 30)
-polygon = PackedVector2Array(0, 0, 0, 720, 3, 720, 3, 0)
+position = Vector2(-23, 0)
+polygon = PackedVector2Array(0, 30, 0, 960, 3, 960, 3, 30)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-21.5, 0)
-target_position = Vector2(0, 720)
+target_position = Vector2(0, 960)
 collision_mask = 3
 
 [node name="Label" type="Label" parent="."]
