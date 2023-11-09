@@ -40,7 +40,6 @@ tab_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="マイスコア" type="VBoxContainer" parent="Ui/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Ui/TabContainer/マイスコア"]
@@ -137,6 +136,7 @@ layout_mode = 2
 mode = 2
 
 [node name="トータルランキング" type="VBoxContainer" parent="Ui/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Ui/TabContainer/トータルランキング"]
