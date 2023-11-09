@@ -12,7 +12,7 @@ var gameover_shake_timer:float = 0.0
 var shake_degree:int = 0
 var before_shake_position:Vector2 = Vector2.ZERO
 
-const PHASE_ZERO_SCALE:Vector2 = Vector2(0.2,0.2)
+const PHASE_ZERO_SCALE:Vector2 = Vector2(0.225,0.225)
 
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func _ready() -> void:
 func set_phase() -> void:
 
 	phase = clampi(phase, 0, 16)
-	var scale_t:Vector2 = PHASE_ZERO_SCALE + (Vector2(0.05,0.05) * phase)
+	var scale_t:Vector2 = PHASE_ZERO_SCALE + (Vector2(0.06,0.06) * phase)
 	$Polygon2D.scale = scale_t
 	$CollisionPolygon2D.scale = scale_t
 	$Polygon2D/Sprite2D.region_rect = Rect2(9+161.2*(phase%6), 11+158*int(phase/6), 146, 146)

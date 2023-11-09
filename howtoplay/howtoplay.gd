@@ -3,17 +3,19 @@ extends Node
 
 var page_index:int = 0
 var release_cooldown:float = 0.0
-var current_sdg:RigidBody2D = null
 
-@onready var back_label:Label = $Ui/PageController/Back/Label
-@onready var back_button:Button = $Ui/PageController/Back/BackButton
-@onready var page_controller_forward:VBoxContainer = $Ui/PageController/Forward
-@onready var forward_button:Button = $Ui/PageController/Forward/ForwardButton
-@onready var sdg:RigidBody2D = $Ui/Page0/Node2D/Sdgs/sdg
+@onready var back_label:Label = $Ui/PageController/Label
+@onready var back_button:Button = $Ui/PageController/BackButton
+@onready var forward_label:Label = $Ui/PageController/Label2
+@onready var forward_button:Button = $Ui/PageController/ForwardButton
+
+@onready var current_sdg:RigidBody2D = $Ui/Page0/Node2D/Sdgs/sdg
 @onready var sdgs_page0:Node2D = $Ui/Page0/Node2D/Sdgs
 @onready var kokuren:PathFollow2D = $Ui/Page0/Node2D/Path2D/kokuren
 
 const PAGE_COUNT:int = 3
+const BACK_TO_THE_TITLE_TEXT:String = "タイトルに戻る"
+const BACK_TEXT:String = "戻る"
 
 
 func _ready() -> void:
@@ -22,8 +24,6 @@ func _ready() -> void:
 	forward_button.connect("focus_entered", forward_button.release_focus)
 	
 	set_page(0)
-	
-	current_sdg = sdg
 
 	return
 
@@ -43,19 +43,21 @@ func set_page(index:int) -> void:
 		pass
 	
 	if index == 0:
-		back_label.text = "タイトル画面に戻る"
+		back_label.text = BACK_TO_THE_TITLE_TEXT
 		kokuren.moveable = true
 		pass
 	else:
-		back_label.text = "戻る"
+		back_label.text = BACK_TEXT
 		kokuren.moveable = false
 		pass
 	
 	if index+1 == PAGE_COUNT:
-		page_controller_forward.hide()
+		forward_label.hide()
+		forward_button.hide()
 		pass
 	else:
-		page_controller_forward.show()
+		forward_label.show()
+		forward_button.show()
 		pass
 	
 	page_index = index

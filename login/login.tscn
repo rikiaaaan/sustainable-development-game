@@ -5,29 +5,29 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_25eu7"]
 font = ExtResource("1_485cf")
-font_size = 40
+font_size = 55
 
 [sub_resource type="LabelSettings" id="LabelSettings_3htgq"]
 font = ExtResource("1_485cf")
-font_size = 40
+font_size = 55
 
 [sub_resource type="LabelSettings" id="LabelSettings_ou51w"]
 font = ExtResource("1_485cf")
-font_size = 25
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_ek4j0"]
 font = ExtResource("1_485cf")
-font_size = 30
+font_size = 35
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xsgof"]
 font = ExtResource("1_485cf")
-font_size = 30
+font_size = 40
 font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lyrgx"]
 font = ExtResource("1_485cf")
-font_size = 30
+font_size = 40
 font_color = Color(1, 0, 0, 1)
 
 [node name="login" type="Node"]
@@ -45,22 +45,23 @@ layout_mode = 0
 offset_left = 100.0
 offset_top = 100.0
 offset_right = 1180.0
-offset_bottom = 620.0
+offset_bottom = 860.0
 color = Color(1, 0.721569, 0.529412, 1)
 metadata/_edit_lock_ = true
 
 [node name="Page0" type="Control" parent="Ui"]
+visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 140.0
-offset_bottom = 140.0
+offset_right = 100.0
+offset_bottom = 100.0
 metadata/_edit_lock_ = true
 
 [node name="AskLogin" type="VBoxContainer" parent="Ui/Page0"]
 layout_mode = 0
 offset_right = 1080.0
-offset_bottom = 520.0
+offset_bottom = 760.0
 theme_override_constants/separation = 100
 alignment = 1
 metadata/_edit_lock_ = true
@@ -80,17 +81,17 @@ theme_override_constants/separation = 100
 alignment = 1
 
 [node name="YesButton" type="Button" parent="Ui/Page0/AskLogin/HBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 60
 text = "する"
 
 [node name="NoButton" type="Button" parent="Ui/Page0/AskLogin/HBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 60
 text = "しない"
 
 [node name="Page1" type="Control" parent="Ui"]
@@ -98,18 +99,18 @@ visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 140.0
-offset_bottom = 140.0
+offset_right = 100.0
+offset_bottom = 100.0
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/Page1"]
 layout_mode = 0
 offset_right = 1080.0
-offset_bottom = 520.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+offset_bottom = 760.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 metadata/_edit_lock_ = true
 
 [node name="NameInput" type="VBoxContainer" parent="Ui/Page1/MarginContainer"]
@@ -145,7 +146,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Ui/Page1/MarginContainer/NameInput"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 
 [node name="InputYourNameHereLabel" type="Label" parent="Ui/Page1/MarginContainer/NameInput"]
@@ -155,22 +156,23 @@ label_settings = SubResource("LabelSettings_ek4j0")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page1/MarginContainer/NameInput"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="NameInputTextEdit" type="TextEdit" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
-custom_minimum_size = Vector2(600, 30)
+custom_minimum_size = Vector2(700, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 placeholder_text = "INPUT YOUR NAME HERE"
 
 [node name="NameInputButton" type="Button" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
-custom_minimum_size = Vector2(120, 60)
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "決定"
 
 [node name="Page2" type="Control" parent="Ui"]
@@ -178,18 +180,18 @@ visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 140.0
-offset_bottom = 140.0
+offset_right = 100.0
+offset_bottom = 100.0
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/Page2"]
 layout_mode = 0
 offset_right = 1080.0
-offset_bottom = 520.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+offset_bottom = 760.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 metadata/_edit_lock_ = true
 
 [node name="NewPassInput" type="VBoxContainer" parent="Ui/Page2/MarginContainer"]
@@ -226,7 +228,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Ui/Page2/MarginContainer/NewPassInput"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 85)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="InputYourNewPasswordHereLabel" type="Label" parent="Ui/Page2/MarginContainer/NewPassInput"]
@@ -236,15 +238,16 @@ label_settings = SubResource("LabelSettings_xsgof")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page2/MarginContainer/NewPassInput"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="NewPassInputTextEdit" type="TextEdit" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
-custom_minimum_size = Vector2(600, 30)
+custom_minimum_size = Vector2(700, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 placeholder_text = "INPUT YOUR PASSWORD HERE"
 
 [node name="NewPassInputButton" type="Button" parent="Ui/Page2/MarginContainer/NewPassInput/HBoxContainer"]
@@ -255,7 +258,6 @@ theme_override_font_sizes/font_size = 30
 text = "決定"
 
 [node name="Page3" type="Control" parent="Ui"]
-visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -304,7 +306,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Ui/Page3/MarginContainer/PassInput"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 140)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="InputYourPasswordHereLabel" type="Label" parent="Ui/Page3/MarginContainer/PassInput"]
@@ -314,22 +316,23 @@ label_settings = SubResource("LabelSettings_lyrgx")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/Page3/MarginContainer/PassInput"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="PassInputTextEdit" type="TextEdit" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
-custom_minimum_size = Vector2(600, 30)
+custom_minimum_size = Vector2(700, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 placeholder_text = "INPUT YOUR PASSWORD HERE"
 
 [node name="PassInputButton" type="Button" parent="Ui/Page3/MarginContainer/PassInput/HBoxContainer"]
-custom_minimum_size = Vector2(120, 60)
+custom_minimum_size = Vector2(120, 70)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_485cf")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "決定"
 
 [connection signal="pressed" from="Ui/Page0/AskLogin/HBoxContainer/YesButton" to="." method="_on_page_set_button_pressed" binds= [1]]
