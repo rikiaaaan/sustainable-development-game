@@ -9,10 +9,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_yojwf"]
 font = ExtResource("2_lvekj")
 font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tji1c"]
 font = ExtResource("2_lvekj")
-font_size = 40
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="Curve2D" id="Curve2D_2c03g"]
 _data = {
@@ -22,7 +24,8 @@ point_count = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_ko4sk"]
 font = ExtResource("2_lvekj")
-font_size = 40
+font_size = 50
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pjpo2"]
 font = ExtResource("2_lvekj")
@@ -30,11 +33,12 @@ font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_edghf"]
 font = ExtResource("2_lvekj")
-font_size = 40
+font_size = 60
+shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0owdw"]
 font = ExtResource("2_lvekj")
-font_size = 20
+font_size = 40
 
 [node name="howtoplay" type="Node"]
 script = ExtResource("1_fxiju")
@@ -50,7 +54,7 @@ layout_mode = 0
 offset_left = 140.0
 offset_top = 50.0
 offset_right = 1140.0
-offset_bottom = 670.0
+offset_bottom = 910.0
 color = Color(1, 0.721569, 0.529412, 1)
 metadata/_edit_lock_ = true
 
@@ -91,9 +95,9 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="Ui/Page0"]
 layout_mode = 0
 offset_left = 140.0
-offset_top = 400.0
+offset_top = 600.0
 offset_right = 1140.0
-offset_bottom = 488.0
+offset_bottom = 706.0
 text = "次に、マウスの左クリックまたはスペースキーで、
 目標を落下させることができます。"
 label_settings = SubResource("LabelSettings_tji1c")
@@ -111,6 +115,7 @@ moveable = true
 [node name="Sdgs" type="Node2D" parent="Ui/Page0/Node2D"]
 
 [node name="sdg" parent="Ui/Page0/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
+position = Vector2(-100, 0)
 freeze = true
 phase = 4
 
@@ -138,50 +143,50 @@ horizontal_alignment = 1
 [node name="Sdgs" type="Node2D" parent="Ui/Page1/Node2D"]
 
 [node name="sdg" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(386, 448)
+position = Vector2(386, 548)
 freeze = true
 phase = 4
 
 [node name="sdg2" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(386, 510)
+position = Vector2(386, 610)
 freeze = true
 phase = 4
 
 [node name="sdg3" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(541, 470)
+position = Vector2(541, 570)
 freeze = true
 phase = 5
 
 [node name="sdg4" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(702, 420)
+position = Vector2(702, 520)
 freeze = true
 phase = 15
 
 [node name="sdg5" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(702, 554)
+position = Vector2(702, 664)
 freeze = true
 phase = 15
 
 [node name="sdg6" parent="Ui/Page1/Node2D/Sdgs" instance=ExtResource("4_yyeou")]
-position = Vector2(917, 493)
+position = Vector2(917, 593)
 freeze = true
 phase = 16
 
 [node name="Label2" type="Label" parent="Ui/Page1"]
 layout_mode = 0
 offset_left = 438.0
-offset_top = 438.0
+offset_top = 538.0
 offset_right = 498.0
-offset_bottom = 502.0
+offset_bottom = 602.0
 text = "→"
 label_settings = SubResource("LabelSettings_pjpo2")
 
 [node name="Label3" type="Label" parent="Ui/Page1"]
 layout_mode = 0
-offset_left = 778.0
-offset_top = 455.0
-offset_right = 838.0
-offset_bottom = 519.0
+offset_left = 773.0
+offset_top = 555.0
+offset_right = 833.0
+offset_bottom = 619.0
 text = "→"
 label_settings = SubResource("LabelSettings_pjpo2")
 
@@ -204,59 +209,57 @@ horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Ui/Page2"]
 layout_mode = 0
-offset_left = 241.0
-offset_top = 265.0
-offset_right = 1042.0
-offset_bottom = 623.0
+offset_left = 240.0
+offset_top = 336.0
+offset_right = 1040.0
+offset_bottom = 736.0
 texture = ExtResource("5_ngpb6")
 expand_mode = 1
 
 [node name="PageController" type="Control" parent="Ui"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="Back" type="VBoxContainer" parent="Ui/PageController"]
-layout_mode = 0
-offset_left = 160.0
-offset_top = 360.0
-offset_right = 230.0
-offset_bottom = 458.0
-
-[node name="Label" type="Label" parent="Ui/PageController/Back"]
+[node name="Label" type="Label" parent="Ui/PageController"]
 layout_mode = 2
+offset_left = 130.0
+offset_top = 300.0
+offset_right = 270.0
+offset_bottom = 344.0
 text = "前へ"
 label_settings = SubResource("LabelSettings_0owdw")
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="BackButton" type="Button" parent="Ui/PageController/Back"]
-custom_minimum_size = Vector2(70, 70)
+[node name="BackButton" type="Button" parent="Ui/PageController"]
 layout_mode = 2
+offset_left = 160.0
+offset_top = 390.0
+offset_right = 240.0
+offset_bottom = 470.0
 theme_override_fonts/font = ExtResource("2_lvekj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "←"
 
-[node name="Forward" type="VBoxContainer" parent="Ui/PageController"]
-layout_mode = 0
-offset_left = 1050.0
-offset_top = 360.0
-offset_right = 1120.0
-offset_bottom = 458.0
-
-[node name="Label" type="Label" parent="Ui/PageController/Forward"]
+[node name="Label2" type="Label" parent="Ui/PageController"]
 layout_mode = 2
+offset_left = 1051.0
+offset_top = 300.0
+offset_right = 1131.0
+offset_bottom = 344.0
 size_flags_horizontal = 4
 text = "次へ"
 label_settings = SubResource("LabelSettings_0owdw")
 horizontal_alignment = 1
 
-[node name="ForwardButton" type="Button" parent="Ui/PageController/Forward"]
-custom_minimum_size = Vector2(70, 70)
+[node name="ForwardButton" type="Button" parent="Ui/PageController"]
 layout_mode = 2
+offset_left = 1050.0
+offset_top = 390.0
+offset_right = 1130.0
+offset_bottom = 470.0
 theme_override_fonts/font = ExtResource("2_lvekj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "→"
 
-[connection signal="pressed" from="Ui/PageController/Back/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Ui/PageController/Forward/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="Ui/PageController/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Ui/PageController/ForwardButton" to="." method="_on_forward_button_pressed"]
