@@ -54,12 +54,15 @@ func _ready() -> void:
 			$Sdgs.add_child(sdg)
 			pass
 		pass
+	
 	$AnimationPlayer.play("ready")
 	await $AnimationPlayer.animation_finished
 	
-	for sdg in $Sdgs.get_children():
-		if sdg != current_sdg:
-			sdg.freeze = false
+	if Settings.is_load_save_data:
+		for sdg in $Sdgs.get_children():
+			if sdg != current_sdg:
+				sdg.freeze = false
+				pass
 			pass
 		pass
 	game_started = true
