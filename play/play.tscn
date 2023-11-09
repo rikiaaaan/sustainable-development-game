@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://bf68o5xben4q1"]
+[gd_scene load_steps=28 format=3 uid="uid://bf68o5xben4q1"]
 
 [ext_resource type="Script" path="res://play/play.gd" id="1_21g5d"]
 [ext_resource type="PackedScene" uid="uid://frpswf28sb0y" path="res://shared/sdg/sdg.tscn" id="2_hgwdi"]
 [ext_resource type="Texture2D" uid="uid://cb8bro0dthsy2" path="res://shared/img/sgds.png" id="2_ous07"]
 [ext_resource type="PackedScene" uid="uid://dpp7tc80mnpya" path="res://shared/kokuren/kokuren.tscn" id="3_ng7fh"]
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="3_ui0x3"]
+[ext_resource type="PackedScene" uid="uid://de6libyfqsuhm" path="res://myscore/score_ranking/score_ranking.tscn" id="4_gg1w0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8y50l"]
 font = ExtResource("3_ui0x3")
@@ -32,6 +33,11 @@ font = ExtResource("3_ui0x3")
 font_size = 35
 shadow_color = Color(0, 0, 0, 0.392157)
 
+[sub_resource type="LabelSettings" id="LabelSettings_opbp8"]
+font = ExtResource("3_ui0x3")
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.392157)
+
 [sub_resource type="LabelSettings" id="LabelSettings_nswt4"]
 font = ExtResource("3_ui0x3")
 font_size = 100
@@ -51,6 +57,11 @@ shadow_color = Color(0, 0, 0, 0.392157)
 [sub_resource type="LabelSettings" id="LabelSettings_qh0ub"]
 font = ExtResource("3_ui0x3")
 font_size = 60
+shadow_color = Color(0, 0, 0, 0.392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mc372"]
+font = ExtResource("3_ui0x3")
+font_size = 40
 shadow_color = Color(0, 0, 0, 0.392157)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqlpy"]
@@ -466,6 +477,36 @@ offset_bottom = 380.0
 texture = ExtResource("2_ous07")
 expand_mode = 1
 
+[node name="Ranking" type="ColorRect" parent="Ui/Game"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 450.0
+offset_right = 350.0
+offset_bottom = 740.0
+color = Color(1, 0.721569, 0.529412, 1)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ui/Game/Ranking"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 41.0
+text = "デイリーランキング"
+label_settings = SubResource("LabelSettings_opbp8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/Game/Ranking"]
+layout_mode = 2
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 350.0
+scale = Vector2(0.8, 0.8)
+
+[node name="ScoreRanking" parent="Ui/Game/Ranking/ScrollContainer" instance=ExtResource("4_gg1w0")]
+layout_mode = 2
+mode = 2
+
 [node name="Pause" type="Control" parent="Ui"]
 process_mode = 3
 visible = false
@@ -647,6 +688,27 @@ layout_mode = 2
 text = "99999"
 label_settings = SubResource("LabelSettings_qh0ub")
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Ui/Gameover/Result/ColorRect2"]
+layout_mode = 0
+offset_top = 426.0
+offset_right = 330.0
+offset_bottom = 470.0
+text = "デイリーランキング"
+label_settings = SubResource("LabelSettings_mc372")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/Gameover/Result/ColorRect2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 480.0
+offset_right = 405.0
+offset_bottom = 780.0
+scale = Vector2(0.8, 0.8)
+
+[node name="ScoreRanking" parent="Ui/Gameover/Result/ColorRect2/ScrollContainer" instance=ExtResource("4_gg1w0")]
+layout_mode = 2
+mode = 2
 
 [node name="Box" type="Node2D" parent="."]
 
