@@ -4,6 +4,7 @@ extends Node
 var score:int = 0
 
 var release_cooldown:float = 0
+var ranking_cooldown:float = 0
 
 var game_started:bool = false
 var game_finished:bool = false
@@ -12,10 +13,17 @@ var gameover_screen_shown:bool = false
 
 var current_sdg:RigidBody2D = null
 
+const RANKING_TEXTS:Array[String] = ["マイデイリースコア", "マイトータルスコア", "デイリースコア", "トータルスコア"]
+
 @onready var next_sdg:RigidBody2D = $NextSgd/sdg
 @onready var kokuren:PathFollow2D = $Path2D/kokuren
 @onready var ui_ready:Control = $Ui/Ready
 @onready var ui_pause:Control = $Ui/Pause
+
+@onready var ranking_label:Label = $Ui/Game/Ranking/Label
+@onready var score_ranking:VBoxContainer = $Ui/Game/Ranking/ScrollContainer/ScoreRanking
+@onready var result_ranking_label:Label = $Ui/Gameover/Result/ColorRect2/Label
+@onready var result_score_ranking:VBoxContainer = $Ui/Gameover/Result/ColorRect2/ScrollContainer/ScoreRanking
 
 @onready var game_score_label:Label = $Ui/Game/Score/VBoxContainer/Label2
 @onready var result_score_label:Label = $Ui/Gameover/Result/ColorRect2/VBoxContainer/Label3
@@ -46,12 +54,15 @@ func _ready() -> void:
 			$Sdgs.add_child(sdg)
 			pass
 		pass
+	
 	$AnimationPlayer.play("ready")
 	await $AnimationPlayer.animation_finished
 	
-	for sdg in $Sdgs.get_children():
-		if sdg != current_sdg:
-			sdg.freeze = false
+	if Settings.is_load_save_data:
+		for sdg in $Sdgs.get_children():
+			if sdg != current_sdg:
+				sdg.freeze = false
+				pass
 			pass
 		pass
 	game_started = true
@@ -76,6 +87,19 @@ func _unhandled_input(event:InputEvent) -> void:
 			pass
 		if event.is_action_pressed("debug_print_max_sdg"):
 			print_debug(get_max_sdg())
+			pass
+		
+		pass
+	if ranking_cooldown == 0:
+		
+		if event.is_action_pressed("ranking_change_minus"):
+			change_ranking(-1)
+			pass
+		if event.is_action_pressed("ranking_change_plus"):
+			change_ranking(1)
+			pass
+		if event.is_action_pressed("ranking_refresh"):
+			fresh_ranking()
 			pass
 		
 		pass
@@ -150,6 +174,52 @@ func show_gameover_screen() -> void:
 	save_result_data()
 	
 	$AnimationPlayer.play("gameover_enter")
+
+	return
+
+
+func change_ranking(v:int) -> void:
+
+	if ranking_cooldown == 0:
+		ranking_cooldown = 3
+		if !game_finished:
+			score_ranking.mode += v
+			if score_ranking.mode < 0:
+				score_ranking.mode = 3
+				pass
+			if score_ranking.mode > 3:
+				score_ranking.mode = 0
+				pass
+			score_ranking.fresh()
+			ranking_label.text = RANKING_TEXTS[score_ranking.mode]
+			pass
+		else:
+			result_score_ranking.mode += v
+			if result_score_ranking.mode < 0:
+				result_score_ranking.mode = 3
+				pass
+			if result_score_ranking.mode > 3:
+				result_score_ranking.mode = 0
+				pass
+			result_score_ranking.fresh()
+			result_ranking_label.text = RANKING_TEXTS[result_score_ranking.mode]
+			pass
+		pass
+
+	return
+
+
+func fresh_ranking() -> void:
+
+	if ranking_cooldown == 0:
+		ranking_cooldown = 3
+		if game_finished:
+			result_score_ranking.fresh()
+			pass
+		else:
+			score_ranking.fresh()
+			pass
+		pass
 
 	return
 
@@ -252,6 +322,9 @@ func _process(delta:float) -> void:
 	game_score_label.text = "%d" % [score]
 	if release_cooldown > 0:
 		release_cooldown = maxf(0, release_cooldown - delta)
+		pass
+	if ranking_cooldown > 0:
+		ranking_cooldown = maxf(0, ranking_cooldown - delta)
 		pass
 
 	return

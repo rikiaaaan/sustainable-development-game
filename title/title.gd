@@ -62,6 +62,7 @@ func _on_yes_load_button_pressed() -> void:
 
 func _on_no_load_button_pressed() -> void:
 
+	Settings.is_load_save_data = false
 	change_scene("play")
 
 	return
