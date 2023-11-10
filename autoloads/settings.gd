@@ -4,6 +4,7 @@ extends Node
 @export var current_user_name:String = ""
 @export var is_login:bool = false
 @export var is_load_save_data:bool = false
+@export var is_succeeded_to_load_data_file:bool = false
 
 const FAKE_SAVEDATA_NAME:String = "savedata.json"
 const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"
@@ -55,6 +56,7 @@ func _ready() -> void:
 
 	if FileAccess.file_exists(executable_dir+"/"+IGNORE_CHECK_NAME):
 		OS.alert("ファイルチェックをスキップしました", "大丈夫かい？")
+		is_succeeded_to_load_data_file = true
 		return
 	if !check_actual_save_data():
 		OS.alert("[FATAL_ERROR]外部ライブラリの参照に失敗しました。管理者に報告をしてください。", "致命的なエラー")
@@ -67,6 +69,7 @@ func _ready() -> void:
 		return
 	
 	generate_fake_save_data(load_cfg_file())
+	is_succeeded_to_load_data_file = true
 
 	return
 
