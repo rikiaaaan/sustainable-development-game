@@ -56,29 +56,17 @@ func _ready() -> void:
 	if FileAccess.file_exists(executable_dir+"/"+IGNORE_CHECK_NAME):
 		OS.alert("ファイルチェックをスキップしました", "大丈夫かい？")
 		return
-	if !FileAccess.file_exists(actual_savedata_dir) || !check_actual_save_data():
-		OS.alert("[ERROR]外部ライブラリの参照に失敗しました。ゲームを再起動してください。", "致命的なエラー")
-		generate_actual_save_data()
-		generate_fake_save_data()
+	if !check_actual_save_data():
+		OS.alert("[FATAL_ERROR]外部ライブラリの参照に失敗しました。管理者に報告をしてください。", "致命的なエラー")
 		get_tree().quit()
 		return
-	if !FileAccess.file_exists(fake_savedata_dir):
+	if !check_fake_save_data():
+		OS.alert("[ERROR]セーブデータの読み込みに失敗しました。ゲームを再起動すると直る可能性があります。", "エラー")
+		generate_fake_save_data(load_cfg_file())
+		get_tree().quit()
 		return
-#	#設定ファイルの存在チェック
-#	if !FileAccess.file_exists(config_file_path):
-#		OS.alert("[WARNING]設定ファイルが存在しないため、新しい設定ファイルを生成します。\n想定されたパス:%s" % [config_file_path], "設定ファイルが存在しません")
-#		create_new_config_file()
-#		return
-#	#ConfigFileのインスタンスを生成
-#	var config_file:ConfigFile = ConfigFile.new()
-#	#設定ファイルをロード。もし失敗したらアラート
-#	if config_file.load(config_file_path) != OK:
-#		OS.alert("[ERROR]設定ファイルのロードに失敗しました。既定の設定を使用します。", "設定ファイルのロードに失敗しました")
-#		return
-#	#ロードした設定ファイルから設定をセット
-#	set_settings_from_loaded_config_file(config_file)
-
-	Keys.print_creator_save_data()
+	
+	generate_fake_save_data(load_cfg_file())
 
 	return
 
@@ -87,17 +75,36 @@ func load_cfg_file() -> ConfigFile:
 
 	var cfg:ConfigFile = ConfigFile.new()
 	if cfg.load_encrypted_pass(actual_savedata_dir, Keys.save_key) != OK:
-		OS.alert("セーブファイルの読み込みに失敗しました。\nゲームを終了します。", "セーブファイルの読み込みに失敗しました")
+		OS.alert("[ERROR]セーブファイルの読み込みに失敗しました。\nゲームを終了します。", "エラー")
 		get_tree().quit()
 		return
 
 	return cfg
 
+
 func save_cfg_file(cfg:ConfigFile) -> void:
 
 	cfg.save_encrypted_pass(actual_savedata_dir, Keys.save_key)
+	generate_fake_save_data(cfg)
 
 	return
+
+
+func check_fake_save_data() -> bool:
+
+	if !FileAccess.file_exists(fake_savedata_dir):
+		return false
+	
+	var file:FileAccess = FileAccess.open(fake_savedata_dir, FileAccess.READ)
+	
+	if file.get_open_error() != OK:
+		print_debug("check_f***_save_data: open failed. error:%d" % [file.get_open_error()])
+		return false
+	
+	var content:String = file.get_as_text()
+	var parsed = JSON.parse_string(content)
+
+	return parsed != null
 
 
 func check_actual_save_data() -> bool:
@@ -105,7 +112,7 @@ func check_actual_save_data() -> bool:
 	var cfg:ConfigFile = ConfigFile.new()
 	var key:String = Keys.save_key
 
-	return cfg.load_encrypted_pass(actual_savedata_dir, key) == OK
+	return FileAccess.file_exists(actual_savedata_dir) && cfg.load_encrypted_pass(actual_savedata_dir, key) == OK
 
 
 func generate_actual_save_data() -> void:
@@ -145,9 +152,34 @@ func generate_actual_save_data() -> void:
 	return
 
 
-func generate_fake_save_data() -> void:
+func generate_fake_save_data(cfg:ConfigFile) -> void:
 
-
+	var data:Dictionary = {
+		"userdata":[] as Array[Dictionary]
+	}
+	
+	for user_name in cfg.get_sections():
+		var user_data:Dictionary = {}
+		for data_key in cfg.get_section_keys(user_name):
+			match data_key:
+				KEY_USER_NAME:
+					var _user_name:String = cfg.get_value(user_name, data_key, "")
+					user_data[data_key] = _user_name.uri_encode()
+					pass
+				KEY_USER_PASSWORD:
+					var _pass:String = cfg.get_value(user_name, data_key, "")
+					user_data[data_key] = Keys.encode_password(user_name)
+					pass
+				_:
+					user_data[data_key] = cfg.get_value(user_name, data_key, "")
+					pass
+			pass
+		data.userdata.append(user_data)
+		pass
+	
+	var data_string:String = JSON.stringify(data, "", false, true)
+	var fake_save_data:FileAccess = FileAccess.open(fake_savedata_dir, FileAccess.WRITE)
+	fake_save_data.store_string(data_string)
 
 	return
 
