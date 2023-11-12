@@ -5,8 +5,9 @@ var current_scene_name:String = ""
 
 func _ready() -> void:
 
-	change_scene("login", false)
-#	change_scene("test", false)
+	if Settings.is_succeeded_to_load_data_file:
+		change_scene("login", false)
+		pass
 
 	return
 
