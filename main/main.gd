@@ -2,6 +2,281 @@ extends Node
 
 var current_scene_name:String = ""
 
+const BUTTON_GUIDE_DATA:Dictionary = {
+	"login":[
+		[
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"title":[
+		[
+			{
+				"type": "img",
+				"path": "key_up"
+			},
+			{
+				"type": "img",
+				"path": "key_down"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"title2":[
+		[
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"myscore":[
+		[
+			{
+				"type": "img",
+				"path": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを変更する"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"howtoplay":[
+		[
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"play":[
+		[
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "or"
+			},
+			{
+				"type": "img",
+				"path": "key_a"
+			},
+			{
+				"type": "img",
+				"path": "key_d"
+			},
+			{
+				"type": "text",
+				"text": "移動"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_space"
+			},
+			{
+				"type": "text",
+				"text": "落下"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "メニュー"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを変更する"
+			}
+		]
+	],
+	"pause":[
+		[
+			{
+				"type": "img",
+				"path": "key_up"
+			},
+			{
+				"type": "img",
+				"path": "key_down"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"result":[
+		[
+			{
+				"type": "img",
+				"path": "key_left"
+			},
+			{
+				"type": "img",
+				"path": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"path": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"test":[
+		[
+			{
+				"type": "img",
+				"path": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "Hello World!"
+			}
+		]
+	]
+	
+}
 
 func _ready() -> void:
 
