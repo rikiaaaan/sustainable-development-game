@@ -20,9 +20,8 @@ const BACK_TEXT:String = "戻る"
 
 func _ready() -> void:
 
-	back_button.connect("focus_entered", back_button.release_focus)
-	forward_button.connect("focus_entered", forward_button.release_focus)
-	
+	get_parent().change_button_guide("howtoplay")
+	back_button.grab_focus()
 	set_page(0)
 
 	return
@@ -54,6 +53,7 @@ func set_page(index:int) -> void:
 	if index+1 == PAGE_COUNT:
 		forward_label.hide()
 		forward_button.hide()
+		back_button.grab_focus()
 		pass
 	else:
 		forward_label.show()

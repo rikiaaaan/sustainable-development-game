@@ -32,6 +32,7 @@ func _init() -> void:
 
 func _ready() -> void:
 
+	get_parent().change_button_guide("login")
 	set_page(0, false)
 	
 	input_your_name_here_label.hide()

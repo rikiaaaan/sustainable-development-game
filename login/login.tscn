@@ -95,7 +95,6 @@ theme_override_font_sizes/font_size = 60
 text = "しない"
 
 [node name="Page1" type="Control" parent="Ui"]
-visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
@@ -120,6 +119,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_horizontal = 0
+focus_neighbor_left = NodePath("../HBoxContainer/NameInputButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../HBoxContainer/NameInputTextEdit")
+focus_neighbor_bottom = NodePath(".")
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 30
 text = "←戻る"
@@ -164,6 +167,10 @@ alignment = 1
 [node name="NameInputTextEdit" type="TextEdit" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
 custom_minimum_size = Vector2(700, 60)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../BackButton")
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_right = NodePath("../NameInputButton")
+focus_neighbor_bottom = NodePath("../NameInputButton")
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 40
 placeholder_text = "INPUT YOUR NAME HERE"
@@ -171,6 +178,10 @@ placeholder_text = "INPUT YOUR NAME HERE"
 [node name="NameInputButton" type="Button" parent="Ui/Page1/MarginContainer/NameInput/HBoxContainer"]
 custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
+focus_neighbor_left = NodePath("../NameInputTextEdit")
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_right = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
 theme_override_fonts/font = ExtResource("1_485cf")
 theme_override_font_sizes/font_size = 40
 text = "決定"
@@ -258,6 +269,7 @@ theme_override_font_sizes/font_size = 30
 text = "決定"
 
 [node name="Page3" type="Control" parent="Ui"]
+visible = false
 anchors_preset = 0
 offset_left = 100.0
 offset_top = 100.0
