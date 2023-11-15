@@ -31,11 +31,13 @@ const RANKING_TEXTS:Array[String] = ["マイデイリースコア", "マイト�
 
 @onready var pause_resume_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/ResumeGameButton
 @onready var pause_save_and_go_to_title_button:Button = $Ui/Pause/ColorRect2/VBoxContainer/VBoxContainer/SaveAndBackToTheTitleButton
+@onready var result_retry_button:Button = $Ui/Gameover/Result/ColorRect/HBoxContainer/RetryButton
 
 @onready var result_screenshot:TextureRect = $Ui/Gameover/Result/ColorRect/TextureRect
 
 func _ready() -> void:
 
+	get_parent().change_button_guide("play")
 	release_sdg()
 	if Settings.is_load_save_data:
 		var game_data:Dictionary = Settings.get_saved_game_data()
@@ -129,6 +131,7 @@ func show_pause_screen() -> void:
 	pause_save_and_go_to_title_button.disabled = !Settings.is_login
 	$AnimationPlayer.play("pause_enter")
 	await $AnimationPlayer.animation_finished
+	get_parent().change_button_guide("pause")
 	pause_resume_button.grab_focus()
 	pause_screen_showing = true
 
@@ -139,6 +142,7 @@ func hide_pause_screen() -> void:
 
 	$AnimationPlayer.play("pause_exit")
 	await $AnimationPlayer.animation_finished
+	get_parent().change_button_guide("play")
 	ui_pause.hide()
 	pause_resume_button.release_focus()
 	pause_screen_showing = false
@@ -173,7 +177,10 @@ func show_gameover_screen() -> void:
 	
 	save_result_data()
 	
+	get_parent().change_button_guide("result")
 	$AnimationPlayer.play("gameover_enter")
+	await $AnimationPlayer.animation_finished
+	result_retry_button.grab_focus()
 
 	return
 

@@ -8,6 +8,7 @@ extends Node
 
 func _ready() -> void:
 
+	get_parent().change_button_guide("title")
 	$Ui/LoadGameDataConfirm.hide()
 	game_start_button.grab_focus()
 
@@ -28,6 +29,7 @@ func _on_game_start_button_pressed() -> void:
 		var saved_at:int = Settings.get_saved_data_saved_at()
 		data_saved_at_label.text = Time.get_datetime_string_from_unix_time(saved_at, true)
 		$AnimationPlayer.play("enter_load_game_data_confirm")
+		get_parent().change_button_guide("title2")
 		await $AnimationPlayer.animation_finished
 		load_button.grab_focus()
 		pass
@@ -70,6 +72,7 @@ func _on_no_load_button_pressed() -> void:
 
 func _on_wait_a_minute_button_pressed() -> void:
 
+	get_parent().change_button_guide("title")
 	$AnimationPlayer.play("leave_load_game_data_confirm")
 	await $AnimationPlayer.animation_finished
 	game_start_button.grab_focus()
