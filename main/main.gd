@@ -209,6 +209,24 @@ const BUTTON_GUIDE_DATA:Dictionary = {
 				"type": "text",
 				"text": "ランキングを変更する"
 			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"img": "key_r"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを更新する"
+			}
 		]
 	],
 	"pause":[
@@ -386,7 +404,7 @@ func change_button_guide(guide_name:String) -> void:
 		var button_guide:Array = BUTTON_GUIDE_DATA[guide_name]
 		
 		var label_settings:LabelSettings = LabelSettings.new()
-		label_settings.font_size = 30
+		label_settings.font_size = 25
 		label_settings.shadow_color = Color(0, 0, 0, 0.39)
 		label_settings.font = ResourceLoader.load("res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf", "", ResourceLoader.CACHE_MODE_REPLACE)
 		
