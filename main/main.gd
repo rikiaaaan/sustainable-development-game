@@ -324,9 +324,9 @@ func _input(event:InputEvent) -> void:
 	return
 
 
-func load_button_img(name:String) -> Image:
+func load_button_img(_name:String) -> Image:
 
-	var img = ResourceLoader.load("res://shared/test/"+name, "", ResourceLoader.CACHE_MODE_REPLACE)
+	var img = ResourceLoader.load("res://shared/img/"+_name, "", ResourceLoader.CACHE_MODE_REPLACE)
 	print_debug("img typeof: %d" % [typeof(img)])
 
 	return img.get_image()
