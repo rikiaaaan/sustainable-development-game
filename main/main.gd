@@ -2,12 +2,310 @@ extends Node
 
 var current_scene_name:String = ""
 
+const BUTTON_GUIDE_DATA:Dictionary = {
+	"login":[
+		[
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"title":[
+		[
+			{
+				"type": "img",
+				"img": "key_up"
+			},
+			{
+				"type": "img",
+				"img": "key_down"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"title2":[
+		[
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"myscore":[
+		[
+			{
+				"type": "img",
+				"img": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを変更する"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"howtoplay":[
+		[
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"play":[
+		[
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "or"
+			},
+			{
+				"type": "img",
+				"img": "key_a"
+			},
+			{
+				"type": "img",
+				"img": "key_d"
+			},
+			{
+				"type": "text",
+				"text": "移動"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_space"
+			},
+			{
+				"type": "text",
+				"text": "落下"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "メニュー"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを変更する"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "+"
+			},
+			{
+				"type": "img",
+				"img": "key_r"
+			},
+			{
+				"type": "text",
+				"text": "ランキングを更新する"
+			}
+		]
+	],
+	"pause":[
+		[
+			{
+				"type": "img",
+				"img": "key_up"
+			},
+			{
+				"type": "img",
+				"img": "key_down"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"result":[
+		[
+			{
+				"type": "img",
+				"img": "key_left"
+			},
+			{
+				"type": "img",
+				"img": "key_right"
+			},
+			{
+				"type": "text",
+				"text": "選択"
+			}
+		],
+		[
+			{
+				"type": "img",
+				"img": "key_enter"
+			},
+			{
+				"type": "text",
+				"text": "決定"
+			}
+		]
+	],
+	"test":[
+		[
+			{
+				"type": "img",
+				"img": "key_ctrl"
+			},
+			{
+				"type": "text",
+				"text": "Hello World!"
+			}
+		]
+	]
+	
+}
+
+@onready var button_guide_container:HBoxContainer = $ButtonGuide/ColorRect/HBoxContainer
+
 
 func _ready() -> void:
 
 	if Settings.is_succeeded_to_load_data_file:
 		change_scene("login", false)
 		pass
+
+	change_button_guide("login")
 
 	return
 
@@ -24,6 +322,14 @@ func _input(event:InputEvent) -> void:
 		pass
 
 	return
+
+
+func load_button_img(name:String) -> Image:
+
+	var img = ResourceLoader.load("res://shared/test/"+name, "", ResourceLoader.CACHE_MODE_REPLACE)
+	print_debug("img typeof: %d" % [typeof(img)])
+
+	return img.get_image()
 
 
 func change_scene(scene_name:String, with_tween:bool=true) -> void:
@@ -83,5 +389,48 @@ func change_scene(scene_name:String, with_tween:bool=true) -> void:
 		pass
 	
 	scene.process_mode = Node.PROCESS_MODE_INHERIT
+
+	return
+
+
+func change_button_guide(guide_name:String) -> void:
+
+	if BUTTON_GUIDE_DATA.has(guide_name):
+		
+		for guide in button_guide_container.get_children():
+			button_guide_container.remove_child(guide)
+			guide.queue_free()
+			pass
+		var button_guide:Array = BUTTON_GUIDE_DATA[guide_name]
+		
+		var label_settings:LabelSettings = LabelSettings.new()
+		label_settings.font_size = 25
+		label_settings.shadow_color = Color(0, 0, 0, 0.39)
+		label_settings.font = ResourceLoader.load("res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf", "", ResourceLoader.CACHE_MODE_REPLACE)
+		
+		for section in button_guide:
+			var section_container:HBoxContainer = HBoxContainer.new()
+			for data in section:
+				match data.type:
+					"img":
+						var texture_rect:TextureRect = TextureRect.new()
+						var button_image:Image = load_button_img(data.img+".png")
+						texture_rect.texture = ImageTexture.create_from_image(button_image)
+						texture_rect.custom_minimum_size = Vector2(40, 40)
+						section_container.add_child(texture_rect)
+						pass
+					"text":
+						var label:Label = Label.new()
+						label.text = data.text
+						label.label_settings = label_settings
+						section_container.add_child(label)
+						pass
+					_:
+						continue
+				pass
+				button_guide_container.add_child(section_container)
+			pass
+		
+		pass
 
 	return
