@@ -296,16 +296,18 @@ const BUTTON_GUIDE_DATA:Dictionary = {
 	
 }
 
-@onready var button_guide_container:HBoxContainer = $ButtonGuide/ColorRect/HBoxContainer
+@onready var _button_guide:CanvasLayer = $ButtonGuide as CanvasLayer
+@onready var _button_guide_container:HBoxContainer = $ButtonGuide/ColorRect/HBoxContainer as HBoxContainer
 
 
 func _ready() -> void:
 
+	_button_guide.hide()
 	if Settings.is_succeeded_to_load_data_file:
+		_button_guide.show()
+		change_button_guide("login")
 		change_scene("login", false)
 		pass
-
-	change_button_guide("login")
 
 	return
 
@@ -397,8 +399,8 @@ func change_button_guide(guide_name:String) -> void:
 
 	if BUTTON_GUIDE_DATA.has(guide_name):
 		
-		for guide in button_guide_container.get_children():
-			button_guide_container.remove_child(guide)
+		for guide in _button_guide_container.get_children():
+			_button_guide_container.remove_child(guide)
 			guide.queue_free()
 			pass
 		var button_guide:Array = BUTTON_GUIDE_DATA[guide_name]
@@ -428,7 +430,7 @@ func change_button_guide(guide_name:String) -> void:
 					_:
 						continue
 				pass
-				button_guide_container.add_child(section_container)
+				_button_guide_container.add_child(section_container)
 			pass
 		
 		pass

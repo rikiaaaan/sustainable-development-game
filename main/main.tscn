@@ -1,9 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://k6srge0j5x4c"]
+[gd_scene load_steps=4 format=3 uid="uid://k6srge0j5x4c"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_clnx4"]
-[ext_resource type="Texture2D" uid="uid://bjd13bs4uuo54" path="res://shared/test/key_left.png" id="2_djtqu"]
-[ext_resource type="Texture2D" uid="uid://benhphyypklbs" path="res://shared/test/key_enter.png" id="2_osm5h"]
-[ext_resource type="Texture2D" uid="uid://huj7afehcrrb" path="res://shared/test/key_right.png" id="3_etxci"]
 [ext_resource type="FontFile" uid="uid://wdjb3s35qcvu" path="res://shared/font/Corporate-Logo-Rounded-Bold-ver3.otf" id="3_kcg6v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o3tdj"]
@@ -44,12 +41,10 @@ layout_mode = 2
 [node name="TextureRect2" type="TextureRect" parent="ButtonGuide/ColorRect/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-texture = ExtResource("2_djtqu")
 
 [node name="TextureRect" type="TextureRect" parent="ButtonGuide/ColorRect/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-texture = ExtResource("3_etxci")
 
 [node name="Label" type="Label" parent="ButtonGuide/ColorRect/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -63,7 +58,6 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="ButtonGuide/ColorRect/HBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-texture = ExtResource("2_osm5h")
 
 [node name="Label2" type="Label" parent="ButtonGuide/ColorRect/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
