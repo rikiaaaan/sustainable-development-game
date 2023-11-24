@@ -1,17 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://frpswf28sb0y"]
+[gd_scene load_steps=4 format=3 uid="uid://frpswf28sb0y"]
 
 [ext_resource type="Script" path="res://shared/sdg/sdg.gd" id="1_2345c"]
 [ext_resource type="Texture2D" uid="uid://cb8bro0dthsy2" path="res://shared/img/sgds.png" id="2_yhf3n"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_btxp0"]
+friction = 0.0
+absorbent = true
+
 [node name="sdg" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 3
-mass = 0.1
-inertia = 5.0
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_btxp0")
 max_contacts_reported = 4
 contact_monitor = true
 can_sleep = false
-linear_velocity = Vector2(0, 1)
 script = ExtResource("1_2345c")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
