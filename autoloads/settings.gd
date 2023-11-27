@@ -41,7 +41,6 @@ const KEY_PHASE:String = "phase"
 
 const KEY_RESULT_SCREENSHOT:String = "result_screenshot"
 
-#hi everyone! my name is:
 const CREATOR_NAME:String = "FairyMD"
 const CREATOR_DEFAULT_SCORE:int = 3000
 const CREATOR_DEFAULT_SDG:int = 1

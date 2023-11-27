@@ -4,17 +4,17 @@ var current_index:int = 0
 var user_name_regex:RegEx = null
 var password_regex:RegEx = null
 
-@onready var login_yes_button:Button = $Ui/Page0/AskLogin/HBoxContainer/YesButton
+@onready var _login_yes_button:Button = $Ui/Page0/AskLogin/HBoxContainer/YesButton as Button
 
-@onready var welcome_message_label:Label = $Ui/Page2/MarginContainer/NewPassInput/WelcomeMessageLabel
-@onready var welcome_back_message_label:Label = $Ui/Page3/MarginContainer/PassInput/WelcomeBackMessageLabel
-@onready var input_your_name_here_label:Label = $Ui/Page1/MarginContainer/NameInput/InputYourNameHereLabel
-@onready var input_your_new_password_here_label:Label = $Ui/Page2/MarginContainer/NewPassInput/InputYourNewPasswordHereLabel
-@onready var input_your_password_here_label:Label = $Ui/Page3/MarginContainer/PassInput/InputYourPasswordHereLabel
+@onready var _welcome_message_label:Label = $Ui/Page2/MarginContainer/NewPassInput/WelcomeMessageLabel as Label
+@onready var _welcome_back_message_label:Label = $Ui/Page3/MarginContainer/PassInput/WelcomeBackMessageLabel as Label
+@onready var _input_your_name_here_label:Label = $Ui/Page1/MarginContainer/NameInput/InputYourNameHereLabel as Label
+@onready var _input_your_new_password_here_label:Label = $Ui/Page2/MarginContainer/NewPassInput/InputYourNewPasswordHereLabel as Label
+@onready var _input_your_password_here_label:Label = $Ui/Page3/MarginContainer/PassInput/InputYourPasswordHereLabel as Label
 
-@onready var user_name_input:TextEdit = $Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputTextEdit
-@onready var new_pass_input:TextEdit = $Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputTextEdit
-@onready var pass_input:TextEdit = $Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputTextEdit
+@onready var _user_name_input:TextEdit = $Ui/Page1/MarginContainer/NameInput/HBoxContainer/NameInputTextEdit as TextEdit
+@onready var _new_pass_input:TextEdit = $Ui/Page2/MarginContainer/NewPassInput/HBoxContainer/NewPassInputTextEdit as TextEdit
+@onready var _pass_input:TextEdit = $Ui/Page3/MarginContainer/PassInput/HBoxContainer/PassInputTextEdit as TextEdit
 
 const WELCOME_MESSAGE:String = "ようこそ、%sさん！\nあなたのセーブデータを守るための\n新しく使用するパスワードを入力してください。"
 const WELLCOME_BACK_MESSAGE:String = "おかえりなさい、%sさん！\n設定されているパスワードを入力してください。"
@@ -35,11 +35,11 @@ func _ready() -> void:
 	get_parent().change_button_guide("login")
 	set_page(0, false)
 	
-	input_your_name_here_label.hide()
-	input_your_new_password_here_label.hide()
-	input_your_password_here_label.hide()
+	_input_your_name_here_label.hide()
+	_input_your_new_password_here_label.hide()
+	_input_your_password_here_label.hide()
 	
-	login_yes_button.grab_focus()
+	_login_yes_button.grab_focus()
 
 	return
 
@@ -79,9 +79,9 @@ func go_to_title_scene() -> void:
 
 func _on_page_set_button_pressed(index:int) -> void:
 
-	input_your_name_here_label.hide()
-	input_your_new_password_here_label.hide()
-	input_your_password_here_label.hide()
+	_input_your_name_here_label.hide()
+	_input_your_new_password_here_label.hide()
+	_input_your_password_here_label.hide()
 	set_page(index)
 
 	return
@@ -89,21 +89,21 @@ func _on_page_set_button_pressed(index:int) -> void:
 
 func _on_name_input_button_pressed() -> void:
 
-	var input_name:String = user_name_input.text
+	var input_name:String = _user_name_input.text
 	
 	if input_name == "":
-		input_your_name_here_label.show()
+		_input_your_name_here_label.show()
 		return
 	
-	input_your_name_here_label.hide()
+	_input_your_name_here_label.hide()
 	Settings.set_current_user(input_name)
 	if Settings.is_user_exists(input_name):
 		set_page(3)
-		welcome_back_message_label.text = WELLCOME_BACK_MESSAGE % [input_name]
+		_welcome_back_message_label.text = WELLCOME_BACK_MESSAGE % [input_name]
 		pass
 	else:
 		set_page(2)
-		welcome_message_label.text = WELCOME_MESSAGE % [input_name]
+		_welcome_message_label.text = WELCOME_MESSAGE % [input_name]
 		pass
 
 	return
@@ -111,12 +111,12 @@ func _on_name_input_button_pressed() -> void:
 
 func _on_new_pass_input_button_pressed() -> void:
 
-	var input_password:String = new_pass_input.text
+	var input_password:String = _new_pass_input.text
 	if input_password == "":
-		input_your_new_password_here_label.show()
+		_input_your_new_password_here_label.show()
 		return
 	
-	input_your_new_password_here_label.hide()
+	_input_your_new_password_here_label.hide()
 	Settings.init_user_data(input_password)
 	Settings.is_login = true
 	go_to_title_scene()
@@ -126,18 +126,18 @@ func _on_new_pass_input_button_pressed() -> void:
 
 func _on_pass_input_button_pressed() -> void:
 
-	var input_password:String = pass_input.text
+	var input_password:String = _pass_input.text
 	if input_password == "":
-		input_your_password_here_label.text = INPUT_YOUR_PASSWORD_DUMBASS
-		input_your_password_here_label.show()
+		_input_your_password_here_label.text = INPUT_YOUR_PASSWORD_DUMBASS
+		_input_your_password_here_label.show()
 		return
 	
 	if !Settings.is_correct_password(input_password):
-		input_your_password_here_label.text = PASSWORD_IS_INCORRECT
-		input_your_password_here_label.show()
+		_input_your_password_here_label.text = PASSWORD_IS_INCORRECT
+		_input_your_password_here_label.show()
 		return
 	
-	input_your_password_here_label.hide()
+	_input_your_password_here_label.hide()
 	Settings.login()
 	go_to_title_scene()
 
@@ -146,42 +146,37 @@ func _on_pass_input_button_pressed() -> void:
 
 func _on_name_input_text_edit_text_changed() -> void:
 
-	var current_input_name:String = user_name_input.text
-	var current_caret:int = user_name_input.get_caret_column()
+	var current_input_name:String = _user_name_input.text
+	var current_caret:int = _user_name_input.get_caret_column()
 	if current_input_name.length() > 20:
 		current_input_name = current_input_name.substr(0, 20)
 		pass
 	
 	var search_res:RegExMatch = user_name_regex.search(current_input_name)
 	if search_res:
-		print_debug(search_res.get_string())
-		user_name_input.text = search_res.get_string()
+		_user_name_input.text = search_res.get_string()
 		pass
 	else:
-		user_name_input.text = ""
+		_user_name_input.text = ""
 		pass
-	user_name_input.set_caret_column(current_caret)
+	_user_name_input.set_caret_column(current_caret)
 
 	return
 
 
 func _on_new_pass_input_text_edit_text_changed() -> void:
 
-	var current_input_password:String = new_pass_input.text
-	var current_caret:int = new_pass_input.get_caret_column()
-#	if current_input_password.length() > 20:
-#		current_input_password = current_input_password.substr(0, 20)
-#		pass
-	
+	var current_input_password:String = _new_pass_input.text
+	var current_caret:int = _new_pass_input.get_caret_column()
+
 	var search_res:RegExMatch = password_regex.search(current_input_password)
 	if search_res:
-		print_debug(search_res.get_string())
-		new_pass_input.text = search_res.get_string()
+		_new_pass_input.text = search_res.get_string()
 		pass
 	else:
-		new_pass_input.text = ""
+		_new_pass_input.text = ""
 		pass
-	new_pass_input.set_caret_column(current_caret)
+	_new_pass_input.set_caret_column(current_caret)
 
 	return
 	
@@ -189,20 +184,17 @@ func _on_new_pass_input_text_edit_text_changed() -> void:
 
 func _on_pass_input_text_edit_text_changed() -> void:
 
-	var current_input_password:String = pass_input.text
-	var current_caret:int = pass_input.get_caret_column()
-#	if current_input_password.length() > 20:
-#		current_input_password = current_input_password.substr(0, 20)
-#		pass
+	var current_input_password:String = _pass_input.text
+	var current_caret:int = _pass_input.get_caret_column()
 	
 	var search_res:RegExMatch = password_regex.search(current_input_password)
 	if search_res:
 		print_debug(search_res.get_string())
-		pass_input.text = search_res.get_string()
+		_pass_input.text = search_res.get_string()
 		pass
 	else:
-		pass_input.text = ""
+		_pass_input.text = ""
 		pass
-	pass_input.set_caret_column(current_caret)
+	_pass_input.set_caret_column(current_caret)
 
 	return
