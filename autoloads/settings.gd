@@ -7,7 +7,7 @@ extends Node
 @export var is_succeeded_to_load_data_file:bool = false
 
 const FAKE_SAVEDATA_NAME:String = "savedata.json"
-const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"
+const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.dll"
 const IGNORE_CHECK_NAME:String = "ignorefilecheck"
 
 const KEY_USER_NAME:String = "user_name"
