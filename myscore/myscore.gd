@@ -1,12 +1,13 @@
 extends Node
 
 @onready var score_tab:TabContainer = $Ui/TabContainer
+@onready var _back_to_the_title_button:Button = $Ui/BackToTheTitleButton as Button
 
 
 func _ready() -> void:
 
 	get_parent().change_button_guide("myscore")
-	$Ui/BackToTheTitleButton.grab_focus()
+	_back_to_the_title_button.grab_focus()
 
 	return
 

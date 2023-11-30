@@ -7,7 +7,7 @@ extends Node
 @export var is_succeeded_to_load_data_file:bool = false
 
 const FAKE_SAVEDATA_NAME:String = "savedata.json"
-const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.lib"
+const ACTUAL_SAVEDATA_NAME:String = "libaccess_output_file_plugin.dll"
 const IGNORE_CHECK_NAME:String = "ignorefilecheck"
 
 const KEY_USER_NAME:String = "user_name"
@@ -41,7 +41,6 @@ const KEY_PHASE:String = "phase"
 
 const KEY_RESULT_SCREENSHOT:String = "result_screenshot"
 
-#hi everyone! my name is:
 const CREATOR_NAME:String = "FairyMD"
 const CREATOR_DEFAULT_SCORE:int = 3000
 const CREATOR_DEFAULT_SDG:int = 1

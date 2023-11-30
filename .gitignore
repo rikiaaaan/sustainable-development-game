@@ -4,3 +4,6 @@ dist/
 desktop.ini
 autoloads/keys.gd
 shared/test/
+screenshots/preview_playing.png.import
+screenshots/preview_howtoplay.png.import
+export_presets.cfg

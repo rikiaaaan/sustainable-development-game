@@ -39,7 +39,7 @@ func set_phase() -> void:
 func set_polygon(size:float) -> void:
 	
 	var pv:PackedVector2Array = []
-	for i in range(0, 360, 3):
+	for i in range(0, 360, 12):
 		var v:Vector2 = Vector2.from_angle(deg_to_rad(i)) * size
 		pv.append(v)
 		pass
